@@ -11,6 +11,7 @@ services:
       npm install
       npm run build
     startCommand: npm start
+    rootDir: .
     envVars:
       - key: NODE_VERSION
         value: 20.10.0
@@ -47,9 +48,5 @@ databases:
     region: frankfurt
 
 # Automatic redeploy on Git push
-deployHooks:
-  preDeploy:
-    - echo "🚀 Starting HerbSpot build..."
-  postDeploy:
-    - echo "✅ Deployment finished at $(date)"
+# deployHooks removed - not supported in render.yaml
 
