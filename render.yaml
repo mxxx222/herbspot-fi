@@ -15,7 +15,7 @@ services:
       - key: STRIPE_SECRET_KEY
         value: "mock"
       - key: NEXT_PUBLIC_SUPABASE_URL
-        sync: false
+        value: "https://placeholder.supabase.co"
       - key: NEXT_PUBLIC_SUPABASE_ANON_KEY
-        sync: false
+        value: "placeholder-anon-key"
 
