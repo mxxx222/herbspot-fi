@@ -11,7 +11,7 @@ services:
       - key: SHOPIFY_STORE_DOMAIN
         sync: false
       - key: SHOPIFY_STOREFRONT_TOKEN
-        sync: false
+        value: "8e50755fa974275c7eaf6aa8dea13c3d"
       - key: STRIPE_SECRET_KEY
         value: "mock"
       - key: NEXT_PUBLIC_SUPABASE_URL
