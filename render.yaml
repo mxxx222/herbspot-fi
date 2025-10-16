@@ -1,52 +1,21 @@
-# HERBSPOT 🪴 — Render.com deployment spec
-# Framework: Next.js 14 (App Router) + Shopify + Supabase + Stripe (mock)
-# Build & deploy pipeline optimized for SSR + ISR
-
 services:
   - type: web
     name: herbspot-web
     env: node
     plan: starter
-    buildCommand: |
-      npm install
-      npm run build
+    buildCommand: npm install && npm run build
     startCommand: npm start
-    rootDir: .
     envVars:
       - key: NODE_VERSION
-        value: 20.10.0
+        value: "20.10.0"
       - key: SHOPIFY_STORE_DOMAIN
-        sync: false     # Add in Render Dashboard
+        sync: false
       - key: SHOPIFY_STOREFRONT_TOKEN
         sync: false
       - key: STRIPE_SECRET_KEY
-        value: mock
+        value: "mock"
       - key: NEXT_PUBLIC_SUPABASE_URL
         sync: false
       - key: NEXT_PUBLIC_SUPABASE_ANON_KEY
         sync: false
-      - key: NEXT_PUBLIC_SITE_URL
-        fromService:
-          type: web
-          name: herbspot-web
-          property: url
-    autoDeploy: true
-    buildFilter:
-      paths:
-        - "**/*.ts"
-        - "**/*.tsx"
-        - "package.json"
-        - "next.config.js"
-        - "tailwind.config.js"
-        - "render.yaml"
-
-databases:
-  - name: herbspot-db
-    plan: free
-    databaseName: herbspot_points
-    user: herbspot_admin
-    region: frankfurt
-
-# Automatic redeploy on Git push
-# deployHooks removed - not supported in render.yaml
 
