@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import LoyaltyCard from '@/components/LoyaltyCard';
-import QRDisplay from '@/components/QRDisplay';
+// import LoyaltyCard from '@/components/LoyaltyCard';
+// import QRDisplay from '@/components/QRDisplay';
 
 interface Order {
   id: string;
@@ -135,7 +135,7 @@ export default function AccountPage() {
 
             {/* Loyalty Card */}
             <div>
-              <LoyaltyCard />
+              {/* <LoyaltyCard /> */}
             </div>
           </motion.div>
         )}
@@ -196,8 +196,8 @@ export default function AccountPage() {
             animate={{ opacity: 1, y: 0 }}
             className="grid grid-cols-1 lg:grid-cols-2 gap-8"
           >
-            <LoyaltyCard />
-            <QRDisplay orderId="DEMO-ORDER-123" points={150} />
+            {/* <LoyaltyCard />
+            <QRDisplay orderId="DEMO-ORDER-123" points={150} /> */}
           </motion.div>
         )}
       </div>
