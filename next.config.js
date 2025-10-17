@@ -4,6 +4,11 @@ const nextConfig = {
   swcMinify: true,
   compress: true,
   
+  // Disable critters for now
+  experimental: {
+    optimizeCss: false,
+  },
+  
   // Image optimization
   images: {
     domains: [
@@ -21,7 +26,7 @@ const nextConfig = {
 
   // Bundle optimization
   experimental: {
-    optimizeCss: true,
+    optimizeCss: false,
     optimizePackageImports: ['framer-motion', '@tanstack/react-query'],
   },
 

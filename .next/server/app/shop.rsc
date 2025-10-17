@@ -1,5 +1,5 @@
 1:HL["/_next/static/css/8408ee337b8e6ec3.css","style",{"crossOrigin":""}]
-0:["Jje25Y_yGGDCGeQBPSx9B",[[["",{"children":["shop",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/8408ee337b8e6ec3.css","precedence":"next","crossOrigin":""}]],"$L3"]]]]
+0:["_pFXNmfHitWSIBArrX6ps",[[["",{"children":["shop",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/8408ee337b8e6ec3.css","precedence":"next","crossOrigin":""}]],"$L3"]]]]
 4:I[7276,["185","static/chunks/app/layout-ddad2281f849c5e1.js"],"OrganizationStructuredData"]
 5:I[1125,["185","static/chunks/app/layout-ddad2281f849c5e1.js"],"GoogleAnalytics"]
 6:I[1125,["185","static/chunks/app/layout-ddad2281f849c5e1.js"],"PlausibleAnalytics"]
