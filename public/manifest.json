@@ -1,0 +1,29 @@
+{
+  "name": "HerbSpot.fi - Premium 510 Cartridges",
+  "short_name": "HerbSpot",
+  "description": "Premium 510-patruunat & Aromaterapia laitteet. Lääkinnällinen teräs, pyrex-lasi ja keraaminen ydin.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#39FF14",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["shopping", "lifestyle", "health"],
+  "lang": "fi",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false
+}
