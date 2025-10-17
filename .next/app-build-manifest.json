@@ -1,3 +1,101 @@
 {
-  "pages": {}
+  "pages": {
+    "/_not-found": [
+      "static/chunks/webpack-12d66b62050cf190.js",
+      "static/chunks/vendor-b454a954a3b13df8.js",
+      "static/chunks/main-app-3f9fd99df64dfc80.js",
+      "static/chunks/app/_not-found-b62e4a105ad3f43b.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-12d66b62050cf190.js",
+      "static/chunks/vendor-b454a954a3b13df8.js",
+      "static/chunks/main-app-3f9fd99df64dfc80.js",
+      "static/css/8408ee337b8e6ec3.css",
+      "static/chunks/app/layout-ddad2281f849c5e1.js"
+    ],
+    "/account/page": [
+      "static/chunks/webpack-12d66b62050cf190.js",
+      "static/chunks/vendor-b454a954a3b13df8.js",
+      "static/chunks/main-app-3f9fd99df64dfc80.js",
+      "static/chunks/app/account/page-d24dac7f6dc80428.js"
+    ],
+    "/checkout/cancel/page": [
+      "static/chunks/webpack-12d66b62050cf190.js",
+      "static/chunks/vendor-b454a954a3b13df8.js",
+      "static/chunks/main-app-3f9fd99df64dfc80.js",
+      "static/chunks/app/checkout/cancel/page-a013898bcd8d28a5.js"
+    ],
+    "/c/[handle]/page": [
+      "static/chunks/webpack-12d66b62050cf190.js",
+      "static/chunks/vendor-b454a954a3b13df8.js",
+      "static/chunks/main-app-3f9fd99df64dfc80.js",
+      "static/chunks/common-e65e093b3111fea6.js",
+      "static/chunks/app/c/[handle]/page-24ed354d46219ea0.js"
+    ],
+    "/checkout/success/page": [
+      "static/chunks/webpack-12d66b62050cf190.js",
+      "static/chunks/vendor-b454a954a3b13df8.js",
+      "static/chunks/main-app-3f9fd99df64dfc80.js",
+      "static/chunks/app/checkout/success/page-897e94dfd13bad10.js"
+    ],
+    "/checkout/page": [
+      "static/chunks/webpack-12d66b62050cf190.js",
+      "static/chunks/vendor-b454a954a3b13df8.js",
+      "static/chunks/main-app-3f9fd99df64dfc80.js",
+      "static/chunks/app/checkout/page-935a46d50ac18b39.js"
+    ],
+    "/p/[handle]/page": [
+      "static/chunks/webpack-12d66b62050cf190.js",
+      "static/chunks/vendor-b454a954a3b13df8.js",
+      "static/chunks/main-app-3f9fd99df64dfc80.js",
+      "static/chunks/common-e65e093b3111fea6.js",
+      "static/chunks/app/p/[handle]/page-e28e7c480d204a31.js"
+    ],
+    "/order/page": [
+      "static/chunks/webpack-12d66b62050cf190.js",
+      "static/chunks/vendor-b454a954a3b13df8.js",
+      "static/chunks/main-app-3f9fd99df64dfc80.js",
+      "static/chunks/app/order/page-89b1d7af7a7ea53d.js"
+    ],
+    "/shop/page": [
+      "static/chunks/webpack-12d66b62050cf190.js",
+      "static/chunks/vendor-b454a954a3b13df8.js",
+      "static/chunks/main-app-3f9fd99df64dfc80.js",
+      "static/chunks/common-e65e093b3111fea6.js",
+      "static/chunks/app/shop/page-bb538167efc31164.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-12d66b62050cf190.js",
+      "static/chunks/vendor-b454a954a3b13df8.js",
+      "static/chunks/main-app-3f9fd99df64dfc80.js",
+      "static/chunks/common-e65e093b3111fea6.js",
+      "static/chunks/app/page-0f57800348612eaf.js"
+    ],
+    "/en/page": [
+      "static/chunks/webpack-12d66b62050cf190.js",
+      "static/chunks/vendor-b454a954a3b13df8.js",
+      "static/chunks/main-app-3f9fd99df64dfc80.js",
+      "static/chunks/app/en/page-fd6bcd34362db043.js"
+    ],
+    "/b2b/page": [
+      "static/chunks/webpack-12d66b62050cf190.js",
+      "static/chunks/vendor-b454a954a3b13df8.js",
+      "static/chunks/main-app-3f9fd99df64dfc80.js",
+      "static/chunks/common-e65e093b3111fea6.js",
+      "static/chunks/app/b2b/page-efecebc309738f6b.js"
+    ],
+    "/en/b2b/page": [
+      "static/chunks/webpack-12d66b62050cf190.js",
+      "static/chunks/vendor-b454a954a3b13df8.js",
+      "static/chunks/main-app-3f9fd99df64dfc80.js",
+      "static/chunks/common-e65e093b3111fea6.js",
+      "static/chunks/app/en/b2b/page-6227704cf2c83610.js"
+    ],
+    "/en/shop/page": [
+      "static/chunks/webpack-12d66b62050cf190.js",
+      "static/chunks/vendor-b454a954a3b13df8.js",
+      "static/chunks/main-app-3f9fd99df64dfc80.js",
+      "static/chunks/app/en/shop/page-e2fd8b0a695cd1d7.js"
+    ]
+  }
 }

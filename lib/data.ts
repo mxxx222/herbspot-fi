@@ -19,7 +19,7 @@ export async function getByCategory(slug:string){
     "pakkaus":"pakkaus",
     "herbal":"herbal",
   };
-  return products.filter(p=>p.category===map[slug]);
+  return products.filter((p: any)=>p.category===map[slug]);
 }
 
 export async function getOne(handle:string){ 

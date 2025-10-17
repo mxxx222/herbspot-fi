@@ -11,7 +11,7 @@ export async function ProductGrid({ limit = 6 }: { limit?: number }) {
           <a href="/shop" className="text-white/70 hover:text-white">Näytä kaikki →</a>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {products.map((p)=>(
+          {products.map((p: any)=>(
             <ProductCard key={p.handle} product={p} />
           ))}
         </div>

@@ -2,7 +2,7 @@ import { Hero } from '@/components/Hero';
 import { CategoryGrid } from '@/components/CategoryGrid';
 import { ProductGrid } from '@/components/ProductGrid';
 import { TrustSignals } from '@/components/TrustSignals';
-import { AIRecommendations } from '@/components/AIRecommendations';
+import { RecommendationEngine } from '@/components/AIRecommendations';
 
 export default function HomePageEN() {
   return (
@@ -11,7 +11,7 @@ export default function HomePageEN() {
       <CategoryGrid />
       <ProductGrid />
       <TrustSignals />
-      <AIRecommendations currentProduct={null} />
+      <RecommendationEngine currentProduct={null} />
     </main>
   );
 }

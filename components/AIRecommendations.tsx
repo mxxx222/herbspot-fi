@@ -124,7 +124,7 @@ export function PersonalizedPricing({ userId }: { userId?: string }) {
     // Simulate AI pricing optimization
     const calculatePricing = async () => {
       // Mock user behavior analysis
-      const userTier = userId ? "Gold" : "Bronze";
+      const userTier = userId ? "Gold" : "Bronze" as "Gold" | "Silver" | "Bronze";
       const basePrice = 24.90;
       
       let discount = 0;

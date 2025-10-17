@@ -122,7 +122,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {loading && (
-          <LoadingSpinner size={size} />
+          <LoadingSpinner size={size || "default"} />
         )}
         {!loading && leftIcon && (
           <span className="flex-shrink-0" aria-hidden="true">

@@ -180,7 +180,7 @@ export async function fetchProducts(first: number = 20, after?: string) {
     const data = await shopifyQuery(GET_PRODUCTS_QUERY, { first, after });
     
     return {
-      products: data?.products?.edges?.map((edge: any) => ({
+      products: (data as any)?.products?.edges?.map((edge: any) => ({
         handle: edge.node.handle,
         title: edge.node.title,
         price: `${edge.node.priceRange?.minVariantPrice?.amount} ${edge.node.priceRange?.minVariantPrice?.currencyCode}`,
@@ -188,7 +188,7 @@ export async function fetchProducts(first: number = 20, after?: string) {
         badge: edge.node.tags?.includes('new') ? 'Uutuus' : undefined,
         category: edge.node.productType?.toLowerCase() || 'tuote',
       })) || [],
-      pageInfo: data?.products?.pageInfo || { hasNextPage: false, hasPreviousPage: false }
+      pageInfo: (data as any)?.products?.pageInfo || { hasNextPage: false, hasPreviousPage: false }
     };
   } catch (error) {
     console.error('Error fetching products from Shopify:', error);
@@ -204,15 +204,15 @@ export async function fetchProduct(handle: string) {
   try {
     const data = await shopifyQuery(GET_PRODUCT_QUERY, { handle });
     
-    if (!data?.product) return null;
+    if (!(data as any)?.product) return null;
     
     return {
-      handle: data.product.handle,
-      title: data.product.title,
-      price: `${data.product.priceRange?.minVariantPrice?.amount} ${data.product.priceRange?.minVariantPrice?.currencyCode}`,
-      image: data.product.images?.edges?.[0]?.node?.url || 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=400&fit=crop',
-      description: data.product.description,
-      variants: data.product.variants?.edges?.map((edge: any) => edge.node) || [],
+      handle: (data as any).product.handle,
+      title: (data as any).product.title,
+      price: `${(data as any).product.priceRange?.minVariantPrice?.amount} ${(data as any).product.priceRange?.minVariantPrice?.currencyCode}`,
+      image: (data as any).product.images?.edges?.[0]?.node?.url || 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=400&fit=crop',
+      description: (data as any).product.description,
+      variants: (data as any).product.variants?.edges?.map((edge: any) => edge.node) || [],
     };
   } catch (error) {
     console.error('Error fetching product from Shopify:', error);
@@ -225,7 +225,7 @@ export async function fetchCollections(first: number = 10) {
   try {
     const data = await shopifyQuery(GET_COLLECTIONS_QUERY, { first });
     
-    return data?.collections?.edges?.map((edge: any) => ({
+    return (data as any)?.collections?.edges?.map((edge: any) => ({
       handle: edge.node.handle,
       title: edge.node.title,
       description: edge.node.description,
