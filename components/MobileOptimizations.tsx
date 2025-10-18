@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useTouchGestures, useSwipeNavigation, usePullToRefresh } from '@/hooks/useTouchGestures';
 
-export function TouchOptimizations() {
+export function MobileOptimizations() {
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
 

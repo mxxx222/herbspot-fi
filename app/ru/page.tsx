@@ -2,12 +2,12 @@ import { FadeIn, Stagger } from '@/components/Animations';
 import { SEOHead } from '@/components/SEOHead';
 import { ProductCard } from '@/components/ProductCard';
 import { CategoryCard } from '@/components/CategoryCard';
-import { getProducts, getCategories } from '@/lib/data';
+import { fetchProducts, fetchCategories } from '@/lib/shopify';
 import Link from 'next/link';
 
 export default async function RussianHomePage() {
-  const products = await getProducts();
-  const categories = await getCategories();
+  const products = await fetchProducts();
+  const categories = await fetchCategories();
 
   return (
     <>

@@ -2,10 +2,10 @@ import { FadeIn } from '@/components/Animations';
 import { SEOHead } from '@/components/SEOHead';
 import { ProductCard } from '@/components/ProductCard';
 import { SearchAndFilter } from '@/components/SearchAndFilter';
-import { getProducts } from '@/lib/data';
+import { fetchProducts } from '@/lib/shopify';
 
 export default async function RussianShopPage() {
-  const products = await getProducts();
+  const products = await fetchProducts();
 
   return (
     <>

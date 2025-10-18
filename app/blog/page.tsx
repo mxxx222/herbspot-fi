@@ -1,5 +1,6 @@
 import { FadeIn, Stagger } from '@/components/Animations';
 import { SEOHead } from '@/components/SEOHead';
+import Link from 'next/link';
 
 const blogPosts = [
   {

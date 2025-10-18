@@ -338,6 +338,3 @@ export function withErrorBoundary<T extends React.ComponentType<any>>(
     }
   };
 }
-
-// Import React for Error Boundary
-import React from 'react';
