@@ -1,27 +1,3 @@
 {
-  "/_not-found": "app/_not-found.js",
-  "/account/page": "app/account/page.js",
-  "/api/checkout/route": "app/api/checkout/route.js",
-  "/api/webhooks/stripe/route": "app/api/webhooks/stripe/route.js",
-  "/api/monitoring/performance/route": "app/api/monitoring/performance/route.js",
-  "/api/monitoring/error/route": "app/api/monitoring/error/route.js",
-  "/blog/[slug]/page": "app/blog/[slug]/page.js",
-  "/c/[handle]/page": "app/c/[handle]/page.js",
-  "/checkout/cancel/page": "app/checkout/cancel/page.js",
-  "/checkout/success/page": "app/checkout/success/page.js",
-  "/blog/page": "app/blog/page.js",
-  "/checkout/page": "app/checkout/page.js",
-  "/robots.txt/route": "app/robots.txt/route.js",
-  "/order/page": "app/order/page.js",
-  "/ru/b2b/page": "app/ru/b2b/page.js",
-  "/page": "app/page.js",
-  "/p/[handle]/page": "app/p/[handle]/page.js",
-  "/ru/page": "app/ru/page.js",
-  "/shop/page": "app/shop/page.js",
-  "/sitemap.xml/route": "app/sitemap.xml/route.js",
-  "/ru/shop/page": "app/ru/shop/page.js",
-  "/en/page": "app/en/page.js",
-  "/b2b/page": "app/b2b/page.js",
-  "/en/shop/page": "app/en/shop/page.js",
-  "/en/b2b/page": "app/en/b2b/page.js"
+  "/blog/page": "app/blog/page.js"
 }
