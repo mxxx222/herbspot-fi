@@ -3,9 +3,9 @@ import { createCheckoutSession } from '@/lib/stripe';
 
 export async function POST(request: NextRequest) {
   try {
-    const { items } = await request.json();
+    const { cartItems } = await request.json();
 
-    if (!items || !Array.isArray(items) || items.length === 0) {
+    if (!cartItems || !Array.isArray(cartItems) || cartItems.length === 0) {
       return NextResponse.json(
         { error: 'Items are required' },
         { status: 400 }
@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate items
-    for (const item of items) {
+    for (const item of cartItems) {
       if (!item.id || !item.name || !item.price || !item.quantity) {
         return NextResponse.json(
           { error: 'Invalid item data' },
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const session = await createCheckoutSession(items);
+    const session = await createCheckoutSession(cartItems);
 
     return NextResponse.json({ 
       sessionId: session.id,

@@ -11,8 +11,8 @@ export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 
 export const STRIPE_CONFIG = {
   currency: 'eur',
-  successUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-  cancelUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/checkout/cancel`,
+  successUrl: `https://herbspot-fi.onrender.com/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+  cancelUrl: `https://herbspot-fi.onrender.com/checkout/cancel`,
   billingAddressCollection: 'required',
   shippingAddressCollection: {
     allowedCountries: ['FI', 'SE', 'NO', 'DK', 'DE', 'FR', 'IT', 'ES', 'NL', 'BE', 'AT', 'CH'],
