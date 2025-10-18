@@ -1,29 +1,113 @@
 {
-  "name": "HerbSpot.fi - Premium 510 Cartridges",
+  "name": "HerbSpot.fi - Premium 510 & Aromatherapy",
   "short_name": "HerbSpot",
-  "description": "Premium 510-patruunat & Aromaterapia laitteet. Lääkinnällinen teräs, pyrex-lasi ja keraaminen ydin.",
+  "description": "Premium 510-patruunat, AIO-laitteet ja tarvikkeet. Lääkinnällinen teräs, pyrex ja keraaminen ydin.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#39FF14",
   "orientation": "portrait-primary",
+  "background_color": "#000000",
+  "theme_color": "#00ff88",
+  "categories": ["shopping", "lifestyle", "health"],
+  "lang": "fi",
+  "dir": "ltr",
+  "scope": "/",
   "icons": [
+    {
+      "src": "/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
     {
       "src": "/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
-  "categories": ["shopping", "lifestyle", "health"],
-  "lang": "fi",
-  "dir": "ltr",
-  "scope": "/",
-  "prefer_related_applications": false
+  "shortcuts": [
+    {
+      "name": "Kauppa",
+      "short_name": "Kauppa",
+      "description": "Selaa tuotteita",
+      "url": "/shop",
+      "icons": [
+        {
+          "src": "/icon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "510-patruunat",
+      "short_name": "510-patruunat",
+      "description": "Selaa 510-patruunoita",
+      "url": "/c/510-patruunat",
+      "icons": [
+        {
+          "src": "/icon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "B2B Service",
+      "short_name": "B2B",
+      "description": "B2B palvelut",
+      "url": "/b2b",
+      "icons": [
+        {
+          "src": "/icon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  }
 }

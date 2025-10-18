@@ -3,8 +3,12 @@ import type { Metadata } from "next";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { GoogleAnalytics, PlausibleAnalytics } from "@/components/Analytics";
+import { trackPageView } from "@/lib/analytics";
 import { OrganizationStructuredData } from "@/components/StructuredData";
 import { PerformanceOptimizations } from "@/components/PerformanceOptimizations";
+import { MobileOptimizations } from "@/components/MobileOptimizations";
+import { AnalyticsProvider } from "@/components/AnalyticsProvider";
+import { ErrorBoundary } from "@/components/ErrorHandling";
 
 export const metadata: Metadata = {
   title: "HerbSpot — Premium 510 & Aromatherapy",
@@ -22,8 +26,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <GoogleAnalytics />
         <PlausibleAnalytics />
         <PerformanceOptimizations />
+        <MobileOptimizations />
         <Nav />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          <ErrorBoundary>
+            <AnalyticsProvider>
+              {children}
+            </AnalyticsProvider>
+          </ErrorBoundary>
+        </main>
         <Footer />
       </body>
     </html>
