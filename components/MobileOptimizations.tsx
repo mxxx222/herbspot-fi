@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useTouchGestures, useSwipeNavigation, usePullToRefresh } from '@/hooks/useTouchGestures';
 
 export function TouchOptimizations() {
   const [touchStart, setTouchStart] = useState(0);

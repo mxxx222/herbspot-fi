@@ -1,0 +1,373 @@
+// Analytics utilities for HerbSpot.fi
+
+interface AnalyticsEvent {
+  event: string;
+  category: string;
+  action: string;
+  label?: string;
+  value?: number;
+  custom_parameters?: Record<string, any>;
+}
+
+interface ConversionEvent {
+  event_name: string;
+  value: number;
+  currency: string;
+  items: Array<{
+    item_id: string;
+    item_name: string;
+    category: string;
+    quantity: number;
+    price: number;
+  }>;
+}
+
+class Analytics {
+  private isInitialized = false;
+  private queue: AnalyticsEvent[] = [];
+
+  constructor() {
+    this.initialize();
+  }
+
+  private initialize() {
+    if (typeof window === 'undefined') return;
+
+    // Initialize Google Analytics
+    if (typeof gtag !== 'undefined') {
+      this.isInitialized = true;
+      this.processQueue();
+    } else {
+      // Wait for gtag to load
+      const checkGtag = setInterval(() => {
+        if (typeof gtag !== 'undefined') {
+          this.isInitialized = true;
+          this.processQueue();
+          clearInterval(checkGtag);
+        }
+      }, 100);
+    }
+  }
+
+  private processQueue() {
+    while (this.queue.length > 0) {
+      const event = this.queue.shift();
+      if (event) {
+        this.trackEvent(event);
+      }
+    }
+  }
+
+  private trackEvent(event: AnalyticsEvent) {
+    if (!this.isInitialized) {
+      this.queue.push(event);
+      return;
+    }
+
+    if (typeof gtag !== 'undefined') {
+      gtag('event', event.event, {
+        event_category: event.category,
+        event_label: event.label,
+        value: event.value,
+        ...event.custom_parameters
+      });
+    }
+
+    // Also send to Plausible if available
+    if (typeof window !== 'undefined' && (window as any).plausible) {
+      (window as any).plausible(event.event, {
+        props: {
+          category: event.category,
+          action: event.action,
+          label: event.label,
+          value: event.value,
+          ...event.custom_parameters
+        }
+      });
+    }
+  }
+
+  // Page view tracking
+  trackPageView(pagePath: string, pageTitle: string) {
+    if (typeof gtag !== 'undefined') {
+      gtag('config', 'GA_MEASUREMENT_ID', {
+        page_path: pagePath,
+        page_title: pageTitle
+      });
+    }
+  }
+
+  // E-commerce events
+  trackPurchase(conversionEvent: ConversionEvent) {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'purchase', {
+        transaction_id: Date.now().toString(),
+        value: conversionEvent.value,
+        currency: conversionEvent.currency,
+        items: conversionEvent.items
+      });
+    }
+
+    this.trackEvent({
+      event: 'purchase',
+      category: 'ecommerce',
+      action: 'purchase',
+      label: conversionEvent.event_name,
+      value: conversionEvent.value,
+      custom_parameters: {
+        currency: conversionEvent.currency,
+        items: conversionEvent.items
+      }
+    });
+  }
+
+  trackAddToCart(productId: string, productName: string, price: number, category: string) {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'add_to_cart', {
+        currency: 'EUR',
+        value: price,
+        items: [{
+          item_id: productId,
+          item_name: productName,
+          category: category,
+          quantity: 1,
+          price: price
+        }]
+      });
+    }
+
+    this.trackEvent({
+      event: 'add_to_cart',
+      category: 'ecommerce',
+      action: 'add_to_cart',
+      label: productName,
+      value: price,
+      custom_parameters: {
+        product_id: productId,
+        product_name: productName,
+        category: category,
+        price: price
+      }
+    });
+  }
+
+  trackRemoveFromCart(productId: string, productName: string, price: number) {
+    this.trackEvent({
+      event: 'remove_from_cart',
+      category: 'ecommerce',
+      action: 'remove_from_cart',
+      label: productName,
+      value: price,
+      custom_parameters: {
+        product_id: productId,
+        product_name: productName
+      }
+    });
+  }
+
+  trackViewItem(productId: string, productName: string, price: number, category: string) {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'view_item', {
+        currency: 'EUR',
+        value: price,
+        items: [{
+          item_id: productId,
+          item_name: productName,
+          category: category,
+          quantity: 1,
+          price: price
+        }]
+      });
+    }
+
+    this.trackEvent({
+      event: 'view_item',
+      category: 'ecommerce',
+      action: 'view_item',
+      label: productName,
+      value: price,
+      custom_parameters: {
+        product_id: productId,
+        product_name: productName,
+        category: category
+      }
+    });
+  }
+
+  trackBeginCheckout(value: number, items: any[]) {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'begin_checkout', {
+        currency: 'EUR',
+        value: value,
+        items: items
+      });
+    }
+
+    this.trackEvent({
+      event: 'begin_checkout',
+      category: 'ecommerce',
+      action: 'begin_checkout',
+      value: value,
+      custom_parameters: {
+        items: items
+      }
+    });
+  }
+
+  // User engagement events
+  trackSearch(searchTerm: string, resultsCount: number) {
+    this.trackEvent({
+      event: 'search',
+      category: 'engagement',
+      action: 'search',
+      label: searchTerm,
+      value: resultsCount
+    });
+  }
+
+  trackFilter(filterType: string, filterValue: string) {
+    this.trackEvent({
+      event: 'filter',
+      category: 'engagement',
+      action: 'filter',
+      label: `${filterType}: ${filterValue}`
+    });
+  }
+
+  trackSort(sortBy: string) {
+    this.trackEvent({
+      event: 'sort',
+      category: 'engagement',
+      action: 'sort',
+      label: sortBy
+    });
+  }
+
+  trackLanguageChange(language: string) {
+    this.trackEvent({
+      event: 'language_change',
+      category: 'engagement',
+      action: 'language_change',
+      label: language
+    });
+  }
+
+  trackB2BInterest() {
+    this.trackEvent({
+      event: 'b2b_interest',
+      category: 'lead_generation',
+      action: 'b2b_interest'
+    });
+  }
+
+  trackContactForm() {
+    this.trackEvent({
+      event: 'contact_form',
+      category: 'lead_generation',
+      action: 'contact_form'
+    });
+  }
+
+  // Performance tracking
+  trackPageLoadTime(loadTime: number) {
+    this.trackEvent({
+      event: 'page_load_time',
+      category: 'performance',
+      action: 'page_load_time',
+      value: loadTime
+    });
+  }
+
+  trackCoreWebVitals(metric: string, value: number) {
+    this.trackEvent({
+      event: 'core_web_vitals',
+      category: 'performance',
+      action: metric,
+      value: value
+    });
+  }
+
+  // Error tracking
+  trackError(error: string, errorType: string, errorContext?: string) {
+    this.trackEvent({
+      event: 'error',
+      category: 'error',
+      action: errorType,
+      label: error,
+      custom_parameters: {
+        error_context: errorContext
+      }
+    });
+  }
+
+  // Custom events
+  trackCustomEvent(eventName: string, parameters: Record<string, any>) {
+    this.trackEvent({
+      event: eventName,
+      category: 'custom',
+      action: eventName,
+      custom_parameters: parameters
+    });
+  }
+}
+
+// Export singleton instance
+export const analytics = new Analytics();
+
+// Helper functions
+export function trackPageView(pagePath: string, pageTitle: string) {
+  analytics.trackPageView(pagePath, pageTitle);
+}
+
+export function trackAddToCart(productId: string, productName: string, price: number, category: string) {
+  analytics.trackAddToCart(productId, productName, price, category);
+}
+
+export function trackPurchase(conversionEvent: ConversionEvent) {
+  analytics.trackPurchase(conversionEvent);
+}
+
+export function trackViewItem(productId: string, productName: string, price: number, category: string) {
+  analytics.trackViewItem(productId, productName, price, category);
+}
+
+export function trackSearch(searchTerm: string, resultsCount: number) {
+  analytics.trackSearch(searchTerm, resultsCount);
+}
+
+export function trackError(error: string, errorType: string, errorContext?: string) {
+  analytics.trackError(error, errorType, errorContext);
+}
+
+// Performance monitoring
+export function trackPerformance() {
+  if (typeof window === 'undefined') return;
+
+  // Track page load time
+  window.addEventListener('load', () => {
+    const loadTime = performance.now();
+    analytics.trackPageLoadTime(loadTime);
+  });
+
+  // Track Core Web Vitals
+  if ('PerformanceObserver' in window) {
+    const observer = new PerformanceObserver((list) => {
+      list.getEntries().forEach((entry) => {
+        if (entry.entryType === 'largest-contentful-paint') {
+          analytics.trackCoreWebVitals('LCP', entry.startTime);
+        } else if (entry.entryType === 'first-input') {
+          analytics.trackCoreWebVitals('FID', (entry as any).processingStart - entry.startTime);
+        } else if (entry.entryType === 'layout-shift') {
+          analytics.trackCoreWebVitals('CLS', (entry as any).value);
+        }
+      });
+    });
+
+    observer.observe({ entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift'] });
+  }
+}
+
+// Initialize performance tracking
+if (typeof window !== 'undefined') {
+  trackPerformance();
+}
