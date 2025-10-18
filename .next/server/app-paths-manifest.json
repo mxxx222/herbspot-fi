@@ -1,5 +1,3 @@
 {
-  "/shop/page": "app/shop/page.js",
-  "/b2b/page": "app/b2b/page.js",
-  "/c/[handle]/page": "app/c/[handle]/page.js"
+  "/api/checkout/route": "app/api/checkout/route.js"
 }

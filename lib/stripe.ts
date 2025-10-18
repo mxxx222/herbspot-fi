@@ -15,7 +15,7 @@ export const STRIPE_CONFIG = {
   cancelUrl: `https://herbspot-fi.onrender.com/checkout/cancel`,
   billingAddressCollection: 'required',
   shippingAddressCollection: {
-    allowedCountries: ['FI', 'SE', 'NO', 'DK', 'DE', 'FR', 'IT', 'ES', 'NL', 'BE', 'AT', 'CH'],
+    allowed_countries: ['FI', 'SE', 'NO', 'DK', 'DE', 'FR', 'IT', 'ES', 'NL', 'BE', 'AT', 'CH'],
   },
 };
 
