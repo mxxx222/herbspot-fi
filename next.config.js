@@ -30,9 +30,6 @@ const nextConfig = {
     optimizePackageImports: ['framer-motion', '@tanstack/react-query'],
   },
 
-  // Compression
-  compress: true,
-
   // Headers for performance
   async headers() {
     return [

@@ -4,6 +4,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { GoogleAnalytics, PlausibleAnalytics } from "@/components/Analytics";
 import { OrganizationStructuredData } from "@/components/StructuredData";
+import { PerformanceOptimizations } from "@/components/PerformanceOptimizations";
 
 export const metadata: Metadata = {
   title: "HerbSpot — Premium 510 & Aromatherapy",
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen flex flex-col">
         <GoogleAnalytics />
         <PlausibleAnalytics />
+        <PerformanceOptimizations />
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
