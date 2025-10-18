@@ -29,7 +29,7 @@ export function usePerformance() {
         const fidObserver = new PerformanceObserver((list) => {
           const entries = list.getEntries();
           entries.forEach((entry) => {
-            setMetrics(prev => ({ ...prev, fid: entry.processingStart - entry.startTime }));
+            setMetrics(prev => ({ ...prev, fid: (entry as any).processingStart - entry.startTime }));
           });
         });
         fidObserver.observe({ entryTypes: ['first-input'] });
@@ -38,8 +38,8 @@ export function usePerformance() {
         const clsObserver = new PerformanceObserver((list) => {
           let clsValue = 0;
           list.getEntries().forEach((entry) => {
-            if (!entry.hadRecentInput) {
-              clsValue += entry.value;
+            if (!(entry as any).hadRecentInput) {
+              clsValue += (entry as any).value;
             }
           });
           setMetrics(prev => ({ ...prev, cls: clsValue }));

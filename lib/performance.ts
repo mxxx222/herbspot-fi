@@ -123,8 +123,8 @@ export function setupPerformanceMonitoring() {
       console.log(`${entry.name}: ${entry.startTime}ms`);
       
       // Send to analytics if needed
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'performance_metric', {
+      if (typeof (window as any).gtag !== 'undefined') {
+        (window as any).gtag('event', 'performance_metric', {
           metric_name: entry.name,
           metric_value: entry.startTime,
         });

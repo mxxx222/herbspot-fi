@@ -13,7 +13,7 @@ export default async function ProductPage({ params }: { params: { handle: string
     price: parseFloat(p.price.replace('€', '')),
     currency: 'EUR',
     image: p.image,
-    availability: 'in_stock',
+    availability: 'in_stock' as const,
     brand: 'HerbSpot',
     category: '510 Cartridges',
     sku: params.handle,

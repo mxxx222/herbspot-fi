@@ -34,13 +34,13 @@ class Analytics {
     if (typeof window === 'undefined') return;
 
     // Initialize Google Analytics
-    if (typeof gtag !== 'undefined') {
+    if (typeof (window as any).gtag !== 'undefined') {
       this.isInitialized = true;
       this.processQueue();
     } else {
-      // Wait for gtag to load
+      // Wait for (window as any).gtag to load
       const checkGtag = setInterval(() => {
-        if (typeof gtag !== 'undefined') {
+        if (typeof (window as any).gtag !== 'undefined') {
           this.isInitialized = true;
           this.processQueue();
           clearInterval(checkGtag);
@@ -64,8 +64,8 @@ class Analytics {
       return;
     }
 
-    if (typeof gtag !== 'undefined') {
-      gtag('event', event.event, {
+    if (typeof (window as any).gtag !== 'undefined') {
+      (window as any).gtag('event', event.event, {
         event_category: event.category,
         event_label: event.label,
         value: event.value,
@@ -89,8 +89,8 @@ class Analytics {
 
   // Page view tracking
   trackPageView(pagePath: string, pageTitle: string) {
-    if (typeof gtag !== 'undefined') {
-      gtag('config', 'GA_MEASUREMENT_ID', {
+    if (typeof (window as any).gtag !== 'undefined') {
+      (window as any).gtag('config', 'GA_MEASUREMENT_ID', {
         page_path: pagePath,
         page_title: pageTitle
       });
@@ -99,8 +99,8 @@ class Analytics {
 
   // E-commerce events
   trackPurchase(conversionEvent: ConversionEvent) {
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'purchase', {
+    if (typeof (window as any).gtag !== 'undefined') {
+      (window as any).gtag('event', 'purchase', {
         transaction_id: Date.now().toString(),
         value: conversionEvent.value,
         currency: conversionEvent.currency,
@@ -122,8 +122,8 @@ class Analytics {
   }
 
   trackAddToCart(productId: string, productName: string, price: number, category: string) {
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'add_to_cart', {
+    if (typeof (window as any).gtag !== 'undefined') {
+      (window as any).gtag('event', 'add_to_cart', {
         currency: 'EUR',
         value: price,
         items: [{
@@ -166,8 +166,8 @@ class Analytics {
   }
 
   trackViewItem(productId: string, productName: string, price: number, category: string) {
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'view_item', {
+    if (typeof (window as any).gtag !== 'undefined') {
+      (window as any).gtag('event', 'view_item', {
         currency: 'EUR',
         value: price,
         items: [{
@@ -195,8 +195,8 @@ class Analytics {
   }
 
   trackBeginCheckout(value: number, items: any[]) {
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'begin_checkout', {
+    if (typeof (window as any).gtag !== 'undefined') {
+      (window as any).gtag('event', 'begin_checkout', {
         currency: 'EUR',
         value: value,
         items: items

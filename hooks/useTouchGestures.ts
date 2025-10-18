@@ -15,7 +15,7 @@ interface TouchGestureOptions {
 }
 
 export function useTouchGestures(options: TouchGestureOptions) {
-  const elementRef = useRef<HTMLElement>(null);
+  const elementRef = useRef<HTMLDivElement>(null);
   const [touchStart, setTouchStart] = useState<{ x: number; y: number; time: number } | null>(null);
   const [lastTap, setLastTap] = useState<number>(0);
   const [scale, setScale] = useState(1);
@@ -172,7 +172,7 @@ export function usePullToRefresh(onRefresh: () => Promise<void>) {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [pullDistance, setPullDistance] = useState(0);
   const [isPulling, setIsPulling] = useState(false);
-  const elementRef = useRef<HTMLElement>(null);
+  const elementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const element = elementRef.current;

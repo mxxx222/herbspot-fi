@@ -87,54 +87,41 @@ export default function BlogPage() {
 
           {/* Blog Posts Grid */}
           <Stagger>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {blogPosts.map((post, index) => (
-                <FadeIn key={post.id} delay={index * 100}>
-                  <article className="bg-white/5 rounded-lg overflow-hidden hover:bg-white/10 transition-colors group">
-                    <div className="aspect-video relative overflow-hidden">
-                      <img
-                        src={post.image}
-                        alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute top-4 left-4">
-                        <span className="bg-[var(--brand)] text-black px-3 py-1 rounded-full text-sm font-medium">
-                          {post.category}
-                        </span>
-                      </div>
+            {blogPosts.map((post, index) => (
+              <FadeIn key={post.id} delay={index * 100}>
+                <article className="bg-white/5 rounded-lg overflow-hidden hover:bg-white/10 transition-colors group">
+                  <div className="aspect-video relative overflow-hidden">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 text-sm text-gray-400 mb-2">
+                      <span>{post.category}</span>
+                      <span>•</span>
+                      <span>{post.date}</span>
                     </div>
-                    
-                    <div className="p-6">
-                      <div className="flex items-center gap-4 text-sm text-white/60 mb-3">
-                        <span>{post.date}</span>
-                        <span>•</span>
-                        <span>{post.readTime}</span>
-                        <span>•</span>
-                        <span>{post.author}</span>
-                      </div>
-                      
-                      <h2 className="text-xl font-bold text-white mb-3 group-hover:text-[var(--brand)] transition-colors">
-                        {post.title}
-                      </h2>
-                      
-                      <p className="text-white/80 mb-4 line-clamp-3">
-                        {post.excerpt}
-                      </p>
-                      
-                      <Link
-                        href={`/blog/${post.id}`}
-                        className="inline-flex items-center text-[var(--brand)] hover:text-white transition-colors"
-                      >
-                        Lue lisää
-                        <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </Link>
-                    </div>
-                  </article>
-                </FadeIn>
-              ))}
-            </div>
+                    <h3 className="text-xl font-semibold mb-3 group-hover:text-[var(--brand)] transition-colors">
+                      {post.title}
+                    </h3>
+                    <p className="text-gray-300 mb-4 line-clamp-3">
+                      {post.excerpt}
+                    </p>
+                    <Link
+                      href={`/blog/${post.id}`}
+                      className="inline-flex items-center text-[var(--brand)] hover:text-white transition-colors"
+                    >
+                      Lue lisää
+                      <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
+                </article>
+              </FadeIn>
+            ))}
           </Stagger>
 
           {/* Newsletter Signup */}

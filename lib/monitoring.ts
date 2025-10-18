@@ -1,4 +1,5 @@
 // Error monitoring and performance tracking for HerbSpot.fi
+import * as React from 'react';
 
 interface ErrorReport {
   message: string;
@@ -325,7 +326,7 @@ export function withErrorBoundary<T extends React.ComponentType<any>>(
   Component: T,
   fallback?: React.ComponentType<{ error: Error; reset: () => void }>
 ) {
-  return class extends React.Component<React.ComponentProps<T>> {
+  return class ErrorBoundaryWrapper extends React.Component<React.ComponentProps<T>> {
     componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
       // Dispatch custom event for global error handler
       window.dispatchEvent(new CustomEvent('react-error', {
@@ -334,7 +335,7 @@ export function withErrorBoundary<T extends React.ComponentType<any>>(
     }
 
     render() {
-      return <Component {...this.props} />;
+      return React.createElement(Component, this.props as any);
     }
   };
 }

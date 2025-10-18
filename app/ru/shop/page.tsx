@@ -40,7 +40,7 @@ export default async function RussianShopPage() {
           {/* Products Grid */}
           <FadeIn delay={400}>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {products.map((product, index) => (
+              {products.products.map((product: any, index: number) => (
                 <FadeIn key={product.handle} delay={index * 100}>
                   <ProductCard 
                     product={{
@@ -53,7 +53,6 @@ export default async function RussianShopPage() {
                              product.title === 'Pre‑Roll Cones — 98 mm Slow Burn 26 mm filter' ? 'Pre‑Roll Конусы — 98 мм Slow Burn 26 мм фильтр' :
                              product.title
                     }}
-                    href={`/ru/p/${product.handle}`}
                   />
                 </FadeIn>
               ))}
