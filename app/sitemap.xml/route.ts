@@ -1,41 +1,26 @@
-import { generateSitemap } from '@/lib/seo';
+import { generateSitemapData } from '@/lib/seo';
 
 export async function GET() {
-  // Mock data - replace with actual data from your CMS/API
-  const products = [
-    { handle: "m4s-05" },
-    { handle: "m4s-10" },
-    { handle: "ccell-cer-05" },
-    { handle: "easy-press-05" },
-    { handle: "duo-glasspod" },
-    { handle: "m3-plus" },
-    { handle: "charger-usb" },
-    { handle: "slide-box" }
-  ];
-
-  const categories = [
-    { handle: "510-patruunat" },
-    { handle: "laitteet" },
-    { handle: "tarvikkeet" },
-    { handle: "kosmetiikka" },
-    { handle: "aromataterapia" }
-  ];
-
-  const sitemap = generateSitemap(products, categories);
+  const sitemapData = generateSitemapData();
   
   const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${sitemap.map(page => `  <url>
-    <loc>https://herbspot.fi${page.url}</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>${page.changefreq}</changefreq>
-    <priority>${page.priority}</priority>
-  </url>`).join('\n')}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${sitemapData.map(item => `
+  <url>
+    <loc>${item.url}</loc>
+    <lastmod>${item.lastModified}</lastmod>
+    <changefreq>${item.changeFrequency}</changefreq>
+    <priority>${item.priority}</priority>
+    <xhtml:link rel="alternate" hreflang="fi" href="${item.url}" />
+    <xhtml:link rel="alternate" hreflang="en" href="${item.url.replace('herbspot-fi.onrender.com', 'herbspot-fi.onrender.com/en')}" />
+  </url>`).join('')}
 </urlset>`;
 
   return new Response(sitemapXml, {
     headers: {
       'Content-Type': 'application/xml',
+      'Cache-Control': 'public, max-age=3600, s-maxage=3600',
     },
   });
 }

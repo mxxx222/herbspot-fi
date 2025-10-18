@@ -1,5 +1,5 @@
 "use client";
-import { generateProductSchema, generateOrganizationSchema, generateBreadcrumbSchema } from '@/lib/seo';
+import { generateProductStructuredData, generateOrganizationStructuredData, generateBreadcrumbStructuredData, generateWebSiteStructuredData, generateLocalBusinessStructuredData } from '@/lib/seo';
 
 interface StructuredDataProps {
   type: 'product' | 'organization' | 'breadcrumb';
@@ -11,13 +11,13 @@ export function StructuredData({ type, data }: StructuredDataProps) {
 
   switch (type) {
     case 'product':
-      jsonLd = generateProductSchema(data);
+      jsonLd = generateProductStructuredData(data);
       break;
     case 'organization':
-      jsonLd = generateOrganizationSchema();
+      jsonLd = generateOrganizationStructuredData();
       break;
     case 'breadcrumb':
-      jsonLd = generateBreadcrumbSchema(data);
+      jsonLd = generateBreadcrumbStructuredData(data);
       break;
     default:
       return null;
