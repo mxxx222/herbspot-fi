@@ -1,5 +1,5 @@
 // Shopify Storefront API client
-const SHOPIFY_STORE_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || 'herbspot.myshopify.com';
+const SHOPIFY_STORE_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || '4uwt9i-ja.myshopify.com';
 const SHOPIFY_TOKEN = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN || '8e50755fa974275c7eaf6aa8dea13c3d';
 
 export async function shopifyQuery<T>(query: string, variables?: Record<string, any>): Promise<T> {
