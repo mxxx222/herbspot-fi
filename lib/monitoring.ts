@@ -335,7 +335,7 @@ export function withErrorBoundary<T extends React.ComponentType<any>>(
     }
 
     render() {
-      return React.createElement(Component, this.props as any);
+      return React.createElement(Component, this.props);
     }
   };
 }
