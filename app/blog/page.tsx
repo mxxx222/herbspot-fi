@@ -126,13 +126,47 @@ export default function BlogPage() {
 
           {/* Newsletter Signup */}
           <FadeIn delay={800}>
-            <div className="mt-20 bg-gradient-to-r from-[var(--brand)]/20 to-blue-500/20 rounded-2xl p-8 text-center">
+            <div className="mt-20 bg-gradient-to-r from-[var(--brand)]/20 to-blue-500/20 rounded-2xl p-8 text-center border border-[var(--brand)]/30">
               <h3 className="text-2xl font-bold text-white mb-4">
-                Tilaa uutiskirje
+                📧 Tilaa uutiskirje
               </h3>
               <p className="text-white/80 mb-6">
                 Saat uusimmat vinkit ja uutiset suoraan sähköpostiisi
               </p>
+              
+              {/* Motivoiva teksti */}
+              <div className="bg-black/30 rounded-lg p-6 mb-6 border border-[var(--brand)]/20">
+                <h4 className="text-lg font-semibold text-[var(--brand)] mb-3">
+                  🎯 Miksi liittyä uutiskirjeeseen?
+                </h4>
+                <div className="grid md:grid-cols-3 gap-4 text-sm text-white/80">
+                  <div className="flex items-start gap-2">
+                    <span className="text-[var(--brand)] font-bold">✓</span>
+                    <span><strong>Eksklusiiviset tarjoukset</strong> vain tilaajille</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="text-[var(--brand)] font-bold">✓</span>
+                    <span><strong>Uusimmat tuotteet</strong> ensimmäisenä</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="text-[var(--brand)] font-bold">✓</span>
+                    <span><strong>Asiantuntijavinkit</strong> aromaterapiaan</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="text-[var(--brand)] font-bold">✓</span>
+                    <span><strong>Ilmainen toimitus</strong> ensimmäisestä tilauksesta</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="text-[var(--brand)] font-bold">✓</span>
+                    <span><strong>Varhainen pääsy</strong> uusiin tuotteisiin</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="text-[var(--brand)] font-bold">✓</span>
+                    <span><strong>Kerran viikossa</strong> - ei spämmiä</span>
+                  </div>
+                </div>
+              </div>
+              
               <div className="flex max-w-md mx-auto gap-4">
                 <input
                   type="email"
@@ -143,6 +177,9 @@ export default function BlogPage() {
                   Tilaa
                 </button>
               </div>
+              <p className="text-xs text-white/60 mt-3">
+                🔒 Sähköpostisi on turvassa. Voit peruuttaa tilauksen milloin tahansa.
+              </p>
             </div>
           </FadeIn>
         </div>

@@ -58,11 +58,44 @@ export default function B2BPage() {
           </div>
 
           <div className="bg-gradient-to-r from-[var(--brand)]/20 to-green-400/20 border border-[var(--brand)]/30 rounded-lg p-8 mb-12">
-            <h2 className="text-2xl font-semibold mb-4">Saa varhainen pääsy</h2>
+            <h2 className="text-2xl font-semibold mb-4">🚀 Saa varhainen pääsy</h2>
             <p className="text-white/70 mb-6">
               Ole ensimmäinen tietämässä kun B2B-palvelumme käynnistyy. 
               Saa eksklusiivinen early-bird hinta ja prioriteettituki.
             </p>
+            
+            {/* Motivoiva teksti */}
+            <div className="bg-black/30 rounded-lg p-6 mb-6 border border-[var(--brand)]/20">
+              <h3 className="text-lg font-semibold text-[var(--brand)] mb-3">
+                💎 Miksi liittyä varhaisiin käyttäjiin?
+              </h3>
+              <div className="grid md:grid-cols-2 gap-4 text-sm text-white/80">
+                <div className="flex items-start gap-2">
+                  <span className="text-[var(--brand)] font-bold">✓</span>
+                  <span><strong>50% alennus</strong> ensimmäisestä tilauksesta</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-[var(--brand)] font-bold">✓</span>
+                  <span><strong>Prioriteettituki</strong> ja henkilökohtainen asiakaspalvelu</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-[var(--brand)] font-bold">✓</span>
+                  <span><strong>Eksklusiiviset tuotteet</strong> vain varhaisille käyttäjille</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-[var(--brand)] font-bold">✓</span>
+                  <span><strong>Rajoitettu aika</strong> - vain 100 ensimmäistä yritystä</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-[var(--brand)] font-bold">✓</span>
+                  <span><strong>Ilmainen konsultaatio</strong> brändisi kehittämiseen</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-[var(--brand)] font-bold">✓</span>
+                  <span><strong>Beta-testaus</strong> uusista tuotteista</span>
+                </div>
+              </div>
+            </div>
             
             <form className="max-w-md mx-auto">
               <div className="flex gap-3">
@@ -78,6 +111,9 @@ export default function B2BPage() {
                   Ilmoita minulle
                 </button>
               </div>
+              <p className="text-xs text-white/60 mt-2 text-center">
+                🔒 Sähköpostisi on turvassa. Lähetämme vain B2B-uutisia.
+              </p>
             </form>
           </div>
 
