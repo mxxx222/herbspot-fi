@@ -1,10 +1,10 @@
 import { ProductCard } from "./ProductCard";
 import { getFeatured } from "@/lib/data";
 
-export async function ProductGrid({ limit = 6 }: { limit?: number }) {
+export async function ProductGrid({ limit = 6, id }: { limit?: number; id?: string }) {
   const products = await getFeatured(limit);
   return (
-    <section className="section">
+    <section className="section" id={id}>
       <div className="container">
         <div className="flex items-end justify-between mb-6">
           <h2 className="h2">Suosituimmat</h2>
