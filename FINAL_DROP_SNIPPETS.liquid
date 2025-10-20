@@ -1,0 +1,120 @@
+# 🛍️ KOLME PUDOTUS-SNIPPETTIÄ - SHOPIFY VALMIS
+
+## 1️⃣ **Organization JSON-LD** - theme.liquid ennen </head>
+
+```html
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"HerbSpot",
+  "url":"https://www.herbspot.fi",
+  "logo":"https://www.herbspot.fi/cdn/logo-112.png",
+  "sameAs":[
+    "https://www.instagram.com/herbspotfi",
+    "https://www.linkedin.com/company/herbspot",
+    "https://www.facebook.com/herbspotfi"
+  ],
+  "contactPoint":[{
+    "@type":"ContactPoint",
+    "telephone":"+358-XX-XXX-XXXX",
+    "contactType":"Customer Support",
+    "areaServed":"EU",
+    "availableLanguage":["fi","en","ru"]
+  }],
+  "address":{
+    "@type":"PostalAddress",
+    "addressLocality":"Helsinki",
+    "addressCountry":"FI"
+  }
+}
+</script>
+```
+
+## 2️⃣ **Hero LCP-optimointi** - sections/hero.liquid
+
+```liquid
+{%- assign hero_src = 'hero.jpg' | asset_url -%}
+<link rel="preload" as="image" href="{{ hero_src }}"
+  imagesrcset="{{ 'hero.jpg' | image_url: width:1200 }} 1200w"
+  imagesizes="100vw">
+
+{%- capture hero_alt -%}
+  {%- case localization.language.iso_code -%}
+    {%- when 'fi' -%}HerbSpot – kasvipohjainen hyvinvointi EU:ssa
+    {%- when 'ru' -%}HerbSpot — ботанический велнес в ЕС
+    {%- else -%}HerbSpot — botanical wellness in the EU
+  {%- endcase -%}
+{%- endcapture -%}
+
+<img src="{{ hero_src }}" width="1200" height="700"
+     fetchpriority="high" decoding="async" alt="{{ hero_alt | strip }}">
+```
+
+## 3️⃣ **GA4 DebugView** - theme.liquid juuri ennen </body>
+
+```html
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  // korvaa omalla mittaus-ID:llä
+  gtag('config','G-XXXXXXXX',{ 'debug_mode': true });
+</script>
+
+<script>
+  // Pikavalidointi konsolissa:
+  // gtag('event','filter_click',{filter:'focus',collection:'all'});
+  // gtag('event','locale_switch',{locale:'ru'});
+</script>
+```
+
+## 4️⃣ **robots.txt.liquid** - noindex-parametrisidonnaisuus
+
+```liquid
+{%- comment -%} robots.txt.liquid - noindex-parametrisidonnaisuus {%- endcomment -%}
+User-agent: *
+{%- if template.name contains 'collection' and current_tags.size > 1 -%}
+Disallow: /collections/all/{{ current_tags | join: '+' }}/
+{%- endif -%}
+{%- if request.query_string contains 'constraints=' and request.query_string contains '%2B' -%}
+Disallow: /collections/all?constraints={{ request.query_string | url_encode }}/
+{%- endif -%}
+Disallow: /admin/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /account/
+Disallow: /search?*
+Disallow: /collections/*?*sort=*
+Disallow: /collections/*?*page=*
+Disallow: /collections/*?*view=*
+
+Sitemap: {{ shop.url }}/sitemap.xml
+```
+
+## 5️⃣ **Käyttöohjeet**
+
+### Theme.liquid <head>:
+```liquid
+{% render 'seo-snippets' %}
+<!-- Organization JSON-LD tähän -->
+```
+
+### Theme.liquid </body>:
+```liquid
+<!-- GA4 DebugView tähän -->
+```
+
+### Sections/hero.liquid:
+```liquid
+<!-- Hero LCP-optimointi tähän -->
+```
+
+### robots.txt.liquid:
+```liquid
+<!-- robots.txt.liquid tähän -->
+```
+
+## ✅ **VALMIS!**
+
+**Kolme pudotus-snippettiä + robots.txt.liquid!** 🚀
