@@ -243,12 +243,39 @@ export async function fetchCollections(first: number = 10) {
   }
 }
 
-// Mock data fallback
+// Mock data fallback - Updated MVP Categories
 const mockProducts = [
+  // 🔴 510-yhteensopivat osat (Fokus)
   { handle:"m4s-05", title:"Stainless 510 Cartridge M4s (0.5 ml)", price:"€3.90", image:"https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=400&fit=crop", badge:"Uutuus", category:"510-patruunat" },
   { handle:"m4s-10", title:"Stainless 510 Cartridge M4s (1.0 ml)", price:"€4.20", image:"https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=400&fit=crop", category:"510-patruunat" },
   { handle:"ccell-cer-05", title:"Ccell-tyyli Keraaminen (0.5 ml)", price:"€4.60", image:"https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=400&h=400&fit=crop", category:"510-patruunat" },
   { handle:"easy-press-05", title:"Easy-Press Snap-Cap (0.5 ml)", price:"€4.10", image:"https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=400&h=400&fit=crop", category:"510-patruunat" },
+  { handle:"ceramic-core-05", title:"Keraaminen Ydin 510 (0.5 ml)", price:"€4.80", image:"https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=400&h=400&fit=crop", badge:"Premium", category:"510-patruunat" },
+  { handle:"glass-tank-10", title:"Pyrex-lasi Tank 510 (1.0 ml)", price:"€5.20", image:"https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=400&h=400&fit=crop", category:"510-patruunat" },
+  
+  // 🔴 Dual-Use Yrttiblendit™ (Erotteleva tekijä)
+  { handle:"calm-blend", title:"Calm Blend™ - Rauhoittava yrttisekoitus", price:"€12.90", image:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop", badge:"Dual-Use", category:"yrttiblendit" },
+  { handle:"focus-blend", title:"Focus Blend™ - Keskittymistä edistävä", price:"€12.90", image:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop", badge:"Dual-Use", category:"yrttiblendit" },
+  { handle:"sleep-blend", title:"Sleep Blend™ - Uni-ystävällinen sekoitus", price:"€12.90", image:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop", badge:"Dual-Use", category:"yrttiblendit" },
+  { handle:"energy-blend", title:"Energy Blend™ - Energiaa antava", price:"€12.90", image:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop", badge:"Dual-Use", category:"yrttiblendit" },
+  
+  // 🟡 Wellness Starter Packs
+  { handle:"calm-pack", title:"Calm Pack™ - Rauhoittava aloituspaketti", price:"€29.90", image:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop", badge:"Starter", category:"wellness-packs" },
+  { handle:"smoke-tea-pack", title:"Smoke & Tea Pack™ - Savu ja tee combo", price:"€34.90", image:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop", badge:"Combo", category:"wellness-packs" },
+  { handle:"focus-pack", title:"Focus Pack™ - Keskittymisalue paketti", price:"€29.90", image:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop", badge:"Starter", category:"wellness-packs" },
+  
+  // 🟢 Täyttövälineet + DIY
+  { handle:"tyhjat-patruunat-5kpl", title:"Tyhjät 510-patruunat (5 kpl)", price:"€8.90", image:"https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=400&h=400&fit=crop", category:"diy-tarvikkeet" },
+  { handle:"tayttoruiskut-3kpl", title:"Täyttöruiskut (3 kpl)", price:"€4.90", image:"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop", category:"diy-tarvikkeet" },
+  { handle:"pipetti-set", title:"Pipetti-set DIY täyttöön", price:"€6.90", image:"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop", category:"diy-tarvikkeet" },
+  { handle:"syringe-kit", title:"Syringe Kit - Täyttövälineet", price:"€12.90", image:"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop", category:"diy-tarvikkeet" },
+  
+  // 🟢 HerbSpot Merch™ (tuleva)
+  { handle:"rullausalusta", title:"HerbSpot Rullausalusta", price:"€9.90", image:"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop", badge:"Merch", category:"merch" },
+  { handle:"zip-pussi", title:"HerbSpot Zip-pussi", price:"€4.90", image:"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop", badge:"Merch", category:"merch" },
+  { handle:"stickers-pack", title:"HerbSpot Stickers (10 kpl)", price:"€2.90", image:"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop", badge:"Merch", category:"merch" },
+  
+  // Laitteet ja tarvikkeet
   { handle:"duo-glasspod", title:"Duo GlassPod AIO", price:"€24.90", image:"https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=400&h=400&fit=crop", badge:"AIO", category:"laitteet" },
   { handle:"m3-plus", title:"CCELL M3 Plus 510-akku", price:"€14.90", image:"https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&h=400&fit=crop", category:"laitteet" },
   { handle:"charger-usb", title:"510 USB Laturi", price:"€6.90", image:"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop", category:"tarvikkeet" },

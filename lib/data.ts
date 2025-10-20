@@ -14,6 +14,10 @@ export async function getByCategory(slug:string){
   const { products } = await fetchProducts(50);
   const map: Record<string,string> = {
     "510-patruunat":"510-patruunat",
+    "yrttiblendit":"yrttiblendit",
+    "wellness-packs":"wellness-packs", 
+    "diy-tarvikkeet":"diy-tarvikkeet",
+    "merch":"merch",
     "laitteet":"laitteet", 
     "tarvikkeet":"tarvikkeet",
     "pakkaus":"pakkaus",

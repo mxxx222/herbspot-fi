@@ -1,11 +1,12 @@
 import { CategoryCard } from "./CategoryCard";
 
 const categories = [
-  { title: "510-patruunat", href: "/c/510-patruunat", image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=300&fit=crop" },
+  { title: "🔴 510-patruunat", href: "/c/510-patruunat", image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=300&fit=crop", badge: "Fokus" },
+  { title: "🔴 Dual-Use Yrttiblendit™", href: "/c/yrttiblendit", image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop", badge: "Erotteleva" },
+  { title: "🟡 Wellness Starter Packs", href: "/c/wellness-packs", image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop", badge: "Kokeile" },
+  { title: "🟢 Täyttövälineet + DIY", href: "/c/diy-tarvikkeet", image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=400&h=300&fit=crop", badge: "DIY" },
+  { title: "🟢 HerbSpot Merch™", href: "/c/merch", image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop", badge: "Tuleva" },
   { title: "Laitteet (AIO/Dual)", href: "/c/laitteet", image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=400&h=300&fit=crop" },
-  { title: "Tarvikkeet", href: "/c/tarvikkeet", image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop" },
-  { title: "Pakkaus", href: "/c/pakkaus", image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop" },
-  { title: "Herbal / Dual-Blend", href: "/c/herbal", image: "https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=400&h=300&fit=crop" },
 ];
 
 export function CategoryGrid() {

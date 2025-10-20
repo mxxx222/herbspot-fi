@@ -13,7 +13,11 @@ export function Nav() {
       href: '/shop',
       items: [
         { name: 'Kaikki tuotteet', href: '/shop' },
-        { name: '510-patruunat', href: '/c/510-patruunat' },
+        { name: '🔴 510-patruunat', href: '/c/510-patruunat' },
+        { name: '🔴 Dual-Use Yrttiblendit™', href: '/c/yrttiblendit' },
+        { name: '🟡 Wellness Starter Packs', href: '/c/wellness-packs' },
+        { name: '🟢 Täyttövälineet + DIY', href: '/c/diy-tarvikkeet' },
+        { name: '🟢 HerbSpot Merch™', href: '/c/merch' },
         { name: 'Laitteet (AIO/Dual)', href: '/c/laitteet' },
         { name: 'Tarvikkeet', href: '/c/tarvikkeet' },
         { name: 'Pakkaus', href: '/c/pakkaus' },
