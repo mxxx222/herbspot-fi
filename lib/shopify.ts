@@ -243,6 +243,27 @@ export async function fetchCollections(first: number = 10) {
   }
 }
 
+// Wellness tag mapping
+export const WELLNESS_TAGS = {
+  focus: ['focus', 'concentration', 'mental-clarity', 'energy'],
+  calm: ['calm', 'relaxation', 'stress-relief', 'tranquility'],
+  sleep: ['sleep', 'rest', 'recovery', 'nighttime'],
+  recovery: ['recovery', 'healing', 'wellness', 'therapeutic']
+};
+
+// Filter products by wellness tag
+export function filterProductsByTag(products: any[], tag: string) {
+  if (!tag || !WELLNESS_TAGS[tag as keyof typeof WELLNESS_TAGS]) {
+    return products;
+  }
+  
+  const tagKeywords = WELLNESS_TAGS[tag as keyof typeof WELLNESS_TAGS];
+  return products.filter(product => {
+    const searchText = `${product.title} ${product.category} ${product.badge || ''}`.toLowerCase();
+    return tagKeywords.some(keyword => searchText.includes(keyword));
+  });
+}
+
 // Mock data fallback - Updated MVP Categories
 const mockProducts = [
   // 🔴 510-yhteensopivat osat (Fokus)

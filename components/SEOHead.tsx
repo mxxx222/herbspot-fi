@@ -32,8 +32,8 @@ export function SEOHead({
   const url = `https://herbspot-fi.onrender.com${pathname}`;
 
   const metaData = generateMetaTags({
-    title: title || 'HerbSpot — Premium 510 & Aromatherapy',
-    description: description || 'Premium 510-patruunat, AIO-laitteet ja tarvikkeet. Lääkinnällinen teräs, pyrex ja keraaminen ydin.',
+    title: title || 'HerbSpot.fi | Europe\'s Botanical Wellness Marketplace',
+    description: description || 'Shop trusted 510-compatible wellness devices and botanical blends from verified EU suppliers. Authorised distributor of premium botanical wellness technology.',
     keywords,
     image,
     url,
@@ -112,9 +112,9 @@ export function ProductSEOHead({ product }: { product: any }) {
 export function CategorySEOHead({ category }: { category: any }) {
   return (
     <SEOHead
-      title={`${category.name} - HerbSpot`}
-      description={`Selaa ${category.name.toLowerCase()} tuotteita HerbSpot.fi:ssä. Premium laatu, nopea toimitus.`}
-      keywords={[category.name, '510-patruunat', 'aromatherapy', 'premium']}
+      title={`${category.name} - HerbSpot.fi | Europe's Botanical Wellness Marketplace`}
+      description={`Curated ${category.name.toLowerCase()} from trusted EU suppliers. Authorised distributor of premium botanical wellness technology. Fast EU shipping.`}
+      keywords={[category.name, 'botanical wellness', '510-compatible', 'EU suppliers', 'premium quality']}
       type="website"
     />
   );

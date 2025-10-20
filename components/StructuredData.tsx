@@ -46,7 +46,7 @@ function generateProductStructuredData(product: any) {
     "image": product.image,
     "brand": {
       "@type": "Brand",
-      "name": product.brand?.name || "Premium Brand"
+      "name": product.brand?.name || "HerbSpot"
     },
     "offers": {
       "@type": "Offer",
@@ -56,9 +56,22 @@ function generateProductStructuredData(product: any) {
       "seller": {
         "@type": "Organization",
         "name": "HerbSpot.fi",
-        "url": "https://herbspot.fi"
+        "url": "https://herbspot.fi",
+        "description": "Europe's trusted destination for botanical wellness devices"
       },
-      "url": `https://herbspot.fi/p/${product.handle}`
+      "url": `https://herbspot.fi/p/${product.handle}`,
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": "0",
+          "currency": "EUR"
+        },
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": "EU"
+        }
+      }
     },
     "category": product.category,
     "sku": product.handle,
