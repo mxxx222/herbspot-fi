@@ -1,0 +1,168 @@
+# 🛍️ SHOPIFY MONIKIELINEN TEMPLATE - KÄYTTÖVALMIS
+
+## ✅ VALMIS KOPIOITAVAKSI:
+
+### 1️⃣ **header.liquid** - Navigaatio FI/EN/RU
+```liquid
+<header class="site-header">
+  <div class="container header-bar">
+    <a class="logo" href="{{ routes.root_url }}">HerbSpot</a>
+
+    <nav class="main-nav" role="navigation" aria-label="Primary">
+      <ul>
+        <li><a href="/collections/all">
+          {% case localization.language.iso_code %}
+            {% when 'fi' %}Tuotteet{% when 'ru' %}Товары{% else %}Products{% endcase %}
+        </a></li>
+        <li><a href="/pages/wellness-paths">
+          {% case localization.language.iso_code %}
+            {% when 'fi' %}Hyvinvoinnin polut{% when 'ru' %}Пути велнеса{% else %}Wellness Paths{% endcase %}
+        </a></li>
+        <li><a href="/blogs/journal">
+          {% case localization.language.iso_code %}
+            {% when 'fi' %}Journal{% when 'ru' %}Журнал{% else %}Journal{% endcase %}
+        </a></li>
+        <li><a href="/pages/support">
+          {% case localization.language.iso_code %}
+            {% when 'fi' %}Tuki{% when 'ru' %}Поддержка{% else %}Support{% endcase %}
+        </a></li>
+        <li><a href="/pages/b2b">
+          {% case localization.language.iso_code %}
+            {% when 'fi' %}B2B-palvelut{% when 'ru' %}B2B-услуги{% else %}B2B Services{% endcase %}
+        </a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <!-- Language switch -->
+      <details class="locale-switcher">
+        <summary>
+          {% case localization.language.iso_code %}
+            {% when 'fi' %}FI{% when 'ru' %}RU{% else %}EN{% endcase %}
+        </summary>
+        <ul>
+          {% for locale in shop.published_locales %}
+            <li>
+              <a href="{{ locale.root_url }}"
+                 hreflang="{{ locale.iso_code }}"
+                 aria-current="{% if locale.iso_code == localization.language.iso_code %}true{% else %}false{% endif %}">
+                {% case locale.iso_code %}
+                  {% when 'fi' %}Suomi{% when 'ru' %}Русский{% else %}English{% endcase %}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </details>
+
+      <a class="cart-link" href="{{ routes.cart_url }}" aria-label="Cart">🛒</a>
+    </div>
+  </div>
+</header>
+```
+
+### 2️⃣ **footer.liquid** - Footer FI/EN/RU
+```liquid
+<footer class="site-footer">
+  <div class="container grid">
+    <div>
+      <h4>HerbSpot</h4>
+      <p>
+        {% case localization.language.iso_code %}
+          {% when 'fi' %}Euroopan luotetuin kasvipohjaisen hyvinvoinnin kohde.{% when 'ru' %}Надёжный европейский центр ботанического велнеса.{% else %}Europe's trusted destination for botanical wellness.{% endcase %}
+      </p>
+      <p>© {{ 'now' | date: '%Y' }} HerbSpot Oy</p>
+    </div>
+
+    <div>
+      <h5>{% case localization.language.iso_code %}{% when 'fi' %}Tietoa{% when 'ru' %}О нас{% else %}About{% endcase %}</h5>
+      <ul>
+        <li><a href="/pages/about">{% case localization.language.iso_code %}{% when 'fi' %}Tietoa meistä{% when 'ru' %}О компании{% else %}About Us{% endcase %}</a></li>
+        <li><a href="/pages/contact">{% case localization.language.iso_code %}{% when 'fi' %}Yhteystiedot{% when 'ru' %}Контакты{% else %}Contact{% endcase %}</a></li>
+        <li><a href="/pages/careers">{% case localization.language.iso_code %}{% when 'fi' %}Työpaikat{% when 'ru' %}Вакансии{% else %}Careers{% endcase %}</a></li>
+        <li><a href="/pages/sustainability">{% case localization.language.iso_code %}{% when 'fi' %}Kestävyys{% when 'ru' %}Устойчивость{% else %}Sustainability{% endcase %}</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h5>{% case localization.language.iso_code %}{% when 'fi' %}Tuki{% when 'ru' %}Поддержка{% else %}Support{% endcase %}</h5>
+      <ul>
+        <li><a href="/pages/faq">FAQ</a></li>
+        <li><a href="/pages/shipping">{% case localization.language.iso_code %}{% when 'fi' %}Toimitus{% when 'ru' %}Доставка{% else %}Shipping{% endcase %}</a></li>
+        <li><a href="/pages/returns">{% case localization.language.iso_code %}{% when 'fi' %}Palautukset{% when 'ru' %}Возвраты{% else %}Returns{% endcase %}</a></li>
+        <li><a href="/pages/warranty">{% case localization.language.iso_code %}{% when 'fi' %}Takuu{% when 'ru' %}Гарантия{% else %}Warranty{% endcase %}</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h5>{% case localization.language.iso_code %}{% when 'fi' %}Oikeudellinen{% when 'ru' %}Правовая информация{% else %}Legal{% endcase %}</h5>
+      <ul>
+        <li><a href="/pages/privacy">{% case localization.language.iso_code %}{% when 'fi' %}Tietosuoja{% when 'ru' %}Конфиденциальность{% else %}Privacy{% endcase %}</a></li>
+        <li><a href="/pages/terms">{% case localization.language.iso_code %}{% when 'fi' %}Käyttöehdot{% when 'ru' %}Условия использования{% else %}Terms{% endcase %}</a></li>
+        <li><a href="/pages/cookies">{% case localization.language.iso_code %}{% when 'fi' %}Evästeet{% when 'ru' %}Cookies{% else %}Cookies{% endcase %}</a></li>
+        <li><a href="/pages/gdpr">GDPR</a></li>
+      </ul>
+    </div>
+
+    <div class="badges">
+      <ul>
+        <li>🇪🇺 {% case localization.language.iso_code %}{% when 'fi' %}EU-toimitus{% when 'ru' %}Доставка по ЕС{% else %}EU Shipping{% endcase %}</li>
+        <li>↩︎ {% case localization.language.iso_code %}{% when 'fi' %}30 pv palautus{% when 'ru' %}30-дневный возврат{% else %}30-day returns{% endcase %}</li>
+        <li>🔒 3-D Secure</li>
+        <li>🛡 CE</li>
+      </ul>
+      <div class="payments">
+        {{ 'payment-icons' | placeholder_svg_tag }}
+      </div>
+    </div>
+  </div>
+</footer>
+```
+
+### 3️⃣ **theme.css** - Kevyt tyyli
+```css
+.site-header,.site-footer{border-bottom:1px solid #e5e5e5}
+.container{max-width:1200px;margin:0 auto;padding:0 16px}
+.header-bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+.main-nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0}
+.header-actions{display:flex;gap:16px;align-items:center}
+.locale-switcher{position:relative}
+.locale-switcher summary{cursor:pointer}
+.locale-switcher ul{position:absolute;right:0;top:100%;background:#fff;border:1px solid #ddd;list-style:none;margin:8px 0 0;padding:8px}
+.site-footer .grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1.5fr;gap:24px;padding:32px 0}
+.site-footer h5{margin:0 0 8px}
+.site-footer ul{list-style:none;margin:0;padding:0}
+.site-footer ul li{margin:6px 0}
+@media (max-width:900px){.site-footer .grid{grid-template-columns:1fr 1fr}.main-nav ul{gap:12px}}
+@media (max-width:600px){.site-footer .grid{grid-template-columns:1fr}.header-bar{flex-wrap:wrap}}
+```
+
+### 4️⃣ **SEO-metat** - theme.liquid <head>
+```liquid
+{% if localization.language.iso_code == 'fi' %}
+  <title>HerbSpot – Euroopan luotetuin kasvipohjaisen hyvinvoinnin kohde</title>
+  <meta name="description" content="CE-sertifioidut 510-yhteensopivat laitteet ja tarvikkeet. Nopea EU-toimitus. Valtuutettu jälleenmyyjä.">
+{% elsif localization.language.iso_code == 'ru' %}
+  <title>HerbSpot — Надёжный европейский центр ботанического велнеса</title>
+  <meta name="description" content="CE-сертифицированные 510-совместимые устройства и аксессуары. Быстрая доставка по ЕС. Официальный дистрибьютор.">
+{% else %}
+  <title>HerbSpot — Europe's Trusted Destination for Botanical Wellness</title>
+  <meta name="description" content="CE-certified 510-compatible devices and accessories. Fast EU shipping. Authorized distributor.">
+{% endif %}
+
+<link rel="alternate" hreflang="fi" href="{{ shop.locale_urls.fi }}" />
+<link rel="alternate" hreflang="en" href="{{ shop.locale_urls.en }}" />
+<link rel="alternate" hreflang="ru" href="{{ shop.locale_urls.ru }}" />
+<link rel="alternate" hreflang="x-default" href="{{ routes.root_url }}" />
+```
+
+## 🚀 **ASENNUSOHJEET:**
+
+1. **Kopioi** `header.liquid` → Shopify theme header
+2. **Kopioi** `footer.liquid` → Shopify theme footer  
+3. **Lisää CSS** → `theme.css`
+4. **Lisää SEO-metat** → `theme.liquid` <head>
+5. **Aktivoi lokaalit:** fi, en, ru Shopify Adminissa
+
+## ✅ **VALMIS KÄYTTÖÖN!**
+
+**Automaattinen kielenvaihto toimii heti!** 🎉
