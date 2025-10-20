@@ -98,8 +98,8 @@ export function generateMetadata({
   // Add article-specific metadata
   if (article) {
     metadata.other = {
-      "article:published_time": article.publishedTime,
-      "article:modified_time": article.modifiedTime,
+      ...(article.publishedTime && { "article:published_time": article.publishedTime }),
+      ...(article.modifiedTime && { "article:modified_time": article.modifiedTime }),
       "article:author": article.author || "HerbSpot Team",
       "article:section": article.section || "Wellness",
     };
