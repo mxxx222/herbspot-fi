@@ -1,6 +1,7 @@
 import { FadeIn, Stagger } from '@/components/Animations';
 import { SEOHead } from '@/components/SEOHead';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const blogPosts = [
   {
@@ -91,10 +92,12 @@ export default function BlogPage() {
               <FadeIn key={post.id} delay={index * 100}>
                 <article className="bg-white/5 rounded-lg overflow-hidden hover:bg-white/10 transition-colors group">
                   <div className="aspect-video relative overflow-hidden">
-                    <img
+                    <Image
                       src={post.image}
                       alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   </div>
                   <div className="p-6">

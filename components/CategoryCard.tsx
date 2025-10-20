@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export function CategoryCard({
   title,
@@ -9,7 +10,13 @@ export function CategoryCard({
   return (
     <Link href={href} className="card overflow-hidden group">
       <div className="aspect-[4/3] bg-white/5 relative">
-        <img src={image} alt={title} className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition" />
+        <Image 
+          src={image} 
+          alt={title} 
+          fill
+          className="object-cover opacity-90 group-hover:opacity-100 transition" 
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
         {badge && (
           <div className="absolute top-3 left-3">
             <span className="bg-[var(--brand)] text-black px-2 py-1 rounded-full text-xs font-bold">

@@ -47,8 +47,11 @@ export function WebVitalsMonitor() {
       // Time to First Byte (TTFB)
       const navigationObserver = new PerformanceObserver((list) => {
         list.getEntries().forEach((entry) => {
-          const ttfb = entry.responseStart - entry.requestStart;
-          trackCoreWebVitals('TTFB', ttfb);
+          if (entry.entryType === 'navigation') {
+            const navEntry = entry as PerformanceNavigationTiming;
+            const ttfb = navEntry.responseStart - navEntry.requestStart;
+            trackCoreWebVitals('TTFB', ttfb);
+          }
         });
       });
       navigationObserver.observe({ entryTypes: ['navigation'] });

@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { SEOHead } from '@/components/SEOHead';
 import { FadeIn } from '@/components/Animations';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const blogPosts = {
   'premium-510-guide': {
@@ -147,10 +148,13 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
               {/* Featured Image */}
               <div className="aspect-video rounded-lg overflow-hidden mb-12">
-                <img
+                <Image
                   src={post.image}
                   alt={post.title}
+                  width={800}
+                  height={450}
                   className="w-full h-full object-cover"
+                  priority
                 />
               </div>
 
