@@ -42,11 +42,11 @@ function generateProductStructuredData(product: any) {
     "@context": "https://schema.org",
     "@type": "Product",
     "name": product.title,
-    "description": product.description || `${product.title} - Luonnolliset yrttisekoitukset ja älykkäät välineet rentoutumiseen.`,
+    "description": product.description || `${product.title} - Curated botanical wellness device from trusted EU suppliers.`,
     "image": product.image,
     "brand": {
       "@type": "Brand",
-      "name": "HerbSpot"
+      "name": product.brand?.name || "Premium Brand"
     },
     "offers": {
       "@type": "Offer",
@@ -55,8 +55,10 @@ function generateProductStructuredData(product: any) {
       "availability": "https://schema.org/InStock",
       "seller": {
         "@type": "Organization",
-        "name": "HerbSpot Oy"
-      }
+        "name": "HerbSpot.fi",
+        "url": "https://herbspot.fi"
+      },
+      "url": `https://herbspot.fi/p/${product.handle}`
     },
     "category": product.category,
     "sku": product.handle,
@@ -74,10 +76,10 @@ function generateOrganizationStructuredData() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "HerbSpot Oy",
+    "name": "HerbSpot.fi",
     "url": "https://herbspot.fi",
     "logo": "https://herbspot.fi/logo.png",
-    "description": "Premium 510-patruunat, AIO-laitteet ja tarvikkeet luonnolliseen hyvinvointiin.",
+    "description": "Europe's trusted destination for botanical wellness devices. Authorised distributor of premium 510-compatible wellness technology from verified EU suppliers.",
     "foundingDate": "2024",
     "address": {
       "@type": "PostalAddress",

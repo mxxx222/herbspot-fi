@@ -30,8 +30,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "HerbSpot — Premium 510 & Aromatherapy",
-  description: "Premium 510-patruunat, AIO-laitteet ja tarvikkeet.",
+  title: "HerbSpot.fi | Europe's Botanical Wellness Marketplace",
+  description: "Shop trusted 510-compatible wellness devices and botanical blends from verified EU suppliers. Authorised distributor of premium botanical wellness technology.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 

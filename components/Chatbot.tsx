@@ -14,10 +14,10 @@ export function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Hei! Olen HerbSpot Avustaja™. Autan sinua löytämään täydelliset tuotteet luonnolliseen hyvinvointiin. Miten voin auttaa sinua tänään?",
+      text: "Hello! I'm HerbSpot Wellness Concierge™. I help you find the perfect curated botanical wellness devices from our trusted EU suppliers. How can I assist you today?",
       isBot: true,
       timestamp: new Date(),
-      suggestions: ["Calm Blend™ käyttö", "510-osat", "Toimitus", "Starter-paketit"]
+      suggestions: ["510-compatible devices", "Botanical blends", "Shipping", "Starter packs"]
     }
   ]);
   const [inputText, setInputText] = useState("");
@@ -57,123 +57,123 @@ export function Chatbot() {
   const generateBotResponse = (userInput: string): Message => {
     const input = userInput.toLowerCase();
     
-    // Calm Blend™ kysymykset
-    if (input.includes("calm blend") || input.includes("calm") || input.includes("rauhoittava")) {
+    // Botanical blends questions
+    if (input.includes("blend") || input.includes("calm") || input.includes("botanical")) {
       return {
         id: (Date.now() + 1).toString(),
-        text: "Calm Blend™ on luonnollinen yrttisekoitus, joka sopii sekä rentouttavaksi iltateeksi että höyrytyskäyttöön, nikotiinittomasti. Se ei sisällä päihdyttäviä aineita. Haluatko myös starter-paketin, joka sisältää akun ja patruunat?",
+        text: "We curate premium botanical blends from trusted EU suppliers. Our Calm Blend™ is perfect for relaxation and wellness routines. It's designed for both tea and aromatherapy use, completely nicotine-free. Would you like to see our starter packs?",
         isBot: true,
         timestamp: new Date(),
-        suggestions: ["Starter-paketti", "DIY-välineet", "Hinta"]
+        suggestions: ["Starter packs", "DIY accessories", "Pricing"]
       };
     }
     
-    // THC/CBD kysymykset
-    if (input.includes("thc") || input.includes("cbd") || input.includes("päihde") || input.includes("laiton")) {
+    // THC/CBD questions
+    if (input.includes("thc") || input.includes("cbd") || input.includes("illegal") || input.includes("drug")) {
       return {
         id: (Date.now() + 1).toString(),
-        text: "Ei. Kaikki tuotteemme ovat täysin laillisia ja kasvipohjaisia. Emme myy tai toimita THC- tai CBD-tuotteita. Tarjoamme vain luonnollisia yrttisekoituksia ja laillisia välineitä.",
+        text: "No. We are an authorised distributor of legal botanical wellness devices and accessories only. All our curated products comply with EU regulations and are sourced from certified suppliers.",
         isBot: true,
         timestamp: new Date(),
-        suggestions: ["Lailliset tuotteet", "Calm Blend™", "510-osat"]
+        suggestions: ["Legal products", "Botanical blends", "510 devices"]
       };
     }
     
-    // 510-osat kysymykset
-    if (input.includes("510") || input.includes("akku") || input.includes("patruuna") || input.includes("osat")) {
+    // 510 devices questions
+    if (input.includes("510") || input.includes("battery") || input.includes("cartridge") || input.includes("device")) {
       return {
         id: (Date.now() + 1).toString(),
-        text: "Löydät kaikki 510-yhteensopivat osat suoraan valikosta kohdasta '510-patruunat'. Meillä on akkuja, patruunoita ja täyttövälineitä. Etsitkö jotain erityistä käyttötarkoitusta?",
+        text: "We curate trusted 510-compatible devices from verified EU suppliers like CCELL and AVD. You'll find batteries, cartridges, and accessories in our '510-compatible devices' section. What specific use case are you looking for?",
         isBot: true,
         timestamp: new Date(),
-        suggestions: ["Slimline akku", "Tyhjät patruunat", "Täyttövälineet"]
+        suggestions: ["Slimline battery", "Empty cartridges", "Filling accessories"]
       };
     }
     
-    // Starter-paketit
-    if (input.includes("starter") || input.includes("aloitus") || input.includes("paketti") || input.includes("aloittelija")) {
+    // Starter packs
+    if (input.includes("starter") || input.includes("beginner") || input.includes("pack") || input.includes("kit")) {
       return {
         id: (Date.now() + 1).toString(),
-        text: "Starter-paketit ovat täydellinen aloitusvalinta! Calm Pack™ sisältää akun, patruunat ja Calm Blend™ -seoksen. Smoke & Tea Pack™ on vielä kattavampi. Mikä sopii sinulle parhaiten?",
+        text: "Our starter packs are perfect for beginners! The Calm Pack™ includes a battery, cartridges, and Calm Blend™. The Smoke & Tea Pack™ is even more comprehensive. Which suits your wellness goals best?",
         isBot: true,
         timestamp: new Date(),
-        suggestions: ["Calm Pack™", "Smoke & Tea Pack™", "Hinnat"]
+        suggestions: ["Calm Pack™", "Smoke & Tea Pack™", "Pricing"]
       };
     }
     
-    // Toimitus kysymykset
-    if (input.includes("toimitus") || input.includes("postitus") || input.includes("kauanko") || input.includes("aika")) {
+    // Shipping questions
+    if (input.includes("shipping") || input.includes("delivery") || input.includes("how long") || input.includes("time")) {
       return {
         id: (Date.now() + 1).toString(),
-        text: "Toimitamme Suomesta, ja lähetämme tuotteet 1–2 arkipäivässä. Useimmat tilaukset saapuvat 2–4 päivän sisällä. Toimituskulu on €5.90 alle €50 tilauksille, yli €50 tilaukset toimitetaan ilmaiseksi!",
+        text: "We ship from Finland and dispatch orders within 1-2 business days. Most orders arrive within 2-4 days. Shipping is €5.90 for orders under €50, free shipping for orders over €50!",
         isBot: true,
         timestamp: new Date(),
-        suggestions: ["Hinnat", "Palautukset", "Tilaa nyt"]
+        suggestions: ["Pricing", "Returns", "Order now"]
       };
     }
     
-    // Hinnat
-    if (input.includes("hinta") || input.includes("paljonko") || input.includes("maksaa")) {
+    // Pricing
+    if (input.includes("price") || input.includes("cost") || input.includes("how much")) {
       return {
         id: (Date.now() + 1).toString(),
-        text: "Tuotteemme hinnat vaihtelevat €3.90 - €34.90 välillä. Calm Blend™ maksaa €12.90, Slimline akku €14.90 ja Calm Pack™ starter-paketti €29.90. Onko jokin tuote erityisesti kiinnostava?",
+        text: "Our curated products range from €3.90 to €34.90. Calm Blend™ is €12.90, Slimline battery €14.90, and Calm Pack™ starter pack €29.90. Is there a specific product that interests you?",
         isBot: true,
         timestamp: new Date(),
-        suggestions: ["Calm Pack™", "Slimline akku", "Calm Blend™"]
+        suggestions: ["Calm Pack™", "Slimline battery", "Calm Blend™"]
       };
     }
     
-    // DIY-välineet
-    if (input.includes("diy") || input.includes("täyttö") || input.includes("välineet") || input.includes("itse")) {
+    // DIY accessories
+    if (input.includes("diy") || input.includes("filling") || input.includes("accessories") || input.includes("empty")) {
       return {
         id: (Date.now() + 1).toString(),
-        text: "DIY-välineet mahdollistavat omien sekoitusten tekemisen! Meillä on tyhjiä patruunoita, täyttöruiskuja ja pipetti-settejä. Voit myös tilata valmiita Calm Blend™ -sekoituksia.",
+        text: "Our DIY accessories allow you to create your own botanical blends! We have empty cartridges, filling syringes, and pipette sets. You can also order pre-made Calm Blend™ mixtures.",
         isBot: true,
         timestamp: new Date(),
-        suggestions: ["Tyhjät patruunat", "Täyttöruiskut", "Calm Blend™"]
+        suggestions: ["Empty cartridges", "Filling syringes", "Calm Blend™"]
       };
     }
     
-    // Käyttöohjeet
-    if (input.includes("käyttö") || input.includes("miten") || input.includes("ohje") || input.includes("käyttää")) {
+    // Usage instructions
+    if (input.includes("use") || input.includes("how") || input.includes("instruction") || input.includes("guide")) {
       return {
         id: (Date.now() + 1).toString(),
-        text: "Kaikki tuotteemme tulevat yksityiskohtaisten käyttöohjeiden kanssa. Calm Blend™ sopii sekä teeksi että höyrytyskäyttöön. 510-osat ovat helppoja käyttää - vain kiinnitä patruuna akkuun!",
+        text: "All our curated products come with detailed usage instructions. Calm Blend™ works for both tea and aromatherapy use. 510 devices are easy to use - just attach the cartridge to the battery!",
         isBot: true,
         timestamp: new Date(),
-        suggestions: ["Käyttöohjeet", "Calm Blend™", "510-osat"]
+        suggestions: ["Usage guides", "Calm Blend™", "510 devices"]
       };
     }
     
-    // Laillisuus
-    if (input.includes("laillinen") || input.includes("laillista") || input.includes("sallittu")) {
+    // Legality
+    if (input.includes("legal") || input.includes("allowed") || input.includes("permitted")) {
       return {
         id: (Date.now() + 1).toString(),
-        text: "Kyllä! Kaikki tuotteemme ovat täysin laillisia Suomessa. Ne ovat rekisteröityjen yrttien ja luonnonainesosien pohjalta koostettuja. Emme myy päihdyttäviä aineita.",
+        text: "Yes! All our curated products are completely legal in the EU. They are made from registered herbs and natural ingredients. We don't sell any intoxicating substances.",
         isBot: true,
         timestamp: new Date(),
-        suggestions: ["Calm Blend™", "510-osat", "Starter-paketit"]
+        suggestions: ["Calm Blend™", "510 devices", "Starter packs"]
       };
     }
     
-    // Kiitos
-    if (input.includes("kiitos") || input.includes("loistavaa") || input.includes("hyvä")) {
+    // Thank you
+    if (input.includes("thank") || input.includes("great") || input.includes("good")) {
       return {
         id: (Date.now() + 1).toString(),
-        text: "Kiitos! Olen iloinen että voin auttaa. Onko muuta mitä haluaisit tietää tuotteistamme?",
+        text: "You're welcome! I'm glad I could help. Is there anything else you'd like to know about our curated products?",
         isBot: true,
         timestamp: new Date(),
-        suggestions: ["Calm Pack™", "Toimitus", "Hinnat"]
+        suggestions: ["Calm Pack™", "Shipping", "Pricing"]
       };
     }
     
-    // Oletusvastaus
+    // Default response
     return {
       id: (Date.now() + 1).toString(),
-      text: "Kiitos viestistäsi! Voin auttaa sinua tuotteiden, hinnoittelun, toimituksen tai käyttöohjeiden kanssa. Suosittelen Calm Pack™ -starter-pakettia aloittelijoille!",
+      text: "Thank you for your message! I can help you with products, pricing, shipping, or usage instructions. I recommend our Calm Pack™ starter pack for beginners!",
       isBot: true,
       timestamp: new Date(),
-      suggestions: ["Calm Pack™", "510-osat", "Toimitus", "Hinnat"]
+      suggestions: ["Calm Pack™", "510 devices", "Shipping", "Pricing"]
     };
   };
 
@@ -188,7 +188,7 @@ export function Chatbot() {
       <button
         onClick={() => setIsOpen(true)}
         className="fixed bottom-4 right-4 w-14 h-14 bg-[var(--brand)] text-black rounded-full shadow-lg z-40 flex items-center justify-center hover:scale-110 transition-transform"
-        aria-label="Avaa HerbSpot Avustaja™"
+        aria-label="Open HerbSpot Wellness Concierge™"
       >
         <span className="text-xl">🌿</span>
       </button>
@@ -204,8 +204,8 @@ export function Chatbot() {
                   <span className="text-black font-bold text-sm">🌿</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white">HerbSpot Avustaja™</h3>
-                  <p className="text-xs text-white/60">Online nyt</p>
+                  <h3 className="font-semibold text-white">HerbSpot Wellness Concierge™</h3>
+                  <p className="text-xs text-white/60">Online now</p>
                 </div>
               </div>
               <button
@@ -280,7 +280,7 @@ export function Chatbot() {
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                  placeholder="Kysy HerbSpot Avustaja™:lta..."
+                  placeholder="Ask HerbSpot Wellness Concierge™..."
                   className="flex-1 bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[var(--brand)] focus:border-transparent"
                 />
                 <button
@@ -288,7 +288,7 @@ export function Chatbot() {
                   disabled={!inputText.trim()}
                   className="bg-[var(--brand)] text-black px-4 py-2 rounded-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
                 >
-                  Lähetä
+                  Send
                 </button>
               </div>
             </div>

@@ -27,7 +27,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          Botanical Devices for <span className="text-[var(--brand)]">Mindful Living</span>
+          Europe's Trusted Destination for <span className="text-[var(--brand)]">Botanical Wellness</span>
         </motion.h1>
         
         <motion.p 
@@ -36,7 +36,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         >
-          Luonnolliset yrttisekoitukset ja älykkäät välineet rentoutumiseen. Tee + höyry + rituaali yhdistettynä.
+          Shop curated blends and accessories for calm, focus and recovery. Verified EU suppliers, trusted quality.
         </motion.p>
         
         <motion.div 
@@ -50,7 +50,7 @@ export function Hero() {
             whileTap={{ scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 60 }}
           >
-            <Link href="/shop" className="btn btn-brand">Osta nyt</Link>
+            <Link href="/shop" className="btn btn-brand">Explore Trusted Devices</Link>
           </motion.div>
           
           <motion.button 
@@ -60,7 +60,7 @@ export function Hero() {
             whileTap={{ scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 60 }}
           >
-            Build your Calm Routine
+            Build your Wellness Routine
           </motion.button>
           
           <motion.div
@@ -68,7 +68,7 @@ export function Hero() {
             whileTap={{ scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 60 }}
           >
-            <Link href="#categories" className="btn btn-ghost">Selaa kategorioita</Link>
+            <Link href="#categories" className="btn btn-ghost">Browse Categories</Link>
           </motion.div>
         </motion.div>
       </div>

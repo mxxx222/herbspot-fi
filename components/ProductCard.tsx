@@ -9,6 +9,10 @@ interface ProductCardProps {
     image: string;
     badge?: string;
     benefits?: string[];
+    brand?: {
+      name: string;
+      country: string;
+    };
   };
 }
 
@@ -32,6 +36,18 @@ export function ProductCard({ product }: ProductCardProps) {
       
       <div className="p-5">
         <h3 className="font-semibold mb-2 line-clamp-2">{product.title}</h3>
+        
+        {/* Brand Information */}
+        {product.brand && (
+          <div className="mb-2">
+            <span className="text-sm text-white/60">
+              {product.brand.name} • {product.brand.country}
+            </span>
+            <div className="text-xs text-white/50 mt-1">
+              Imported & distributed by HerbSpot.fi
+            </div>
+          </div>
+        )}
         
         {/* Benefit Tags */}
         {product.benefits && product.benefits.length > 0 && (
