@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: { handle: string }}
 
   return generateProductMetadata({
     title: product.title,
-    category: product.category || "510-patruunat",
+    category: (product as any).category || "510-patruunat",
     price: product.price,
     availability: "in stock",
     image: product.image,
