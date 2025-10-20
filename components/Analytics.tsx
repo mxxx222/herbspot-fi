@@ -19,7 +19,7 @@ export function GoogleAnalytics() {
         page_location: window.location.href,
       });
     }
-  }, []);
+  }, [GA_TRACKING_ID]);
 
   if (!GA_TRACKING_ID) return null;
 

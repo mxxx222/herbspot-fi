@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { AddToCartButton } from "./AddToCartButton";
 
 interface ProductCardProps {
@@ -19,12 +20,14 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="card overflow-hidden group hover:scale-[1.02] hover:shadow-xl transition-all duration-300">
-      <div className="aspect-[4/3] bg-white/5 relative">
-        <img 
-          src={product.image} 
-          alt={product.title} 
-          className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" 
-        />
+             <div className="aspect-[4/3] bg-white/5 relative">
+               <Image 
+                 src={product.image} 
+                 alt={product.title} 
+                 fill
+                 className="object-cover opacity-90 group-hover:opacity-100 transition-opacity" 
+                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+               />
         {product.badge && (
           <div className="absolute top-3 left-3">
             <span className="bg-[var(--brand)] text-black px-2 py-1 rounded-full text-xs font-bold">

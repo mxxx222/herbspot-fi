@@ -403,6 +403,10 @@ export function trackEUSale(country: string, value: number, brand?: string) {
   });
 }
 
+export function trackCoreWebVitals(metric: string, value: number) {
+  analytics.trackCoreWebVitals(metric, value);
+}
+
 // Performance monitoring
 export function trackPerformance() {
   if (typeof window === 'undefined') return;

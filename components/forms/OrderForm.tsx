@@ -88,9 +88,10 @@ export function OrderForm({
   const { formState: { errors, isValid, isDirty } } = form
 
   // Calculate total amount
+  const watchedItems = form.watch('items');
   const totalAmount = React.useMemo(() => {
-    return form.watch('items').reduce((sum, item) => sum + (item.price * item.quantity), 0)
-  }, [form.watch('items')])
+    return watchedItems.reduce((sum, item) => sum + (item.price * item.quantity), 0)
+  }, [watchedItems])
 
   const handleSubmit = async (data: OrderFormData) => {
     try {
