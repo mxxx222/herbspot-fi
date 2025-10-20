@@ -1,4 +1,4 @@
-'use client';
+import Image from "next/image";
 
 import { useTouchGestures, useSwipeNavigation } from '@/hooks/useTouchGestures';
 import { useState, useEffect } from 'react';
@@ -84,11 +84,13 @@ export function MobileSwipeNavigation({
               style={{ width: `${100 / products.length}%` }}
             >
               <div className="aspect-square relative">
-                <img
+                <Image
                   src={product.image}
                   alt={product.title}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
                   loading="lazy"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 text-white">
@@ -176,10 +178,12 @@ export function MobileProductGallery({ products }: { products: SwipeableProduct[
               index === currentIndex ? 'ring-2 ring-blue-500' : ''
             }`}
           >
-            <img
+            <Image
               src={product.image}
               alt={product.title}
-              className="w-full h-full object-cover"
+              width={64}
+              height={64}
+              className="object-cover"
             />
           </button>
         ))}
@@ -187,11 +191,14 @@ export function MobileProductGallery({ products }: { products: SwipeableProduct[
 
       {/* Main image */}
       <div className="mt-4 relative">
-        <img
+        <Image
           src={products[currentIndex]?.image}
           alt={products[currentIndex]?.title}
+          width={400}
+          height={400}
           className="w-full aspect-square object-cover rounded-lg"
           onClick={() => setIsFullscreen(true)}
+          priority
         />
         
         {/* Zoom button */}
@@ -217,10 +224,13 @@ export function MobileProductGallery({ products }: { products: SwipeableProduct[
             </svg>
           </button>
           
-          <img
+          <Image
             src={products[currentIndex]?.image}
             alt={products[currentIndex]?.title}
+            width={800}
+            height={600}
             className="max-w-full max-h-full object-contain"
+            priority
           />
         </div>
       )}

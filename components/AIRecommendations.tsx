@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 interface Recommendation {
   id: string;
@@ -83,10 +84,12 @@ export function RecommendationEngine({ currentProduct, userId }: { currentProduc
       <div className="space-y-4">
         {recommendations.map((rec) => (
           <div key={rec.id} className="flex gap-3 p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
-            <img 
+            <Image 
               src={rec.image} 
               alt={rec.title}
-              className="w-16 h-16 object-cover rounded"
+              width={64}
+              height={64}
+              className="object-cover rounded"
             />
             <div className="flex-1">
               <h4 className="font-medium text-white text-sm">{rec.title}</h4>

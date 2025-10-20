@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import Image from "next/image";
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { Skeleton, ProductCardSkeleton } from '@/components/ui/Skeleton'
@@ -278,9 +279,11 @@ function ProductsStep({
               onClick={() => onProductSelect(product.id, parseFloat(product.priceRange.minVariantPrice.amount))}
             >
               {product.featuredImage && (
-                <img
+                <Image
                   src={product.featuredImage.url}
                   alt={product.title}
+                  width={300}
+                  height={192}
                   className="w-full h-48 object-cover rounded-lg mb-4"
                 />
               )}

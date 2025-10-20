@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { useTouchGestures, useSwipeNavigation, usePullToRefresh } from '@/hooks/useTouchGestures';
 
 export function MobileOptimizations() {
@@ -113,11 +114,13 @@ export function MobileProductCard({ product }: { product: any }) {
     <div className="bg-white/5 rounded-lg overflow-hidden touch-manipulation">
       <div className="aspect-square relative">
         {product.image ? (
-          <img 
+          <Image 
             src={product.image} 
             alt={product.title}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
             loading="lazy"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         ) : (
           <div className="w-full h-full bg-white/5 flex items-center justify-center">

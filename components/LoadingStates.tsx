@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from "next/image";
 
 interface LoadingSpinnerProps {
   size?: 'sm' | 'md' | 'lg';
@@ -127,15 +128,17 @@ export function ImageLoader({
           <span className="text-gray-500">Kuva ei latautunut</span>
         </div>
       ) : (
-        <img
+        <Image
           src={src}
           alt={alt}
+          fill
           onLoad={() => setIsLoading(false)}
           onError={() => {
             setIsLoading(false);
             setHasError(true);
           }}
-          className={`w-full h-full object-cover ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
+          className={`object-cover ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           {...props}
         />
       )}

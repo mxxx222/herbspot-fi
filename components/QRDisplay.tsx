@@ -1,4 +1,4 @@
-'use client';
+import Image from "next/image";
 
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -95,9 +95,11 @@ export default function QRDisplay({ orderId, points = 0, className = '' }: QRDis
         <div className="flex justify-center mb-6">
           <div className="bg-white p-4 rounded-xl">
             {qrCode ? (
-              <img
+              <Image
                 src={qrCode}
                 alt="QR Code"
+                width={192}
+                height={192}
                 className="w-48 h-48"
               />
             ) : (
