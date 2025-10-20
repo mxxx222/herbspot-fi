@@ -1,0 +1,77 @@
+# 🛍️ ORGANIZATION.JSON-LD - SHOPIFY VALMIS
+
+## Organization Schema - theme.liquid <head>
+
+```liquid
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "HerbSpot",
+  "url": "{{ shop.url }}",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "{{ 'logo.png' | asset_url }}",
+    "width": 112,
+    "height": 112
+  },
+  "description": "{% case localization.language.iso_code %}{% when 'fi' %}Euroopan luotetuin kasvipohjaisen hyvinvoinnin kohde{% when 'ru' %}Надёжный европейский центр ботанического велнеса{% else %}Europe's trusted destination for botanical wellness{% endcase %}",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+358-40-1234567",
+    "contactType": "customer service",
+    "areaServed": "EU"
+  },
+  "sameAs": [
+    "https://www.instagram.com/herbspotfi",
+    "https://www.linkedin.com/company/herbspot",
+    "https://www.facebook.com/herbspotfi"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "FI",
+    "addressLocality": "Helsinki"
+  }
+}
+</script>
+```
+
+## Hero-kuvan optimointi - theme.liquid <head>
+
+```liquid
+<!-- Hero-kuvan preload -->
+<link rel="preload" as="image" href="{{ 'hero.jpg' | asset_url }}" imagesrcset="{{ 'hero.jpg' | image_url: width:1200 }} 1200w" imagesizes="100vw">
+
+<!-- Hero-kuva -->
+<img src="{{ 'hero.jpg' | asset_url }}" 
+     width="1200" 
+     height="700" 
+     fetchpriority="high" 
+     decoding="async" 
+     alt="{% case localization.language.iso_code %}{% when 'fi' %}HerbSpot - Euroopan luotetuin kasvipohjaisen hyvinvoinnin kohde{% when 'ru' %}HerbSpot - Надёжный европейский центр ботанического велнеса{% else %}HerbSpot - Europe's trusted destination for botanical wellness{% endcase %}">
+```
+
+## GA4 DebugView - theme.liquid <head>
+
+```javascript
+<!-- GA4 DebugView -->
+<script>
+  gtag('config', 'GA_MEASUREMENT_ID', {
+    debug_mode: true
+  });
+</script>
+```
+
+## Testaa eventit - Browser console
+
+```javascript
+// Testaa filter_click
+gtag('event','filter_click',{filter:'focus',collection:'all'});
+
+// Testaa locale_switch
+gtag('event','locale_switch',{locale:'en'});
+```
+
+## ✅ **VALMIS!**
+
+**Organization schema + Hero-optimointi + GA4 DebugView!** 🚀
