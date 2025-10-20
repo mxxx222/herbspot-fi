@@ -7,7 +7,7 @@ export default async function Page() {
     <>
       <Hero />
       <CategoryGrid />
-      <ProductGrid limit={6} />
+      <ProductGrid limit={6} id="featured-blends" />
       
       {/* FAQ Section */}
       <section className="section bg-white/5">

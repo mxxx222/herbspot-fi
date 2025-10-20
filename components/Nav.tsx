@@ -48,6 +48,69 @@ export function Nav() {
     }
   ];
 
+"use client";
+import Link from "next/link";
+import { useState } from "react";
+import { LanguageSelector } from "./LanguageSelector";
+import { usePathname } from "next/navigation";
+
+export function Nav() {
+  const [open, setOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const pathname = usePathname();
+
+  const categories = [
+    {
+      name: 'Tuotteet',
+      href: '/shop',
+      items: [
+        { name: 'Kaikki tuotteet', href: '/shop' },
+        { name: '🔴 510-patruunat', href: '/c/510-patruunat' },
+        { name: '🔴 Dual-Use Yrttiblendit™', href: '/c/yrttiblendit' },
+        { name: '🟡 Wellness Starter Packs', href: '/c/wellness-packs' },
+        { name: '🟢 Täyttövälineet + DIY', href: '/c/diy-tarvikkeet' },
+        { name: '🟢 HerbSpot Merch™', href: '/c/merch' },
+        { name: 'Laitteet (AIO/Dual)', href: '/c/laitteet' },
+        { name: 'Tarvikkeet', href: '/c/tarvikkeet' },
+        { name: 'Pakkaus', href: '/c/pakkaus' },
+        { name: 'Herbal / Dual-Blend', href: '/c/herbal' }
+      ]
+    },
+    {
+      name: 'Wellness Paths',
+      href: '/wellness',
+      items: [
+        { name: 'Focus Path', href: '/shop?tag=focus', highlight: pathname.includes('focus') },
+        { name: 'Sleep Path', href: '/shop?tag=sleep', highlight: pathname.includes('sleep') },
+        { name: 'Calm Path', href: '/shop?tag=calm', highlight: pathname.includes('calm') },
+        { name: 'Recovery Path', href: '/shop?tag=recovery', highlight: pathname.includes('recovery') },
+        { name: 'Custom Blend', href: '/custom-blend' }
+      ]
+    },
+    {
+      name: 'Blog',
+      href: '/blog',
+      items: [
+        { name: 'Kaikki artikkelit', href: '/blog' },
+        { name: 'Opas', href: '/blog?category=opas' },
+        { name: 'Terveys', href: '/blog?category=terveys' },
+        { name: 'Huolto', href: '/blog?category=huolto' },
+        { name: 'B2B', href: '/blog?category=b2b' }
+      ]
+    },
+    {
+      name: 'Tuki',
+      href: '/support',
+      items: [
+        { name: 'Yhteystiedot', href: '/contact' },
+        { name: 'FAQ', href: '/faq' },
+        { name: 'Toimitus', href: '/shipping' },
+        { name: 'Palautukset', href: '/returns' },
+        { name: 'Tietosuoja', href: '/privacy' }
+      ]
+    }
+  ];
+
   return (
     <header className="sticky top-0 z-50 backdrop-blur bg-black/50 border-b border-white/10">
       <div className="container h-16 flex items-center justify-between">
@@ -66,7 +129,11 @@ export function Nav() {
             >
               <Link
                 href={category.href}
-                className="hover:text-[var(--brand)] transition-colors flex items-center gap-1"
+                className={`hover:text-[var(--brand)] transition-colors flex items-center gap-1 ${
+                  category.name === 'Wellness Paths' && category.items.some(item => item.highlight) 
+                    ? 'text-[var(--brand)]' 
+                    : ''
+                }`}
               >
                 {category.name}
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -82,7 +149,9 @@ export function Nav() {
                       <Link
                         key={item.name}
                         href={item.href}
-                        className="block px-4 py-3 text-white hover:bg-white/10 hover:text-[var(--brand)] transition-colors"
+                        className={`block px-4 py-3 text-white hover:bg-white/10 hover:text-[var(--brand)] transition-colors ${
+                          item.highlight ? 'bg-[var(--brand)]/20 text-[var(--brand)]' : ''
+                        }`}
                       >
                         {item.name}
                       </Link>
@@ -136,7 +205,9 @@ export function Nav() {
                       key={item.name}
                       href={item.href}
                       onClick={() => setOpen(false)}
-                      className="block py-1 text-white/80 hover:text-[var(--brand)] transition-colors"
+                      className={`block py-1 text-white/80 hover:text-[var(--brand)] transition-colors ${
+                        item.highlight ? 'text-[var(--brand)]' : ''
+                      }`}
                     >
                       {item.name}
                     </Link>

@@ -1,22 +1,55 @@
 import Link from "next/link";
+import { AddToCartButton } from "./AddToCartButton";
 
-export function ProductCard({
-  product,
-}: { product: { handle: string; title: string; price: string; image: string; badge?: string; }}) {
+interface ProductCardProps {
+  product: {
+    handle: string;
+    title: string;
+    price: string;
+    image: string;
+    badge?: string;
+    benefits?: string[];
+  };
+}
+
+export function ProductCard({ product }: ProductCardProps) {
   return (
-    <div className="card overflow-hidden">
-      <div className="relative">
-        <img src={product.image} alt={product.title} className="w-full h-56 object-cover" />
+    <div className="card overflow-hidden group hover:scale-[1.02] hover:shadow-xl transition-all duration-300">
+      <div className="aspect-[4/3] bg-white/5 relative">
+        <img 
+          src={product.image} 
+          alt={product.title} 
+          className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" 
+        />
         {product.badge && (
-          <span className="absolute top-3 left-3 badge">{product.badge}</span>
+          <div className="absolute top-3 left-3">
+            <span className="bg-[var(--brand)] text-black px-2 py-1 rounded-full text-xs font-bold">
+              {product.badge}
+            </span>
+          </div>
         )}
       </div>
+      
       <div className="p-5">
-        <h4 className="font-semibold line-clamp-1">{product.title}</h4>
-        <p className="text-[var(--brand)] font-bold mt-1">{product.price}</p>
-        <div className="mt-3 flex gap-2">
-          <Link href={`/p/${product.handle}`} className="btn btn-brand">Katso</Link>
-          <Link href={`/p/${product.handle}#buy`} className="btn btn-ghost">Lisää</Link>
+        <h3 className="font-semibold mb-2 line-clamp-2">{product.title}</h3>
+        
+        {/* Benefit Tags */}
+        {product.benefits && product.benefits.length > 0 && (
+          <div className="flex flex-wrap gap-1 mb-3">
+            {product.benefits.map((benefit, index) => (
+              <span 
+                key={index}
+                className="bg-[var(--brand)]/20 text-[var(--brand)] px-2 py-1 rounded-full text-xs font-medium"
+              >
+                {benefit}
+              </span>
+            ))}
+          </div>
+        )}
+        
+        <div className="flex items-center justify-between">
+          <span className="text-lg font-bold text-[var(--brand)]">{product.price}</span>
+          <AddToCartButton product={product} />
         </div>
       </div>
     </div>

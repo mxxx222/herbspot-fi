@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { GoogleAnalytics, PlausibleAnalytics } from "@/components/Analytics";
@@ -11,6 +12,19 @@ import { AnalyticsProvider } from "@/components/AnalyticsProvider";
 import { ErrorBoundary } from "@/components/ErrorHandling";
 import { Chatbot } from "@/components/Chatbot";
 
+// Typography setup
+const cormorantGaramond = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-heading",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-body",
+});
+
 export const metadata: Metadata = {
   title: "HerbSpot — Premium 510 & Aromatherapy",
   description: "Premium 510-patruunat, AIO-laitteet ja tarvikkeet.",
@@ -19,11 +33,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fi">
+    <html lang="fi" className={`${cormorantGaramond.variable} ${inter.variable}`}>
       <head>
         <OrganizationStructuredData />
       </head>
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col font-body">
         <GoogleAnalytics />
         <PlausibleAnalytics />
         <PerformanceOptimizations />
