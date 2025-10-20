@@ -2,56 +2,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { LanguageSelector } from "./LanguageSelector";
-
-export function Nav() {
-  const [open, setOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-
-  const categories = [
-    {
-      name: 'Tuotteet',
-      href: '/shop',
-      items: [
-        { name: 'Kaikki tuotteet', href: '/shop' },
-        { name: '🔴 510-patruunat', href: '/c/510-patruunat' },
-        { name: '🔴 Dual-Use Yrttiblendit™', href: '/c/yrttiblendit' },
-        { name: '🟡 Wellness Starter Packs', href: '/c/wellness-packs' },
-        { name: '🟢 Täyttövälineet + DIY', href: '/c/diy-tarvikkeet' },
-        { name: '🟢 HerbSpot Merch™', href: '/c/merch' },
-        { name: 'Laitteet (AIO/Dual)', href: '/c/laitteet' },
-        { name: 'Tarvikkeet', href: '/c/tarvikkeet' },
-        { name: 'Pakkaus', href: '/c/pakkaus' },
-        { name: 'Herbal / Dual-Blend', href: '/c/herbal' }
-      ]
-    },
-    {
-      name: 'Blog',
-      href: '/blog',
-      items: [
-        { name: 'Kaikki artikkelit', href: '/blog' },
-        { name: 'Opas', href: '/blog?category=opas' },
-        { name: 'Terveys', href: '/blog?category=terveys' },
-        { name: 'Huolto', href: '/blog?category=huolto' },
-        { name: 'B2B', href: '/blog?category=b2b' }
-      ]
-    },
-    {
-      name: 'Tuki',
-      href: '/support',
-      items: [
-        { name: 'Yhteystiedot', href: '/contact' },
-        { name: 'FAQ', href: '/faq' },
-        { name: 'Toimitus', href: '/shipping' },
-        { name: 'Palautukset', href: '/returns' },
-        { name: 'Tietosuoja', href: '/privacy' }
-      ]
-    }
-  ];
-
-"use client";
-import Link from "next/link";
-import { useState } from "react";
-import { LanguageSelector } from "./LanguageSelector";
 import { usePathname } from "next/navigation";
 
 export function Nav() {
@@ -61,19 +11,19 @@ export function Nav() {
 
   const categories = [
     {
-      name: 'Tuotteet',
+      name: 'Products',
       href: '/shop',
       items: [
-        { name: 'Kaikki tuotteet', href: '/shop' },
-        { name: '🔴 510-patruunat', href: '/c/510-patruunat' },
-        { name: '🔴 Dual-Use Yrttiblendit™', href: '/c/yrttiblendit' },
+        { name: 'All Products', href: '/shop' },
+        { name: '🔴 510-Compatible Devices', href: '/c/510-patruunat' },
+        { name: '🔴 Botanical Blends', href: '/c/yrttiblendit' },
         { name: '🟡 Wellness Starter Packs', href: '/c/wellness-packs' },
-        { name: '🟢 Täyttövälineet + DIY', href: '/c/diy-tarvikkeet' },
+        { name: '🟢 DIY Accessories', href: '/c/diy-tarvikkeet' },
         { name: '🟢 HerbSpot Merch™', href: '/c/merch' },
-        { name: 'Laitteet (AIO/Dual)', href: '/c/laitteet' },
-        { name: 'Tarvikkeet', href: '/c/tarvikkeet' },
-        { name: 'Pakkaus', href: '/c/pakkaus' },
-        { name: 'Herbal / Dual-Blend', href: '/c/herbal' }
+        { name: 'AIO Devices', href: '/c/laitteet' },
+        { name: 'Accessories', href: '/c/tarvikkeet' },
+        { name: 'Packaging', href: '/c/pakkaus' },
+        { name: 'Herbal Blends', href: '/c/herbal' }
       ]
     },
     {
@@ -88,25 +38,25 @@ export function Nav() {
       ]
     },
     {
-      name: 'Blog',
+      name: 'Journal',
       href: '/blog',
       items: [
-        { name: 'Kaikki artikkelit', href: '/blog' },
-        { name: 'Opas', href: '/blog?category=opas' },
-        { name: 'Terveys', href: '/blog?category=terveys' },
-        { name: 'Huolto', href: '/blog?category=huolto' },
+        { name: 'All Articles', href: '/blog' },
+        { name: 'Guides', href: '/blog?category=opas' },
+        { name: 'Wellness', href: '/blog?category=terveys' },
+        { name: 'Maintenance', href: '/blog?category=huolto' },
         { name: 'B2B', href: '/blog?category=b2b' }
       ]
     },
     {
-      name: 'Tuki',
+      name: 'Support',
       href: '/support',
       items: [
-        { name: 'Yhteystiedot', href: '/contact' },
+        { name: 'Contact', href: '/contact' },
         { name: 'FAQ', href: '/faq' },
-        { name: 'Toimitus', href: '/shipping' },
-        { name: 'Palautukset', href: '/returns' },
-        { name: 'Tietosuoja', href: '/privacy' }
+        { name: 'Shipping', href: '/shipping' },
+        { name: 'Returns', href: '/returns' },
+        { name: 'Privacy', href: '/privacy' }
       ]
     }
   ];
@@ -166,7 +116,7 @@ export function Nav() {
             href="/b2b" 
             className="hover:text-[var(--brand)] bg-[var(--brand)]/10 px-3 py-1 rounded-full text-sm font-medium"
           >
-            B2B Service <span className="text-xs opacity-75">Coming Soon</span>
+            B2B Services <span className="text-xs opacity-75">Coming Soon</span>
           </Link>
           
           <LanguageSelector />
@@ -177,7 +127,7 @@ export function Nav() {
           <button 
             onClick={() => setOpen(!open)} 
             className="btn btn-ghost"
-            aria-label="Avaa valikko"
+            aria-label="Open menu"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -222,7 +172,7 @@ export function Nav() {
                 onClick={() => setOpen(false)}
                 className="block bg-[var(--brand)]/10 px-3 py-2 rounded-lg text-sm font-medium text-white"
               >
-                B2B Service <span className="text-xs opacity-75">Coming Soon</span>
+                B2B Services <span className="text-xs opacity-75">Coming Soon</span>
               </Link>
             </div>
           </div>
