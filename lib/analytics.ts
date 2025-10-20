@@ -13,12 +13,16 @@ interface ConversionEvent {
   event_name: string;
   value: number;
   currency: string;
+  checkout_country?: string;
+  product_brand?: string;
+  partner_lead?: boolean;
   items: Array<{
     item_id: string;
     item_name: string;
     category: string;
     quantity: number;
     price: number;
+    brand?: string;
   }>;
 }
 
@@ -104,7 +108,23 @@ class Analytics {
         transaction_id: Date.now().toString(),
         value: conversionEvent.value,
         currency: conversionEvent.currency,
-        items: conversionEvent.items
+        items: conversionEvent.items,
+        checkout_country: conversionEvent.checkout_country,
+        product_brand: conversionEvent.product_brand,
+        partner_lead: conversionEvent.partner_lead
+      });
+    }
+
+    // Mixpanel tracking for EU sales analysis
+    if (typeof (window as any).mixpanel !== 'undefined') {
+      (window as any).mixpanel.track('Purchase', {
+        value: conversionEvent.value,
+        currency: conversionEvent.currency,
+        checkout_country: conversionEvent.checkout_country,
+        product_brand: conversionEvent.product_brand,
+        partner_lead: conversionEvent.partner_lead,
+        items: conversionEvent.items,
+        eu_sale: conversionEvent.checkout_country ? ['FI', 'SE', 'NO', 'DK', 'DE', 'FR', 'IT', 'ES', 'NL', 'BE', 'AT', 'CH', 'PL', 'CZ', 'SK', 'HU', 'RO', 'BG', 'HR', 'SI', 'EE', 'LV', 'LT', 'IE', 'PT', 'LU', 'MT', 'CY', 'GR'].includes(conversionEvent.checkout_country) : false
       });
     }
 
@@ -116,6 +136,9 @@ class Analytics {
       value: conversionEvent.value,
       custom_parameters: {
         currency: conversionEvent.currency,
+        checkout_country: conversionEvent.checkout_country,
+        product_brand: conversionEvent.product_brand,
+        partner_lead: conversionEvent.partner_lead,
         items: conversionEvent.items
       }
     });
@@ -252,11 +275,27 @@ class Analytics {
     });
   }
 
-  trackB2BInterest() {
+  trackB2BInterest(email?: string, company?: string) {
+    // Mixpanel tracking for B2B lead value
+    if (typeof (window as any).mixpanel !== 'undefined') {
+      (window as any).mixpanel.track('B2B Lead Generated', {
+        email: email,
+        company: company,
+        lead_source: 'partnership_page',
+        lead_value: 500, // Estimated B2B lead value
+        timestamp: new Date().toISOString()
+      });
+    }
+
     this.trackEvent({
       event: 'b2b_interest',
       category: 'lead_generation',
-      action: 'b2b_interest'
+      action: 'b2b_interest',
+      custom_parameters: {
+        email: email,
+        company: company,
+        lead_value: 500
+      }
     });
   }
 
@@ -319,24 +358,49 @@ export function trackPageView(pagePath: string, pageTitle: string) {
   analytics.trackPageView(pagePath, pageTitle);
 }
 
-export function trackAddToCart(productId: string, productName: string, price: number, category: string) {
+export function trackAddToCart(productId: string, productName: string, price: number, category: string, brand?: string) {
   analytics.trackAddToCart(productId, productName, price, category);
+  
+  // Track brand-specific cart additions
+  if (brand) {
+    analytics.trackCustomEvent('add_to_cart_brand', {
+      product_id: productId,
+      product_name: productName,
+      brand: brand,
+      price: price
+    });
+  }
 }
 
 export function trackPurchase(conversionEvent: ConversionEvent) {
   analytics.trackPurchase(conversionEvent);
 }
 
-export function trackViewItem(productId: string, productName: string, price: number, category: string) {
+export function trackViewItem(productId: string, productName: string, price: number, category: string, brand?: string) {
   analytics.trackViewItem(productId, productName, price, category);
+  
+  // Track brand-specific product views
+  if (brand) {
+    analytics.trackCustomEvent('view_item_brand', {
+      product_id: productId,
+      product_name: productName,
+      brand: brand,
+      price: price
+    });
+  }
 }
 
-export function trackSearch(searchTerm: string, resultsCount: number) {
-  analytics.trackSearch(searchTerm, resultsCount);
+export function trackB2BLead(email?: string, company?: string) {
+  analytics.trackB2BInterest(email, company);
 }
 
-export function trackError(error: string, errorType: string, errorContext?: string) {
-  analytics.trackError(error, errorType, errorContext);
+export function trackEUSale(country: string, value: number, brand?: string) {
+  analytics.trackCustomEvent('eu_sale', {
+    country: country,
+    value: value,
+    brand: brand,
+    region: 'EU'
+  });
 }
 
 // Performance monitoring

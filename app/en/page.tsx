@@ -45,12 +45,12 @@ export default function HomePageEN() {
 }
 
 export const metadata = {
-  title: 'HerbSpot.fi - Premium 510 Cartridges & Aromatherapy Devices',
-  description: 'Premium 510 cartridges & aromatherapy devices. Medical-grade steel, pyrex glass and ceramic core. White-label & premium packaging ready.',
-  keywords: '510 cartridge, aromatherapy, vape, cbd, steel cartridge, ceramic core, pyrex glass, white label, premium packaging, EU shipping, herbspot, herbspot.fi',
+  title: 'Shop 510-Compatible Wellness Devices | HerbSpot Europe',
+  description: 'Shop trusted 510-compatible wellness devices and botanical blends from verified EU suppliers. Authorised distributor of premium botanical wellness technology.',
+  keywords: '510-compatible, botanical wellness, EU suppliers, wellness devices, premium quality, authorised distributor, Europe shipping',
   openGraph: {
-    title: 'HerbSpot.fi - Premium 510 Cartridges',
-    description: 'Premium 510 cartridges & aromatherapy devices. Medical-grade steel, pyrex glass and ceramic core.',
+    title: 'Shop 510-Compatible Wellness Devices | HerbSpot Europe',
+    description: 'Shop trusted 510-compatible wellness devices and botanical blends from verified EU suppliers.',
     images: ['/og-image-en.jpg'],
     locale: 'en_US',
     type: 'website',

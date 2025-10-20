@@ -10,7 +10,7 @@ import { PerformanceOptimizations } from "@/components/PerformanceOptimizations"
 import { MobileOptimizations } from "@/components/MobileOptimizations";
 import { AnalyticsProvider } from "@/components/AnalyticsProvider";
 import { ErrorBoundary } from "@/components/ErrorHandling";
-import { Chatbot } from "@/components/Chatbot";
+import { WebVitalsMonitor } from "@/components/WebVitalsMonitor";
 
 // Typography setup with fallback fonts
 const cormorantGaramond = Cormorant_Garamond({
@@ -57,9 +57,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </AnalyticsProvider>
           </ErrorBoundary>
         </main>
-        <Footer />
-        <Chatbot />
-      </body>
+               <Footer />
+               <WebVitalsMonitor />
+             </body>
     </html>
   );
 }
