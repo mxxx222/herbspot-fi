@@ -88,10 +88,10 @@ export function generateMetadata({
   // Add product-specific metadata
   if (product) {
     metadata.other = {
-      "product:price:amount": product.price,
+      ...(product.price && { "product:price:amount": product.price }),
       "product:price:currency": "EUR",
       "product:availability": product.availability || "in stock",
-      "product:category": product.category,
+      ...(product.category && { "product:category": product.category }),
     };
   }
 
