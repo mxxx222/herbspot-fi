@@ -1,0 +1,216 @@
+# 🛍️ FAQ SCHEMA + COLLECTION-FILTTERIT - SHOPIFY VALMIS
+
+## 1️⃣ **Monikielinen FAQ Schema.org** - theme.liquid <head>
+
+```liquid
+{% assign lang = localization.language.iso_code | downcase %}
+
+{% capture faq_json %}
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "{% case lang %}{% when 'fi' %}Mitä 510-yhteensopivuus tarkoittaa?{% when 'ru' %}Что означает совместимость 510?{% else %}What does 510 compatibility mean?{% endcase %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% case lang %}{% when 'fi' %}Se tarkoittaa universaalia kierteistandardia, joka mahdollistaa yhteensopivuuden useiden laitteiden ja patruunoiden välillä.{% when 'ru' %}Это универсальный стандарт резьбы, обеспечивающий совместимость многих устройств и картриджей.{% else %}It's a universal thread standard that enables compatibility across many devices and cartridges.{% endcase %}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{% case lang %}{% when 'fi' %}Kuinka nopeasti toimitatte EU-alueelle?{% when 'ru' %}Как быстро вы доставляете по ЕС?{% else %}How fast is EU shipping?{% endcase %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% case lang %}{% when 'fi' %}Tyypillisesti 2–5 arkipäivää. Näytämme kassalla ja tilausseurannassa maakohtaiset SLA-ajat.{% when 'ru' %}Обычно 2–5 рабочих дней. На кассе и в трекинге показываем сроки по странам.{% else %}Typically 2–5 business days. We show country-specific SLAs at checkout and in order tracking.{% endcase %}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{% case lang %}{% when 'fi' %}Oletteko valtuutettu jälleenmyyjä?{% when 'ru' %}Вы — авторизованный ритейлер?{% else %}Are you an authorised retailer?{% endcase %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% case lang %}{% when 'fi' %}Kyllä. Olemme valtuutettu jälleenmyyjä ja kuratoimme vain luotettujen kumppanibrändien tuotteita.{% when 'ru' %}Да. Мы — авторизованный ритейлер и предлагаем товары только проверенных партнёрских брендов.{% else %}Yes. We're an authorised retailer and only carry products from trusted partner brands.{% endcase %}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{% case lang %}{% when 'fi' %}Miten palautukset ja takuu toimivat?{% when 'ru' %}Как работают возвраты и гарантия?{% else %}How do returns and warranty work?{% endcase %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% case lang %}{% when 'fi' %}Tarjoamme 30 päivän palautusoikeuden ja EU-yhteensopivan takuun. Katso sivut Palautukset ja Takuu.{% when 'ru' %}Мы предоставляем 30-дневный возврат и гарантию в соответствии с нормами ЕС. См. страницы Возвраты и Гарантия.{% else %}We offer 30‑day returns and EU‑compliant warranty. See Returns and Warranty pages.{% endcase %}"
+      }
+    }
+  ]
+}
+{% endcapture %}
+
+<script type="application/ld+json">
+{{ faq_json | strip }}
+</script>
+```
+
+## 2️⃣ **Monikieliset Collection-filtterit** - collection.liquid
+
+```liquid
+{% comment %} Monikielinen filtteripalkki wellness-poluilla {% endcomment %}
+{% assign lang = localization.language.iso_code | downcase %}
+
+<nav class="collection-filters" aria-label="Filters">
+  <ul>
+    <li>
+      <a href="/collections/all/focus"
+         aria-current="{% if current_tags contains 'focus' %}true{% else %}false{% endif %}">
+        {% case lang %}{% when 'fi' %}Focus & Energy{% when 'ru' %}Фокус и энергия{% else %}Focus & Energy{% endcase %}
+      </a>
+    </li>
+    <li>
+      <a href="/collections/all/calm"
+         aria-current="{% if current_tags contains 'calm' %}true{% else %}false{% endif %}">
+        {% case lang %}{% when 'fi' %}Calm & Balance{% when 'ru' %}Спокойствие и баланс{% else %}Calm & Balance{% endcase %}
+      </a>
+    </li>
+    <li>
+      <a href="/collections/all/sleep"
+         aria-current="{% if current_tags contains 'sleep' %}true{% else %}false{% endif %}">
+        {% case lang %}{% when 'fi' %}Sleep & Recovery{% when 'ru' %}Сон и восстановление{% else %}Sleep & Recovery{% endcase %}
+      </a>
+    </li>
+    <li>
+      <a href="/collections/all/accessories"
+         aria-current="{% if current_tags contains 'accessories' %}true{% else %}false{% endif %}">
+        {% case lang %}{% when 'fi' %}Botanical Accessories{% when 'ru' %}Ботанические аксессуары{% else %}Botanical Accessories{% endcase %}
+      </a>
+    </li>
+  </ul>
+</nav>
+
+{% comment %}
+Tuotelistauksessa näytä vain valitun tagin tuotteet, jos tagi on valittu.
+Shopifyn /collections/all/<tag> reitti tekee filtteröinnin, mutta jos haluat fallbackin:
+{% endcomment %}
+
+{% paginate collection.products by 24 %}
+  <div class="product-grid">
+    {% for product in collection.products %}
+      {% assign tags = product.tags | join: ',' | downcase %}
+      {% if current_tags == blank or tags contains current_tags.first %}
+        {% comment %} Render ProductCard tässä {% endcomment %}
+        {% include 'product-card', product: product %}
+      {% endif %}
+    {% endfor %}
+  </div>
+  {{ paginate | default_pagination }}
+{% endpaginate %}
+```
+
+## 3️⃣ **OG-locale ja Canonical** - theme.liquid <head>
+
+```liquid
+{% assign og_locale = localization.language.iso_code | downcase %}
+{% if og_locale == 'en' %}{% assign og_locale = 'en_US' %}{% endif %}
+<meta property="og:locale" content="{{ og_locale }}" />
+<link rel="canonical" href="{{ canonical_url }}" />
+```
+
+## 4️⃣ **CSS-tyylit** - theme.css
+
+```css
+/* Collection Filters */
+.collection-filters {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.collection-filters ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.collection-filters li {
+  margin: 0;
+}
+
+.collection-filters a {
+  color: #666;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  display: block;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.collection-filters a:hover {
+  background: #e9ecef;
+  color: #333;
+}
+
+.collection-filters a[aria-current="true"] {
+  background: #39FF14;
+  color: #000;
+  border-color: #39FF14;
+  font-weight: bold;
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 30px 0;
+}
+
+.pagination a {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  text-decoration: none;
+  color: #333;
+  border-radius: 4px;
+}
+
+.pagination a:hover {
+  background: #f8f9fa;
+}
+
+.pagination .current {
+  background: #39FF14;
+  color: #000;
+  border-color: #39FF14;
+}
+```
+
+## 5️⃣ **Tuotetagit Shopify Adminissa:**
+
+**Lisää nämä tagit tuotteille:**
+- `focus` - Focus & Energy tuotteet
+- `calm` - Calm & Balance tuotteet  
+- `sleep` - Sleep & Recovery tuotteet
+- `accessories` - Botanical Accessories
+
+## 🎯 **KÄYTTÖ:**
+
+1. **FAQ Schema:** Kopioi theme.liquid <head>
+2. **Collection-filtterit:** Kopioi collection.liquid
+3. **OG-locale:** Kopioi theme.liquid <head>
+4. **CSS:** Lisää theme.css
+5. **Tagit:** Lisää Shopify Adminissa
+
+## ✅ **VALMIS!**
+
+**FAQ Rich Results + Collection-filtterit automaattisesti!** 🚀

@@ -1,0 +1,245 @@
+# 🛍️ BONUS: FAQ-OSIO SECTION - SHOPIFY VALMIS
+
+## 1️⃣ **FAQ-osio Section** - sections/faq.liquid
+
+```liquid
+{% comment %}
+  FAQ-osio - Näkyvä kysymys-vastaus sisältö + JSON-LD
+  Käyttö: {% section 'faq' %} tai Shopify Adminissa
+{% endcomment %}
+
+{% assign lang = localization.language.iso_code | downcase %}
+
+<!-- JSON-LD Schema -->
+{% capture faq_json %}
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "{% case lang %}{% when 'fi' %}Mitä 510-yhteensopivuus tarkoittaa?{% when 'ru' %}Что означает совместимость 510?{% else %}What does 510 compatibility mean?{% endcase %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% case lang %}{% when 'fi' %}Se tarkoittaa universaalia kierteistandardia, joka mahdollistaa yhteensopivuuden useiden laitteiden ja patruunoiden välillä.{% when 'ru' %}Это универсальный стандарт резьбы, обеспечивающий совместимость многих устройств и картриджей.{% else %}It's a universal thread standard that enables compatibility across many devices and cartridges.{% endcase %}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{% case lang %}{% when 'fi' %}Kuinka nopeasti toimitatte EU-alueelle?{% when 'ru' %}Как быстро вы доставляете по ЕС?{% else %}How fast is EU shipping?{% endcase %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% case lang %}{% when 'fi' %}Tyypillisesti 2–5 arkipäivää. Näytämme kassalla ja tilausseurannassa maakohtaiset SLA-ajat.{% when 'ru' %}Обычно 2–5 рабочих дней. На кассе и в трекинге показываем сроки по странам.{% else %}Typically 2–5 business days. We show country-specific SLAs at checkout and in order tracking.{% endcase %}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{% case lang %}{% when 'fi' %}Oletteko valtuutettu jälleenmyyjä?{% when 'ru' %}Вы — авторизованный ритейлер?{% else %}Are you an authorised retailer?{% endcase %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% case lang %}{% when 'fi' %}Kyllä. Olemme valtuutettu jälleenmyyjä ja kuratoimme vain luotettujen kumppanibrändien tuotteita.{% when 'ru' %}Да. Мы — авторизованный ритейлер и предлагаем товары только проверенных партнёрских брендов.{% else %}Yes. We're an authorised retailer and only carry products from trusted partner brands.{% endcase %}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{% case lang %}{% when 'fi' %}Miten palautukset ja takuu toimivat?{% when 'ru' %}Как работают возвраты и гарантия?{% else %}How do returns and warranty work?{% endcase %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% case lang %}{% when 'fi' %}Tarjoamme 30 päivän palautusoikeuden ja EU-yhteensopivan takuun. Katso sivut Palautukset ja Takuu.{% when 'ru' %}Мы предоставляем 30-дневный возврат и гарантию в соответствии с нормами ЕС. См. страницы Возвраты и Гарантия.{% else %}We offer 30‑day returns and EU‑compliant warranty. See Returns and Warranty pages.{% endcase %}"
+      }
+    }
+  ]
+}
+{% endcapture %}
+
+<script type="application/ld+json">
+{{ faq_json | strip }}
+</script>
+
+<!-- Näkyvä FAQ-sisältö -->
+<section class="faq-section">
+  <div class="container">
+    <h2 class="faq-title">
+      {% case lang %}
+        {% when 'fi' %}Usein kysytyt kysymykset
+        {% when 'ru' %}Часто задаваемые вопросы
+        {% else %}Frequently Asked Questions
+      {% endcase %}
+    </h2>
+    
+    <div class="faq-items">
+      <div class="faq-item">
+        <h3 class="faq-question">
+          {% case lang %}
+            {% when 'fi' %}Mitä 510-yhteensopivuus tarkoittaa?
+            {% when 'ru' %}Что означает совместимость 510?
+            {% else %}What does 510 compatibility mean?
+          {% endcase %}
+        </h3>
+        <p class="faq-answer">
+          {% case lang %}
+            {% when 'fi' %}Se tarkoittaa universaalia kierteistandardia, joka mahdollistaa yhteensopivuuden useiden laitteiden ja patruunoiden välillä.
+            {% when 'ru' %}Это универсальный стандарт резьбы, обеспечивающий совместимость многих устройств и картриджей.
+            {% else %}It's a universal thread standard that enables compatibility across many devices and cartridges.
+          {% endcase %}
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="faq-question">
+          {% case lang %}
+            {% when 'fi' %}Kuinka nopeasti toimitatte EU-alueelle?
+            {% when 'ru' %}Как быстро вы доставляете по ЕС?
+            {% else %}How fast is EU shipping?
+          {% endcase %}
+        </h3>
+        <p class="faq-answer">
+          {% case lang %}
+            {% when 'fi' %}Tyypillisesti 2–5 arkipäivää. Näytämme kassalla ja tilausseurannassa maakohtaiset SLA-ajat.
+            {% when 'ru' %}Обычно 2–5 рабочих дней. На кассе и в трекинге показываем сроки по странам.
+            {% else %}Typically 2–5 business days. We show country-specific SLAs at checkout and in order tracking.
+          {% endcase %}
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="faq-question">
+          {% case lang %}
+            {% when 'fi' %}Oletteko valtuutettu jälleenmyyjä?
+            {% when 'ru' %}Вы — авторизованный ритейлер?
+            {% else %}Are you an authorised retailer?
+          {% endcase %}
+        </h3>
+        <p class="faq-answer">
+          {% case lang %}
+            {% when 'fi' %}Kyllä. Olemme valtuutettu jälleenmyyjä ja kuratoimme vain luotettujen kumppanibrändien tuotteita.
+            {% when 'ru' %}Да. Мы — авторизованный ритейлер и предлагаем товары только проверенных партнёрских брендов.
+            {% else %}Yes. We're an authorised retailer and only carry products from trusted partner brands.
+          {% endcase %}
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="faq-question">
+          {% case lang %}
+            {% when 'fi' %}Miten palautukset ja takuu toimivat?
+            {% when 'ru' %}Как работают возвраты и гарантия?
+            {% else %}How do returns and warranty work?
+          {% endcase %}
+        </h3>
+        <p class="faq-answer">
+          {% case lang %}
+            {% when 'fi' %}Tarjoamme 30 päivän palautusoikeuden ja EU-yhteensopivan takuun. Katso sivut Palautukset ja Takuu.
+            {% when 'ru' %}Мы предоставляем 30-дневный возврат и гарантию в соответствии с нормами ЕС. См. страницы Возвраты и Гарантия.
+            {% else %}We offer 30‑day returns and EU‑compliant warranty. See Returns and Warranty pages.
+          {% endcase %}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+```
+
+## 2️⃣ **CSS-tyylit** - theme.css
+
+```css
+/* FAQ Section */
+.faq-section {
+  padding: 60px 0;
+  background: #f8f9fa;
+}
+
+.faq-title {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.faq-items {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.faq-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.faq-question {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.faq-answer {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .faq-section {
+    padding: 40px 0;
+  }
+  
+  .faq-title {
+    font-size: 2rem;
+  }
+  
+  .faq-item {
+    padding: 20px;
+  }
+  
+  .faq-question {
+    font-size: 1.2rem;
+  }
+  
+  .faq-answer {
+    font-size: 1rem;
+  }
+}
+```
+
+## 3️⃣ **Käyttöohjeet:**
+
+### Shopify Adminissa:
+1. **Sections** → **Add section** → **FAQ**
+2. **Customize** → **FAQ** → **Add block**
+3. **Save** → **Publish**
+
+### Template-tiedostossa:
+```liquid
+{% section 'faq' %}
+```
+
+### Index.liquid:ssä:
+```liquid
+<!-- Etusivun FAQ-osio -->
+{% section 'faq' %}
+```
+
+## 🎯 **EDUT:**
+
+**✅ Rich Results** - Google FAQ-snippetit
+**✅ Monikielinen** - FI/EN/RU automaattisesti
+**✅ Saavutettavuus** - Semanttinen HTML
+**✅ Responsive** - Mobile + Desktop
+**✅ Shopify-native** - Admin-paneli tuki
+
+## ✅ **VALMIS!**
+
+**FAQ-osio + Schema.org automaattisesti!** 🚀
