@@ -9,6 +9,7 @@ import { PerformanceOptimizations } from "@/components/PerformanceOptimizations"
 import { MobileOptimizations } from "@/components/MobileOptimizations";
 import { AnalyticsProvider } from "@/components/AnalyticsProvider";
 import { ErrorBoundary } from "@/components/ErrorHandling";
+import { Chatbot } from "@/components/Chatbot";
 
 export const metadata: Metadata = {
   title: "HerbSpot — Premium 510 & Aromatherapy",
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </ErrorBoundary>
         </main>
         <Footer />
+        <Chatbot />
       </body>
     </html>
   );

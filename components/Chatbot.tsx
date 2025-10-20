@@ -6,6 +6,7 @@ interface Message {
   text: string;
   isBot: boolean;
   timestamp: Date;
+  suggestions?: string[];
 }
 
 export function Chatbot() {
@@ -13,9 +14,10 @@ export function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Hei! Olen HerbSpot:n AI-avustaja. Miten voin auttaa sinua tänään?",
+      text: "Hei! Olen HerbSpot Avustaja™. Autan sinua löytämään täydelliset tuotteet luonnolliseen hyvinvointiin. Miten voin auttaa sinua tänään?",
       isBot: true,
-      timestamp: new Date()
+      timestamp: new Date(),
+      suggestions: ["Calm Blend™ käyttö", "510-osat", "Toimitus", "Starter-paketit"]
     }
   ]);
   const [inputText, setInputText] = useState("");
@@ -47,55 +49,138 @@ export function Chatbot() {
     // Simulate AI response
     setTimeout(() => {
       const botResponse = generateBotResponse(inputText);
-      const botMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        text: botResponse,
-        isBot: true,
-        timestamp: new Date()
-      };
-      
-      setMessages(prev => [...prev, botMessage]);
+      setMessages(prev => [...prev, botResponse]);
       setIsTyping(false);
     }, 1000 + Math.random() * 1000);
   };
 
-  const generateBotResponse = (userInput: string): string => {
+  const generateBotResponse = (userInput: string): Message => {
     const input = userInput.toLowerCase();
     
-    if (input.includes("hinta") || input.includes("paljonko")) {
-      return "Tuotteemme hinnat vaihtelevat €3.90 - €24.90 välillä. Tarkat hinnat näet tuotesivulla. Onko jokin tuote erityisesti kiinnostava?";
+    // Calm Blend™ kysymykset
+    if (input.includes("calm blend") || input.includes("calm") || input.includes("rauhoittava")) {
+      return {
+        id: (Date.now() + 1).toString(),
+        text: "Calm Blend™ on luonnollinen yrttisekoitus, joka sopii sekä rentouttavaksi iltateeksi että höyrytyskäyttöön, nikotiinittomasti. Se ei sisällä päihdyttäviä aineita. Haluatko myös starter-paketin, joka sisältää akun ja patruunat?",
+        isBot: true,
+        timestamp: new Date(),
+        suggestions: ["Starter-paketti", "DIY-välineet", "Hinta"]
+      };
     }
     
-    if (input.includes("toimitus") || input.includes("postitus")) {
-      return "Toimitamme kaikki tuotteet EU:n sisällä 1-3 arkipäivässä. Toimituskulu on €5.90 alle €50 tilauksille, yli €50 tilaukset toimitetaan ilmaiseksi!";
+    // THC/CBD kysymykset
+    if (input.includes("thc") || input.includes("cbd") || input.includes("päihde") || input.includes("laiton")) {
+      return {
+        id: (Date.now() + 1).toString(),
+        text: "Ei. Kaikki tuotteemme ovat täysin laillisia ja kasvipohjaisia. Emme myy tai toimita THC- tai CBD-tuotteita. Tarjoamme vain luonnollisia yrttisekoituksia ja laillisia välineitä.",
+        isBot: true,
+        timestamp: new Date(),
+        suggestions: ["Lailliset tuotteet", "Calm Blend™", "510-osat"]
+      };
     }
     
-    if (input.includes("laatu") || input.includes("materiaali")) {
-      return "Kaikki tuotteemme ovat lääkinnällistä terästä, pyrex-lasia ja keraamista ytintä. Ne ovat raskasmetallitestattuja ja EU-standardien mukaisia. Voit luottaa laatuun!";
+    // 510-osat kysymykset
+    if (input.includes("510") || input.includes("akku") || input.includes("patruuna") || input.includes("osat")) {
+      return {
+        id: (Date.now() + 1).toString(),
+        text: "Löydät kaikki 510-yhteensopivat osat suoraan valikosta kohdasta '510-patruunat'. Meillä on akkuja, patruunoita ja täyttövälineitä. Etsitkö jotain erityistä käyttötarkoitusta?",
+        isBot: true,
+        timestamp: new Date(),
+        suggestions: ["Slimline akku", "Tyhjät patruunat", "Täyttövälineet"]
+      };
     }
     
-    if (input.includes("palautus") || input.includes("vaihto")) {
-      return "Sinulla on 30 päivää aikaa palauttaa tuotteet. Palautukset ovat ilmaisia ja helppoja. Haluatko lisätietoja palautusprosessista?";
+    // Starter-paketit
+    if (input.includes("starter") || input.includes("aloitus") || input.includes("paketti") || input.includes("aloittelija")) {
+      return {
+        id: (Date.now() + 1).toString(),
+        text: "Starter-paketit ovat täydellinen aloitusvalinta! Calm Pack™ sisältää akun, patruunat ja Calm Blend™ -seoksen. Smoke & Tea Pack™ on vielä kattavampi. Mikä sopii sinulle parhaiten?",
+        isBot: true,
+        timestamp: new Date(),
+        suggestions: ["Calm Pack™", "Smoke & Tea Pack™", "Hinnat"]
+      };
     }
     
-    if (input.includes("b2b") || input.includes("yritys")) {
-      return "B2B-palvelumme on tulossa pian! Voimme tarjota white-label ratkaisuja, bulk-hinnoittelua ja räätälöityä pakkausta. Jätä yhteystietosi niin otamme yhteyttä!";
+    // Toimitus kysymykset
+    if (input.includes("toimitus") || input.includes("postitus") || input.includes("kauanko") || input.includes("aika")) {
+      return {
+        id: (Date.now() + 1).toString(),
+        text: "Toimitamme Suomesta, ja lähetämme tuotteet 1–2 arkipäivässä. Useimmat tilaukset saapuvat 2–4 päivän sisällä. Toimituskulu on €5.90 alle €50 tilauksille, yli €50 tilaukset toimitetaan ilmaiseksi!",
+        isBot: true,
+        timestamp: new Date(),
+        suggestions: ["Hinnat", "Palautukset", "Tilaa nyt"]
+      };
     }
     
-    if (input.includes("kiitos") || input.includes("loistavaa")) {
-      return "Kiitos! Olen iloinen että voin auttaa. Onko muuta mitä haluaisit tietää?";
+    // Hinnat
+    if (input.includes("hinta") || input.includes("paljonko") || input.includes("maksaa")) {
+      return {
+        id: (Date.now() + 1).toString(),
+        text: "Tuotteemme hinnat vaihtelevat €3.90 - €34.90 välillä. Calm Blend™ maksaa €12.90, Slimline akku €14.90 ja Calm Pack™ starter-paketti €29.90. Onko jokin tuote erityisesti kiinnostava?",
+        isBot: true,
+        timestamp: new Date(),
+        suggestions: ["Calm Pack™", "Slimline akku", "Calm Blend™"]
+      };
     }
     
-    return "Kiitos viestistäsi! Voin auttaa sinua tuotteiden, hinnoittelun, toimituksen tai palautusten kanssa. Mikä kiinnostaa sinua eniten?";
+    // DIY-välineet
+    if (input.includes("diy") || input.includes("täyttö") || input.includes("välineet") || input.includes("itse")) {
+      return {
+        id: (Date.now() + 1).toString(),
+        text: "DIY-välineet mahdollistavat omien sekoitusten tekemisen! Meillä on tyhjiä patruunoita, täyttöruiskuja ja pipetti-settejä. Voit myös tilata valmiita Calm Blend™ -sekoituksia.",
+        isBot: true,
+        timestamp: new Date(),
+        suggestions: ["Tyhjät patruunat", "Täyttöruiskut", "Calm Blend™"]
+      };
+    }
+    
+    // Käyttöohjeet
+    if (input.includes("käyttö") || input.includes("miten") || input.includes("ohje") || input.includes("käyttää")) {
+      return {
+        id: (Date.now() + 1).toString(),
+        text: "Kaikki tuotteemme tulevat yksityiskohtaisten käyttöohjeiden kanssa. Calm Blend™ sopii sekä teeksi että höyrytyskäyttöön. 510-osat ovat helppoja käyttää - vain kiinnitä patruuna akkuun!",
+        isBot: true,
+        timestamp: new Date(),
+        suggestions: ["Käyttöohjeet", "Calm Blend™", "510-osat"]
+      };
+    }
+    
+    // Laillisuus
+    if (input.includes("laillinen") || input.includes("laillista") || input.includes("sallittu")) {
+      return {
+        id: (Date.now() + 1).toString(),
+        text: "Kyllä! Kaikki tuotteemme ovat täysin laillisia Suomessa. Ne ovat rekisteröityjen yrttien ja luonnonainesosien pohjalta koostettuja. Emme myy päihdyttäviä aineita.",
+        isBot: true,
+        timestamp: new Date(),
+        suggestions: ["Calm Blend™", "510-osat", "Starter-paketit"]
+      };
+    }
+    
+    // Kiitos
+    if (input.includes("kiitos") || input.includes("loistavaa") || input.includes("hyvä")) {
+      return {
+        id: (Date.now() + 1).toString(),
+        text: "Kiitos! Olen iloinen että voin auttaa. Onko muuta mitä haluaisit tietää tuotteistamme?",
+        isBot: true,
+        timestamp: new Date(),
+        suggestions: ["Calm Pack™", "Toimitus", "Hinnat"]
+      };
+    }
+    
+    // Oletusvastaus
+    return {
+      id: (Date.now() + 1).toString(),
+      text: "Kiitos viestistäsi! Voin auttaa sinua tuotteiden, hinnoittelun, toimituksen tai käyttöohjeiden kanssa. Suosittelen Calm Pack™ -starter-pakettia aloittelijoille!",
+      isBot: true,
+      timestamp: new Date(),
+      suggestions: ["Calm Pack™", "510-osat", "Toimitus", "Hinnat"]
+    };
   };
 
-  const quickReplies = [
-    "Hinnat",
-    "Toimitus",
-    "Laatu",
-    "Palautukset",
-    "B2B"
-  ];
+  const handleSuggestionClick = (suggestion: string) => {
+    setInputText(suggestion);
+    handleSendMessage();
+  };
 
   return (
     <>
@@ -103,9 +188,9 @@ export function Chatbot() {
       <button
         onClick={() => setIsOpen(true)}
         className="fixed bottom-4 right-4 w-14 h-14 bg-[var(--brand)] text-black rounded-full shadow-lg z-40 flex items-center justify-center hover:scale-110 transition-transform"
-        aria-label="Avaa chat"
+        aria-label="Avaa HerbSpot Avustaja™"
       >
-        <span className="text-xl">💬</span>
+        <span className="text-xl">🌿</span>
       </button>
 
       {/* Chatbot Modal */}
@@ -116,10 +201,10 @@ export function Chatbot() {
             <div className="flex items-center justify-between p-4 border-b border-white/10">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 bg-[var(--brand)] rounded-full flex items-center justify-center">
-                  <span className="text-black font-bold">AI</span>
+                  <span className="text-black font-bold text-sm">🌿</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white">HerbSpot AI</h3>
+                  <h3 className="font-semibold text-white">HerbSpot Avustaja™</h3>
                   <p className="text-xs text-white/60">Online nyt</p>
                 </div>
               </div>
@@ -134,25 +219,41 @@ export function Chatbot() {
             {/* Messages */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
               {messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}
-                >
+                <div key={message.id}>
                   <div
-                    className={`max-w-[80%] p-3 rounded-lg ${
-                      message.isBot
-                        ? 'bg-white/10 text-white'
-                        : 'bg-[var(--brand)] text-black'
-                    }`}
+                    className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}
                   >
-                    <p className="text-sm">{message.text}</p>
-                    <p className="text-xs opacity-60 mt-1">
-                      {message.timestamp.toLocaleTimeString('fi-FI', {
-                        hour: '2-digit',
-                        minute: '2-digit'
-                      })}
-                    </p>
+                    <div
+                      className={`max-w-[80%] p-3 rounded-lg ${
+                        message.isBot
+                          ? 'bg-white/10 text-white'
+                          : 'bg-[var(--brand)] text-black'
+                      }`}
+                    >
+                      <p className="text-sm">{message.text}</p>
+                      <p className="text-xs opacity-60 mt-1">
+                        {message.timestamp.toLocaleTimeString('fi-FI', {
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}
+                      </p>
+                    </div>
                   </div>
+                  
+                  {/* Suggestions */}
+                  {message.suggestions && message.isBot && (
+                    <div className="flex flex-wrap gap-2 mt-2 ml-0">
+                      {message.suggestions.map((suggestion) => (
+                        <button
+                          key={suggestion}
+                          onClick={() => handleSuggestionClick(suggestion)}
+                          className="px-3 py-1 bg-[var(--brand)]/20 text-[var(--brand)] text-xs rounded-full hover:bg-[var(--brand)]/30 transition-colors border border-[var(--brand)]/30"
+                        >
+                          {suggestion}
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))}
               
@@ -171,28 +272,15 @@ export function Chatbot() {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Quick Replies */}
+            {/* Input */}
             <div className="p-4 border-t border-white/10">
-              <div className="flex flex-wrap gap-2 mb-3">
-                {quickReplies.map((reply) => (
-                  <button
-                    key={reply}
-                    onClick={() => setInputText(reply)}
-                    className="px-3 py-1 bg-white/10 text-white text-xs rounded-full hover:bg-white/20 transition-colors"
-                  >
-                    {reply}
-                  </button>
-                ))}
-              </div>
-              
-              {/* Input */}
               <div className="flex gap-2">
                 <input
                   type="text"
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                  placeholder="Kirjoita viesti..."
+                  placeholder="Kysy HerbSpot Avustaja™:lta..."
                   className="flex-1 bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[var(--brand)] focus:border-transparent"
                 />
                 <button
