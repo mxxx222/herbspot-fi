@@ -133,29 +133,67 @@ export function generateProductMetadata(product: {
   });
 }
 
-// Helper function for blog posts
-export function generateBlogMetadata(post: {
+// Generate robots.txt content
+export function generateRobotsTxt() {
+  return `User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /checkout/
+Disallow: /cart/
+
+Sitemap: https://herbspot.fi/sitemap.xml
+`;
+}
+
+// Generate sitemap data
+export function generateSitemapData() {
+  return {
+    url: "https://herbspot.fi",
+    lastModified: new Date().toISOString(),
+    changeFrequency: "daily",
+    priority: 1,
+    pages: [
+      { url: "/", priority: 1, changeFrequency: "daily" },
+      { url: "/shop", priority: 0.9, changeFrequency: "daily" },
+      { url: "/blog", priority: 0.8, changeFrequency: "weekly" },
+      { url: "/b2b", priority: 0.7, changeFrequency: "monthly" },
+      { url: "/contact", priority: 0.6, changeFrequency: "monthly" },
+    ]
+  };
+}
+
+// Generate meta tags for dynamic pages
+export function generateMetaTags({
+  title,
+  description,
+  image,
+  url,
+  type = "website"
+}: {
   title: string;
-  excerpt?: string;
-  publishedAt?: string;
-  updatedAt?: string;
-  author?: string;
-  category?: string;
-  slug: string;
+  description: string;
   image?: string;
+  url?: string;
+  type?: "website" | "article" | "product";
 }) {
-  return generateMetadata({
-    title: post.title,
-    description: post.excerpt || `${post.title} - Asiantuntijavinkit luonnolliseen hyvinvointiin ja aromaterapiaan.`,
-    image: post.image,
-    url: `https://herbspot.fi/blog/${post.slug}`,
-    type: "article",
-    article: {
-      title: post.title,
-      publishedTime: post.publishedAt,
-      modifiedTime: post.updatedAt,
-      author: post.author,
-      section: post.category,
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type,
+      url,
+      images: image ? [{ url: image, width: 1200, height: 630 }] : undefined,
+      siteName: "HerbSpot.fi"
     },
-  });
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: image ? [image] : undefined
+    }
+  };
 }

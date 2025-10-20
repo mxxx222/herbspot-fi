@@ -7,7 +7,7 @@ import { ProductStructuredData } from "@/components/StructuredData";
 // Generate static params for all products
 export async function generateStaticParams() {
   const products = await getAllProducts();
-  return products.map((product) => ({
+  return products.map((product: any) => ({
     handle: product.handle,
   }));
 }

@@ -12,21 +12,23 @@ import { AnalyticsProvider } from "@/components/AnalyticsProvider";
 import { ErrorBoundary } from "@/components/ErrorHandling";
 import { Chatbot } from "@/components/Chatbot";
 
-// Typography setup with preload
+// Typography setup with fallback fonts
 const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400", "600"],
   variable: "--font-heading",
-  preload: true,
+  preload: false, // Disable preload to avoid font loading issues
   display: 'swap',
+  fallback: ['serif'], // Add fallback
 });
 
 const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "600"],
   variable: "--font-body",
-  preload: true,
+  preload: false, // Disable preload to avoid font loading issues
   display: 'swap',
+  fallback: ['sans-serif'], // Add fallback
 });
 
 export const metadata: Metadata = {
@@ -40,21 +42,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="fi" className={`${cormorantGaramond.variable} ${inter.variable}`}>
       <head>
         <OrganizationStructuredData />
-        {/* Preload critical fonts */}
-        <link
-          rel="preload"
-          href="/fonts/CormorantGaramond-Regular.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/Inter-Regular.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
       </head>
       <body className="min-h-screen flex flex-col font-body">
         <GoogleAnalytics />

@@ -36,8 +36,24 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         >
-          Shop curated blends and accessories for calm, focus and recovery. Verified EU suppliers, trusted quality.
+          Curated botanical wellness devices from trusted EU suppliers. Authorised distributor of premium 510-compatible technology.
         </motion.p>
+        
+        {/* Verified Partners Section */}
+        <motion.div 
+          className="mt-8 mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+        >
+          <p className="text-sm text-white/60 mb-4 font-body">Trusted by leading brands</p>
+          <div className="flex items-center justify-center gap-8 opacity-60">
+            <div className="text-white/50 font-bold text-lg">CCELL</div>
+            <div className="text-white/50 font-bold text-lg">AVD</div>
+            <div className="text-white/50 font-bold text-lg">O2Vape</div>
+            <div className="text-white/50 font-bold text-lg">KandyPens</div>
+          </div>
+        </motion.div>
         
         <motion.div 
           className="mt-8 flex items-center justify-center gap-3"
@@ -50,7 +66,7 @@ export function Hero() {
             whileTap={{ scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 60 }}
           >
-            <Link href="/shop" className="btn btn-brand">Explore Trusted Devices</Link>
+            <Link href="/shop" className="btn btn-brand">Explore Curated Selection</Link>
           </motion.div>
           
           <motion.button 
