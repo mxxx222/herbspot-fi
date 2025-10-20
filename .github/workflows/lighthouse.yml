@@ -1,0 +1,44 @@
+name: Lighthouse CI
+
+on:
+  push:
+    branches: [main, staging]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Run Lighthouse CI
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            AUDIT_URL_PROD=https://www.herbspot.fi pnpm lighthouse:ci
+          else
+            AUDIT_URL_STAGING=https://staging.herbspot.fi pnpm lighthouse:ci
+          fi
+      
+      - name: Run SEO validation
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            AUDIT_URL_PROD=https://www.herbspot.fi pnpm seo:rich
+          else
+            AUDIT_URL_STAGING=https://staging.herbspot.fi pnpm seo:rich
+          fi
+      
+      - name: Upload Lighthouse results
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-results
+          path: lighthouse-results/
