@@ -51,7 +51,7 @@ export function generateMetadata({
     openGraph: {
       title: finalTitle,
       description: finalDescription,
-      type: type,
+      type: type === 'product' ? 'website' : type, // Map 'product' to 'website' for OpenGraph
       url: url,
       images: [
         {
@@ -197,7 +197,7 @@ export function generateMetaTags({
     openGraph: {
       title,
       description,
-      type,
+      type: type === 'product' ? 'website' : type, // Map 'product' to 'website' for OpenGraph
       url,
       images: image ? [{ url: image, width: 1200, height: 630 }] : undefined,
       siteName: "HerbSpot.fi",
