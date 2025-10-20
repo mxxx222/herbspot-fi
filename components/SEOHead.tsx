@@ -58,7 +58,7 @@ export function SEOHead({
       <meta property="og:site_name" content={metaData.openGraph.siteName} />
       <meta property="og:type" content={metaData.openGraph.type} />
       <meta property="og:locale" content={metaData.openGraph.locale} />
-      {metaData.openGraph.images.map((img, index) => (
+      {metaData.openGraph.images && metaData.openGraph.images.map((img, index) => (
         <meta key={index} property="og:image" content={img.url} />
       ))}
       
@@ -66,7 +66,9 @@ export function SEOHead({
       <meta name="twitter:card" content={metaData.twitter.card} />
       <meta name="twitter:title" content={metaData.twitter.title} />
       <meta name="twitter:description" content={metaData.twitter.description} />
-      <meta name="twitter:image" content={metaData.twitter.images[0]} />
+      {metaData.twitter.images && metaData.twitter.images[0] && (
+        <meta name="twitter:image" content={metaData.twitter.images[0]} />
+      )}
       <meta name="twitter:creator" content={metaData.twitter.creator} />
       <meta name="twitter:site" content={metaData.twitter.site} />
       
@@ -78,7 +80,7 @@ export function SEOHead({
       <link rel="canonical" href={metaData.alternates.canonical} />
       
       {/* Language alternatives */}
-      {Object.entries(metaData.alternates.languages).map(([lang, href]) => (
+      {metaData.alternates.languages && Object.entries(metaData.alternates.languages).map(([lang, href]) => (
         <link key={lang} rel="alternate" hrefLang={lang} href={href} />
       ))}
       
