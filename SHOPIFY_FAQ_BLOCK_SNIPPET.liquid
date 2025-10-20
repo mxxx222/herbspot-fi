@@ -1,0 +1,428 @@
+# 🛍️ FAQ BLOCK SNIPPET - SHOPIFY THEME EDITOR
+
+## 1️⃣ **FAQ Block Snippet** - snippets/faq-block.liquid
+
+```liquid
+{% comment %}
+  FAQ Block - Dynaamiset kysymys-rivit Theme Editorista
+  Käyttö: {% render 'faq-block', faq_items: section.settings.faq_items %}
+{% endcomment %}
+
+{% assign lang = localization.language.iso_code | downcase %}
+
+<!-- JSON-LD Schema -->
+{% capture faq_json %}
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for item in faq_items %}
+      {
+        "@type": "Question",
+        "name": "{{ item.question | escape }}",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "{{ item.answer | escape }}"
+        }
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
+{% endcapture %}
+
+<script type="application/ld+json">
+{{ faq_json | strip }}
+</script>
+
+<!-- Näkyvä FAQ-sisältö -->
+<div class="faq-block">
+  <h2 class="faq-block-title">
+    {% case lang %}
+      {% when 'fi' %}Usein kysytyt kysymykset
+      {% when 'ru' %}Часто задаваемые вопросы
+      {% else %}Frequently Asked Questions
+    {% endcase %}
+  </h2>
+  
+  <div class="faq-block-items">
+    {% for item in faq_items %}
+      <div class="faq-block-item">
+        <h3 class="faq-block-question">
+          {{ item.question }}
+        </h3>
+        <p class="faq-block-answer">
+          {{ item.answer }}
+        </p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+```
+
+## 2️⃣ **FAQ Section Schema** - sections/faq.liquid
+
+```liquid
+{% comment %}
+  FAQ Section - Theme Editor tuki
+  Schema: sections/faq.liquid
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "header",
+      "content": "FAQ Items"
+    },
+    {
+      "type": "text",
+      "id": "faq_1_question",
+      "label": "Question 1"
+    },
+    {
+      "type": "textarea",
+      "id": "faq_1_answer",
+      "label": "Answer 1"
+    },
+    {
+      "type": "text",
+      "id": "faq_2_question",
+      "label": "Question 2"
+    },
+    {
+      "type": "textarea",
+      "id": "faq_2_answer",
+      "label": "Answer 2"
+    },
+    {
+      "type": "text",
+      "id": "faq_3_question",
+      "label": "Question 3"
+    },
+    {
+      "type": "textarea",
+      "id": "faq_3_answer",
+      "label": "Answer 3"
+    },
+    {
+      "type": "text",
+      "id": "faq_4_question",
+      "label": "Question 4"
+    },
+    {
+      "type": "textarea",
+      "id": "faq_4_answer",
+      "label": "Answer 4"
+    },
+    {
+      "type": "text",
+      "id": "faq_5_question",
+      "label": "Question 5"
+    },
+    {
+      "type": "textarea",
+      "id": "faq_5_answer",
+      "label": "Answer 5"
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "settings": {
+        "title": "Frequently Asked Questions",
+        "faq_1_question": "What does 510 compatibility mean?",
+        "faq_1_answer": "It's a universal thread standard that enables compatibility across many devices and cartridges.",
+        "faq_2_question": "How fast is EU shipping?",
+        "faq_2_answer": "Typically 2–5 business days. We show country-specific SLAs at checkout and in order tracking.",
+        "faq_3_question": "Are you an authorised retailer?",
+        "faq_3_answer": "Yes. We're an authorised retailer and only carry products from trusted partner brands.",
+        "faq_4_question": "How do returns and warranty work?",
+        "faq_4_answer": "We offer 30‑day returns and EU‑compliant warranty. See Returns and Warranty pages.",
+        "faq_5_question": "Is usage legal in the EU?",
+        "faq_5_answer": "Yes. All products comply with EU regulations and are supplied from officially certified manufacturers."
+      }
+    }
+  ]
+}
+{% endschema %}
+
+{% assign lang = localization.language.iso_code | downcase %}
+
+<!-- JSON-LD Schema -->
+{% capture faq_json %}
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% if section.settings.faq_1_question != blank %}
+      {
+        "@type": "Question",
+        "name": "{{ section.settings.faq_1_question | escape }}",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "{{ section.settings.faq_1_answer | escape }}"
+        }
+      }
+    {% endif %}
+    {% if section.settings.faq_2_question != blank %}
+      ,{
+        "@type": "Question",
+        "name": "{{ section.settings.faq_2_question | escape }}",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "{{ section.settings.faq_2_answer | escape }}"
+        }
+      }
+    {% endif %}
+    {% if section.settings.faq_3_question != blank %}
+      ,{
+        "@type": "Question",
+        "name": "{{ section.settings.faq_3_question | escape }}",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "{{ section.settings.faq_3_answer | escape }}"
+        }
+      }
+    {% endif %}
+    {% if section.settings.faq_4_question != blank %}
+      ,{
+        "@type": "Question",
+        "name": "{{ section.settings.faq_4_question | escape }}",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "{{ section.settings.faq_4_answer | escape }}"
+        }
+      }
+    {% endif %}
+    {% if section.settings.faq_5_question != blank %}
+      ,{
+        "@type": "Question",
+        "name": "{{ section.settings.faq_5_question | escape }}",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "{{ section.settings.faq_5_answer | escape }}"
+        }
+      }
+    {% endif %}
+  ]
+}
+{% endcapture %}
+
+<script type="application/ld+json">
+{{ faq_json | strip }}
+</script>
+
+<!-- Näkyvä FAQ-sisältö -->
+<section class="faq-section">
+  <div class="container">
+    <h2 class="faq-section-title">
+      {{ section.settings.title }}
+    </h2>
+    
+    <div class="faq-section-items">
+      {% if section.settings.faq_1_question != blank %}
+        <div class="faq-section-item">
+          <h3 class="faq-section-question">
+            {{ section.settings.faq_1_question }}
+          </h3>
+          <p class="faq-section-answer">
+            {{ section.settings.faq_1_answer }}
+          </p>
+        </div>
+      {% endif %}
+      
+      {% if section.settings.faq_2_question != blank %}
+        <div class="faq-section-item">
+          <h3 class="faq-section-question">
+            {{ section.settings.faq_2_question }}
+          </h3>
+          <p class="faq-section-answer">
+            {{ section.settings.faq_2_answer }}
+          </p>
+        </div>
+      {% endif %}
+      
+      {% if section.settings.faq_3_question != blank %}
+        <div class="faq-section-item">
+          <h3 class="faq-section-question">
+            {{ section.settings.faq_3_question }}
+          </h3>
+          <p class="faq-section-answer">
+            {{ section.settings.faq_3_answer }}
+          </p>
+        </div>
+      {% endif %}
+      
+      {% if section.settings.faq_4_question != blank %}
+        <div class="faq-section-item">
+          <h3 class="faq-section-question">
+            {{ section.settings.faq_4_question }}
+          </h3>
+          <p class="faq-section-answer">
+            {{ section.settings.faq_4_answer }}
+          </p>
+        </div>
+      {% endif %}
+      
+      {% if section.settings.faq_5_question != blank %}
+        <div class="faq-section-item">
+          <h3 class="faq-section-question">
+            {{ section.settings.faq_5_question }}
+          </h3>
+          <p class="faq-section-answer">
+            {{ section.settings.faq_5_answer }}
+          </p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+```
+
+## 3️⃣ **CSS-tyylit** - theme.css
+
+```css
+/* FAQ Block */
+.faq-block {
+  padding: 40px 0;
+}
+
+.faq-block-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #333;
+}
+
+.faq-block-items {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-block-item {
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.faq-block-question {
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.faq-block-answer {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* FAQ Section */
+.faq-section {
+  padding: 60px 0;
+  background: #f8f9fa;
+}
+
+.faq-section-title {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.faq-section-items {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-section-item {
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.faq-section-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.faq-section-question {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.faq-section-answer {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .faq-section {
+    padding: 40px 0;
+  }
+  
+  .faq-section-title {
+    font-size: 2rem;
+  }
+  
+  .faq-section-item {
+    padding: 20px;
+  }
+  
+  .faq-section-question {
+    font-size: 1.2rem;
+  }
+  
+  .faq-section-answer {
+    font-size: 1rem;
+  }
+}
+```
+
+## 4️⃣ **Käyttöohjeet:**
+
+### Theme Editorissa:
+1. **Customize** → **Add section** → **FAQ**
+2. **FAQ** → **Add block** → **Question 1, 2, 3, 4, 5**
+3. **Save** → **Publish**
+
+### Template-tiedostossa:
+```liquid
+{% section 'faq' %}
+```
+
+### Snippet-käyttö:
+```liquid
+{% render 'faq-block', faq_items: section.settings.faq_items %}
+```
+
+## 🎯 **EDUT:**
+
+**✅ Theme Editor tuki** - Drag & drop
+**✅ Dynaamiset kysymykset** - 5 kysymystä
+**✅ Rich Results** - Google FAQ-snippetit
+**✅ Monikielinen** - FI/EN/RU automaattisesti
+**✅ Responsive** - Mobile + Desktop
+
+## ✅ **VALMIS!**
+
+**FAQ Block + Theme Editor tuki automaattisesti!** 🚀

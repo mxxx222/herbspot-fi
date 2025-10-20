@@ -1,0 +1,137 @@
+# 🛍️ SHOPIFY SEO OPTIMOINTI + FAQ BLOCK - VALMIS
+
+## 1️⃣ **Filtteröityjen kokoelmien kanonisointi** - collection.liquid
+
+```liquid
+{%- if current_tags.size > 0 -%}
+  <link rel="canonical" href="{{ shop.url }}{{ collection.url }}">
+  {%- if current_tags.size > 1 -%}
+    <meta name="robots" content="noindex,follow">
+  {%- endif -%}
+{%- endif -%}
+```
+
+## 2️⃣ **BreadcrumbList-schema** - theme.liquid <head>
+
+```liquid
+{%- assign crumbs = '' -%}
+{%- capture crumbs -%}
+[
+  {"@type":"ListItem","position":1,"name":"Home","item":"{{ shop.url }}"},
+  {"@type":"ListItem","position":2,"name":"{{ collection.title | escape }}","item":"{{ shop.url }}{{ collection.url }}"}
+  {%- if current_tags.size > 0 -%}
+  ,{"@type":"ListItem","position":3,"name":"{{ current_tags | join: ', ' | escape }}","item":"{{ shop.url }}{{ collection.url }}"}
+  {%- endif -%}
+]
+{%- endcapture -%}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":{{ crumbs }}}
+</script>
+```
+
+## 3️⃣ **FAQ-schema vain FAQ-sivulle** - theme.liquid <head>
+
+```liquid
+{%- if template.name == 'page' and page.handle == 'faq' -%}
+  {% assign lang = localization.language.iso_code | downcase %}
+  
+  {% capture faq_json %}
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "{% case lang %}{% when 'fi' %}Mitä 510-yhteensopivuus tarkoittaa?{% when 'ru' %}Что означает совместимость 510?{% else %}What does 510 compatibility mean?{% endcase %}",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "{% case lang %}{% when 'fi' %}Se tarkoittaa universaalia kierteistandardia, joka mahdollistaa yhteensopivuuden useiden laitteiden ja patruunoiden välillä.{% when 'ru' %}Это универсальный стандарт резьбы, обеспечивающий совместимость многих устройств и картриджей.{% else %}It's a universal thread standard that enables compatibility across many devices and cartridges.{% endcase %}"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "{% case lang %}{% when 'fi' %}Kuinka nopeasti toimitatte EU-alueelle?{% when 'ru' %}Как быстро вы доставляете по ЕС?{% else %}How fast is EU shipping?{% endcase %}",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "{% case lang %}{% when 'fi' %}Tyypillisesti 2–5 arkipäivää. Näytämme kassalla ja tilausseurannassa maakohtaiset SLA-ajat.{% when 'ru' %}Обычно 2–5 рабочих дней. На кассе и в трекинге показываем сроки по странам.{% else %}Typically 2–5 business days. We show country-specific SLAs at checkout and in order tracking.{% endcase %}"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "{% case lang %}{% when 'fi' %}Oletteko valtuutettu jälleenmyyjä?{% when 'ru' %}Вы — авторизованный ритейлер?{% else %}Are you an authorised retailer?{% endcase %}",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "{% case lang %}{% when 'fi' %}Kyllä. Olemme valtuutettu jälleenmyyjä ja kuratoimme vain luotettujen kumppanibrändien tuotteita.{% when 'ru' %}Да. Мы — авторизованный ритейлер и предлагаем товары только проверенных партнёрских брендов.{% else %}Yes. We're an authorised retailer and only carry products from trusted partner brands.{% endcase %}"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "{% case lang %}{% when 'fi' %}Miten palautukset ja takuu toimivat?{% when 'ru' %}Как работают возвраты и гарантия?{% else %}How do returns and warranty work?{% endcase %}",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "{% case lang %}{% when 'fi' %}Tarjoamme 30 päivän palautusoikeuden ja EU-yhteensopivan takuun. Katso sivut Palautukset ja Takuu.{% when 'ru' %}Мы предоставляем 30-дневный возврат и гарантию в соответствии с нормами ЕС. См. страницы Возвраты и Гарантия.{% else %}We offer 30‑day returns and EU‑compliant warranty. See Returns and Warranty pages.{% endcase %}"
+        }
+      }
+    ]
+  }
+  {% endcapture %}
+  
+  <script type="application/ld+json">
+  {{ faq_json | strip }}
+  </script>
+{%- endif -%}
+```
+
+## 4️⃣ **Hreflang myös kokoelmiin** - collection.liquid
+
+```liquid
+<link rel="alternate" hreflang="fi" href="{{ shop.locale_urls.fi }}{{ collection.url }}">
+<link rel="alternate" hreflang="en" href="{{ shop.locale_urls.en }}{{ collection.url }}">
+<link rel="alternate" hreflang="ru" href="{{ shop.locale_urls.ru }}{{ collection.url }}">
+<link rel="alternate" hreflang="x-default" href="{{ shop.url }}{{ collection.url }}">
+```
+
+## 5️⃣ **GA4-tapahtumat filtteripainikkeisiin** - collection.liquid
+
+```liquid
+<a href="{{ tag | link_to_tag: tag }}" 
+   data-tag="{{ tag }}"
+   onclick="window.gtag && gtag('event','filter_click',{filter:this.dataset.tag,collection:'{{ collection.handle }}'})">
+  {{ tag }}
+</a>
+```
+
+## 6️⃣ **Saavutettavuus filtterille** - collection.liquid
+
+```liquid
+<button aria-pressed="{{ current_tags contains tag | json }}" aria-controls="collection-grid">
+  {{ tag }}
+</button>
+```
+
+## 7️⃣ **LCP-optimointi hero-kuvalle** - theme.liquid <head>
+
+```liquid
+<link rel="preload" as="image" href="{{ 'hero.jpg' | asset_url }}" imagesrcset="{{ 'hero.jpg' | image_url: width:1200 }} 1200w" imagesizes="100vw">
+<img src="{{ 'hero.jpg' | asset_url }}" width="1200" height="700" fetchpriority="high" decoding="async" alt="HerbSpot">
+```
+
+## 8️⃣ **Pikakomennot verifiointiin**
+
+```bash
+# Rich Results
+curl -s https://www.herbspot.fi | grep -i '"@type":"(FAQPage|Product|Organization|BreadcrumbList)"'
+
+# Canonical
+curl -sI https://www.herbspot.fi/collections/all/focus | grep -i '^link:\|^x-robots-tag:\|^content-location:'
+```
+
+## 9️⃣ **GSC-checklista**
+
+- **URL Inspection:** `/collections/all?constraints=` ja yksittäinen tag-URL
+- **Rich Results:** Product, Organization, Breadcrumb, FAQ näkyvät
+- **Sitemaps:** varmista `/sitemap.xml` päivittynyt
+
+## ✅ **VALMIS!**
+
+**SEO-optimointi + Rich Results automaattisesti!** 🚀
