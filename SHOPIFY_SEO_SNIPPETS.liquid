@@ -1,0 +1,224 @@
+# 🛍️ SEO SNIPPETS - VALMIIT LIQUID-PALASET
+
+## 1️⃣ **BreadcrumbList Snippet** - snippets/breadcrumb-list.liquid
+
+```liquid
+{% comment %}
+  BreadcrumbList Schema.org snippet
+  Käyttö: {% render 'breadcrumb-list', collection: collection, current_tags: current_tags %}
+{% endcomment %}
+
+{%- assign crumbs = '' -%}
+{%- capture crumbs -%}
+[
+  {"@type":"ListItem","position":1,"name":"Home","item":"{{ shop.url }}"}
+  {%- if collection -%}
+  ,{"@type":"ListItem","position":2,"name":"{{ collection.title | escape }}","item":"{{ shop.url }}{{ collection.url }}"}
+  {%- endif -%}
+  {%- if current_tags.size > 0 -%}
+  ,{"@type":"ListItem","position":3,"name":"{{ current_tags | join: ', ' | escape }}","item":"{{ shop.url }}{{ collection.url }}"}
+  {%- endif -%}
+]
+{%- endcapture -%}
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":{{ crumbs }}}
+</script>
+```
+
+## 2️⃣ **Canonical & Noindex Snippet** - snippets/canonical-noindex.liquid
+
+```liquid
+{% comment %}
+  Canonical & Noindex snippet
+  Käyttö: {% render 'canonical-noindex', collection: collection, current_tags: current_tags %}
+{% endcomment %}
+
+{%- if current_tags.size > 0 -%}
+  <link rel="canonical" href="{{ shop.url }}{{ collection.url }}">
+  {%- if current_tags.size > 1 -%}
+    <meta name="robots" content="noindex,follow">
+  {%- endif -%}
+{%- endif -%}
+```
+
+## 3️⃣ **Hreflang Snippet** - snippets/hreflang.liquid
+
+```liquid
+{% comment %}
+  Hreflang snippet
+  Käyttö: {% render 'hreflang', collection: collection %}
+{% endcomment %}
+
+{%- assign base_url = collection.url | default: '' -%}
+<link rel="alternate" hreflang="fi" href="{{ shop.locale_urls.fi }}{{ base_url }}">
+<link rel="alternate" hreflang="en" href="{{ shop.locale_urls.en }}{{ base_url }}">
+<link rel="alternate" hreflang="ru" href="{{ shop.locale_urls.ru }}{{ base_url }}">
+<link rel="alternate" hreflang="x-default" href="{{ shop.url }}{{ base_url }}">
+```
+
+## 4️⃣ **GA4 Filter Events Snippet** - snippets/ga4-filter-events.liquid
+
+```liquid
+{% comment %}
+  GA4 Filter Events snippet
+  Käyttö: {% render 'ga4-filter-events', tag: tag, collection: collection %}
+{% endcomment %}
+
+<a href="{{ tag | link_to_tag: tag }}" 
+   data-tag="{{ tag }}"
+   onclick="window.gtag && gtag('event','filter_click',{filter:this.dataset.tag,collection:'{{ collection.handle }}'})">
+  {{ tag }}
+</a>
+```
+
+## 5️⃣ **FAQ Schema Snippet** - snippets/faq-schema.liquid
+
+```liquid
+{% comment %}
+  FAQ Schema snippet
+  Käyttö: {% render 'faq-schema', faq_items: faq_items %}
+{% endcomment %}
+
+{% assign lang = localization.language.iso_code | downcase %}
+
+{% capture faq_json %}
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for item in faq_items %}
+      {
+        "@type": "Question",
+        "name": "{{ item.question | escape }}",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "{{ item.answer | escape }}"
+        }
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
+{% endcapture %}
+
+<script type="application/ld+json">
+{{ faq_json | strip }}
+</script>
+```
+
+## 6️⃣ **LCP Optimization Snippet** - snippets/lcp-optimization.liquid
+
+```liquid
+{% comment %}
+  LCP Optimization snippet
+  Käyttö: {% render 'lcp-optimization', image_url: 'hero.jpg', width: 1200, height: 700 %}
+{% endcomment %}
+
+<link rel="preload" as="image" href="{{ image_url | asset_url }}" imagesrcset="{{ image_url | image_url: width:width }} {{ width }}w" imagesizes="100vw">
+<img src="{{ image_url | asset_url }}" width="{{ width }}" height="{{ height }}" fetchpriority="high" decoding="async" alt="{{ alt | default: 'HerbSpot' }}">
+```
+
+## 7️⃣ **Complete SEO Head Snippet** - snippets/seo-head.liquid
+
+```liquid
+{% comment %}
+  Complete SEO Head snippet
+  Käyttö: {% render 'seo-head', collection: collection, current_tags: current_tags %}
+{% endcomment %}
+
+{%- assign og_locale = localization.language.iso_code | downcase -%}
+{%- if og_locale == 'en' -%}{%- assign og_locale = 'en_US' -%}{%- endif -%}
+
+<!-- Canonical & Noindex -->
+{% render 'canonical-noindex', collection: collection, current_tags: current_tags %}
+
+<!-- Hreflang -->
+{% render 'hreflang', collection: collection %}
+
+<!-- OG Locale -->
+<meta property="og:locale" content="{{ og_locale }}" />
+
+<!-- BreadcrumbList -->
+{% render 'breadcrumb-list', collection: collection, current_tags: current_tags %}
+```
+
+## 8️⃣ **Collection Template Usage** - collection.liquid
+
+```liquid
+{% comment %}
+  Collection template with SEO snippets
+{% endcomment %}
+
+{% render 'seo-head', collection: collection, current_tags: current_tags %}
+
+<!-- Collection Filters -->
+<nav class="collection-filters" aria-label="Filters">
+  <ul>
+    {% for tag in collection.all_tags %}
+      <li>
+        {% render 'ga4-filter-events', tag: tag, collection: collection %}
+      </li>
+    {% endfor %}
+  </ul>
+</nav>
+
+<!-- Product Grid -->
+{% paginate collection.products by 24 %}
+  <div class="product-grid">
+    {% for product in collection.products %}
+      {% include 'product-card', product: product %}
+    {% endfor %}
+  </div>
+  {{ paginate | default_pagination }}
+{% endpaginate %}
+```
+
+## 9️⃣ **Theme.liquid Usage** - theme.liquid <head>
+
+```liquid
+<!-- SEO Head -->
+{% render 'seo-head', collection: collection, current_tags: current_tags %}
+
+<!-- LCP Optimization -->
+{% render 'lcp-optimization', image_url: 'hero.jpg', width: 1200, height: 700 %}
+
+<!-- FAQ Schema (only on FAQ page) -->
+{%- if template.name == 'page' and page.handle == 'faq' -%}
+  {% render 'faq-schema', faq_items: faq_items %}
+{%- endif -%}
+```
+
+## 🔟 **Verifiointikomennot**
+
+```bash
+# Rich Results test
+curl -s https://www.herbspot.fi | grep -i '"@type":"(FAQPage|Product|Organization|BreadcrumbList)"'
+
+# Canonical test
+curl -sI https://www.herbspot.fi/collections/all/focus | grep -i '^link:\|^x-robots-tag:\|^content-location:'
+
+# Hreflang test
+curl -s https://www.herbspot.fi | grep -i 'hreflang'
+
+# GA4 events test (browser console)
+gtag('event','filter_click',{filter:'focus',collection:'all'})
+```
+
+## ✅ **KÄYTTÖ:**
+
+1. **Kopioi snippetit** snippets/-kansioon
+2. **Käytä collection.liquid** -ssa
+3. **Lisää theme.liquid** <head>
+4. **Testaa** verifiointikomennoilla
+
+## 🎯 **EDUT:**
+
+**✅ Modulaariset snippetit** - Uudelleenkäytettävät
+**✅ SEO-optimized** - Kaikki schema.org mukana
+**✅ Performance** - LCP-optimointi
+**✅ Analytics** - GA4-tapahtumat
+**✅ Saavutettavuus** - ARIA-attribuutit
+
+## ✅ **VALMIS!**
+
+**Valmiit SEO-snippetit automaattisesti!** 🚀
