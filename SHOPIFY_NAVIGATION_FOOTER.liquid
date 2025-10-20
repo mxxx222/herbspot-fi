@@ -1,0 +1,336 @@
+{% comment %}
+  HerbSpot.fi - Monikielinen Navigation & Footer (FI/EN/RU)
+  Käyttö: Kopioi header.liquid ja footer.liquid tiedostoihin
+{% endcomment %}
+
+<!-- HEADER / NAVIGATION -->
+<header class="site-header">
+  <div class="container">
+    <div class="header-content">
+      <!-- Logo -->
+      <div class="logo">
+        <a href="/">
+          {% if localization.language.iso_code == 'fi' %}
+            <img src="{{ 'herbspot-logo-fi.png' | asset_url }}" alt="HerbSpot.fi">
+          {% elsif localization.language.iso_code == 'en' %}
+            <img src="{{ 'herbspot-logo-en.png' | asset_url }}" alt="HerbSpot.fi">
+          {% elsif localization.language.iso_code == 'ru' %}
+            <img src="{{ 'herbspot-logo-ru.png' | asset_url }}" alt="HerbSpot.fi">
+          {% endif %}
+        </a>
+      </div>
+
+      <!-- Main Navigation -->
+      <nav class="main-nav">
+        <ul class="nav-menu">
+          {% if localization.language.iso_code == 'fi' %}
+            <li><a href="/collections/all">Tuotteet</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle">Hyvinvoinnin polut</a>
+              <ul class="dropdown-menu">
+                <li><a href="/collections/focus">Focus</a></li>
+                <li><a href="/collections/calm">Calm</a></li>
+                <li><a href="/collections/sleep">Sleep</a></li>
+                <li><a href="/collections/recovery">Recovery</a></li>
+              </ul>
+            </li>
+            <li><a href="/pages/blog">Blogi</a></li>
+            <li><a href="/pages/b2b">B2B</a></li>
+            <li><a href="/pages/about">Tietoa meistä</a></li>
+          {% elsif localization.language.iso_code == 'en' %}
+            <li><a href="/collections/all">Products</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle">Wellness Paths</a>
+              <ul class="dropdown-menu">
+                <li><a href="/collections/focus">Focus</a></li>
+                <li><a href="/collections/calm">Calm</a></li>
+                <li><a href="/collections/sleep">Sleep</a></li>
+                <li><a href="/collections/recovery">Recovery</a></li>
+              </ul>
+            </li>
+            <li><a href="/pages/blog">Blog</a></li>
+            <li><a href="/pages/b2b">B2B</a></li>
+            <li><a href="/pages/about">About</a></li>
+          {% elsif localization.language.iso_code == 'ru' %}
+            <li><a href="/collections/all">Товары</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle">Пути к благополучию</a>
+              <ul class="dropdown-menu">
+                <li><a href="/collections/focus">Фокус</a></li>
+                <li><a href="/collections/calm">Спокойствие</a></li>
+                <li><a href="/collections/sleep">Сон</a></li>
+                <li><a href="/collections/recovery">Восстановление</a></li>
+              </ul>
+            </li>
+            <li><a href="/pages/blog">Блог</a></li>
+            <li><a href="/pages/b2b">B2B</a></li>
+            <li><a href="/pages/about">О нас</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <!-- Language Selector -->
+        <div class="language-selector">
+          <select onchange="window.location.href=this.value">
+            {% if localization.language.iso_code == 'fi' %}
+              <option value="/" selected>🇫🇮 Suomi</option>
+              <option value="/en/">🇬🇧 English</option>
+              <option value="/ru/">🇷🇺 Русский</option>
+            {% elsif localization.language.iso_code == 'en' %}
+              <option value="/">🇫🇮 Suomi</option>
+              <option value="/en/" selected>🇬🇧 English</option>
+              <option value="/ru/">🇷🇺 Русский</option>
+            {% elsif localization.language.iso_code == 'ru' %}
+              <option value="/">🇫🇮 Suomi</option>
+              <option value="/en/">🇬🇧 English</option>
+              <option value="/ru/" selected>🇷🇺 Русский</option>
+            {% endif %}
+          </select>
+        </div>
+
+        <!-- Search -->
+        <div class="search-box">
+          <form action="/search" method="get">
+            <input type="text" name="q" placeholder="{% if localization.language.iso_code == 'fi' %}Hae tuotteita...{% elsif localization.language.iso_code == 'en' %}Search products...{% elsif localization.language.iso_code == 'ru' %}Поиск товаров...{% endif %}">
+            <button type="submit">🔍</button>
+          </form>
+        </div>
+
+        <!-- Cart -->
+        <div class="cart-icon">
+          <a href="/cart">
+            <span class="cart-count">{{ cart.item_count }}</span>
+            🛒
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      
+      <!-- Company Info -->
+      <div class="footer-section">
+        <h3>
+          {% if localization.language.iso_code == 'fi' %}
+            HerbSpot Oy
+          {% elsif localization.language.iso_code == 'en' %}
+            HerbSpot Ltd
+          {% elsif localization.language.iso_code == 'ru' %}
+            HerbSpot ООО
+          {% endif %}
+        </h3>
+        <p>
+          {% if localization.language.iso_code == 'fi' %}
+            Euroopan luotetuin kasvipohjaisen hyvinvoinnin kohde
+          {% elsif localization.language.iso_code == 'en' %}
+            Europe's trusted destination for botanical wellness
+          {% elsif localization.language.iso_code == 'ru' %}
+            Надёжный европейский центр ботанического благополучия
+          {% endif %}
+        </p>
+        
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <p>📧 info@herbspot.fi</p>
+          <p>📞 +358-40-1234567</p>
+          <p>📍 Helsinki, Finland</p>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-section">
+        <h3>
+          {% if localization.language.iso_code == 'fi' %}
+            Pikalinkit
+          {% elsif localization.language.iso_code == 'en' %}
+            Quick Links
+          {% elsif localization.language.iso_code == 'ru' %}
+            Быстрые ссылки
+          {% endif %}
+        </h3>
+        <ul>
+          {% if localization.language.iso_code == 'fi' %}
+            <li><a href="/collections/all">Kaikki tuotteet</a></li>
+            <li><a href="/collections/510-patruunat">510-patruunat</a></li>
+            <li><a href="/collections/kasviblendit">Kasviblendit</a></li>
+            <li><a href="/collections/wellness-paketit">Wellness-paketit</a></li>
+            <li><a href="/pages/blog">Blogi</a></li>
+          {% elsif localization.language.iso_code == 'en' %}
+            <li><a href="/collections/all">All Products</a></li>
+            <li><a href="/collections/510-cartridges">510 Cartridges</a></li>
+            <li><a href="/collections/botanical-blends">Botanical Blends</a></li>
+            <li><a href="/collections/wellness-packs">Wellness Packs</a></li>
+            <li><a href="/pages/blog">Blog</a></li>
+          {% elsif localization.language.iso_code == 'ru' %}
+            <li><a href="/collections/all">Все товары</a></li>
+            <li><a href="/collections/510-cartridges">510-Картриджи</a></li>
+            <li><a href="/collections/botanical-blends">Травяные смеси</a></li>
+            <li><a href="/collections/wellness-packs">Наборы Wellness</a></li>
+            <li><a href="/pages/blog">Блог</a></li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <!-- Support -->
+      <div class="footer-section">
+        <h3>
+          {% if localization.language.iso_code == 'fi' %}
+            Tuki
+          {% elsif localization.language.iso_code == 'en' %}
+            Support
+          {% elsif localization.language.iso_code == 'ru' %}
+            Поддержка
+          {% endif %}
+        </h3>
+        <ul>
+          {% if localization.language.iso_code == 'fi' %}
+            <li><a href="/pages/faq">FAQ</a></li>
+            <li><a href="/pages/shipping">Toimitus</a></li>
+            <li><a href="/pages/returns">Palautukset</a></li>
+            <li><a href="/pages/warranty">Takuu</a></li>
+            <li><a href="/pages/contact">Ota yhteyttä</a></li>
+          {% elsif localization.language.iso_code == 'en' %}
+            <li><a href="/pages/faq">FAQ</a></li>
+            <li><a href="/pages/shipping">Shipping</a></li>
+            <li><a href="/pages/returns">Returns</a></li>
+            <li><a href="/pages/warranty">Warranty</a></li>
+            <li><a href="/pages/contact">Contact</a></li>
+          {% elsif localization.language.iso_code == 'ru' %}
+            <li><a href="/pages/faq">FAQ</a></li>
+            <li><a href="/pages/shipping">Доставка</a></li>
+            <li><a href="/pages/returns">Возврат</a></li>
+            <li><a href="/pages/warranty">Гарантия</a></li>
+            <li><a href="/pages/contact">Контакты</a></li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div class="footer-section">
+        <h3>
+          {% if localization.language.iso_code == 'fi' %}
+            Oikeudellinen
+          {% elsif localization.language.iso_code == 'en' %}
+            Legal
+          {% elsif localization.language.iso_code == 'ru' %}
+            Правовая информация
+          {% endif %}
+        </h3>
+        <ul>
+          {% if localization.language.iso_code == 'fi' %}
+            <li><a href="/pages/privacy">Tietosuoja</a></li>
+            <li><a href="/pages/terms">Käyttöehdot</a></li>
+            <li><a href="/pages/cookies">Evästeet</a></li>
+            <li><a href="/pages/gdpr">GDPR</a></li>
+          {% elsif localization.language.iso_code == 'en' %}
+            <li><a href="/pages/privacy">Privacy Policy</a></li>
+            <li><a href="/pages/terms">Terms of Service</a></li>
+            <li><a href="/pages/cookies">Cookies</a></li>
+            <li><a href="/pages/gdpr">GDPR</a></li>
+          {% elsif localization.language.iso_code == 'ru' %}
+            <li><a href="/pages/privacy">Политика конфиденциальности</a></li>
+            <li><a href="/pages/terms">Условия использования</a></li>
+            <li><a href="/pages/cookies">Куки</a></li>
+            <li><a href="/pages/gdpr">GDPR</a></li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <!-- Company Details -->
+      <div class="footer-section">
+        <h3>
+          {% if localization.language.iso_code == 'fi' %}
+            Yritys
+          {% elsif localization.language.iso_code == 'en' %}
+            Company
+          {% elsif localization.language.iso_code == 'ru' %}
+            Компания
+          {% endif %}
+        </h3>
+        <ul>
+          {% if localization.language.iso_code == 'fi' %}
+            <li><a href="/pages/about">Tietoa meistä</a></li>
+            <li><a href="/pages/sustainability">Kestävyys</a></li>
+            <li><a href="/pages/ingredients">Ainesosat</a></li>
+            <li><a href="/pages/certifications">Sertifikaatit</a></li>
+            <li><a href="/pages/science">Tiede</a></li>
+            <li><a href="/pages/careers">Työpaikat</a></li>
+          {% elsif localization.language.iso_code == 'en' %}
+            <li><a href="/pages/about">About Us</a></li>
+            <li><a href="/pages/sustainability">Sustainability</a></li>
+            <li><a href="/pages/ingredients">Ingredients</a></li>
+            <li><a href="/pages/certifications">Certifications</a></li>
+            <li><a href="/pages/science">Science</a></li>
+            <li><a href="/pages/careers">Careers</a></li>
+          {% elsif localization.language.iso_code == 'ru' %}
+            <li><a href="/pages/about">О нас</a></li>
+            <li><a href="/pages/sustainability">Устойчивость</a></li>
+            <li><a href="/pages/ingredients">Ингредиенты</a></li>
+            <li><a href="/pages/certifications">Сертификаты</a></li>
+            <li><a href="/pages/science">Наука</a></li>
+            <li><a href="/pages/careers">Карьера</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <div class="footer-bottom-content">
+        <div class="copyright">
+          {% if localization.language.iso_code == 'fi' %}
+            © 2025 HerbSpot Oy • Secure Checkout • EU-toimitus • 30 pv palautusoikeus • 3-D Secure
+          {% elsif localization.language.iso_code == 'en' %}
+            © 2025 HerbSpot Ltd • Secure Checkout • EU Shipping • 30-day Returns • 3-D Secure
+          {% elsif localization.language.iso_code == 'ru' %}
+            © 2025 HerbSpot ООО • Безопасная оплата • Доставка по ЕС • 30 дней возврата • 3-D Secure
+          {% endif %}
+        </div>
+        
+        <div class="payment-methods">
+          <span>💳</span>
+          <span>🔒</span>
+          <span>🚚</span>
+          <span>⭐</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% comment %}
+  CSS-styling (kopioi theme.css:ään):
+  
+  .site-header { background: #1a1a1a; color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 1000; }
+  .header-content { display: flex; align-items: center; justify-content: space-between; }
+  .logo img { height: 40px; }
+  .main-nav ul { display: flex; list-style: none; gap: 2rem; }
+  .main-nav a { color: white; text-decoration: none; }
+  .dropdown { position: relative; }
+  .dropdown-menu { position: absolute; top: 100%; left: 0; background: white; color: black; padding: 1rem; border-radius: 8px; display: none; }
+  .dropdown:hover .dropdown-menu { display: block; }
+  .header-actions { display: flex; align-items: center; gap: 1rem; }
+  .language-selector select { background: transparent; color: white; border: 1px solid #39FF14; padding: 0.5rem; border-radius: 4px; }
+  .search-box input { background: rgba(255,255,255,0.1); border: 1px solid #39FF14; color: white; padding: 0.5rem; border-radius: 4px; }
+  .cart-icon { position: relative; }
+  .cart-count { position: absolute; top: -8px; right: -8px; background: #39FF14; color: black; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
+  
+  .site-footer { background: #1a1a1a; color: white; padding: 3rem 0 1rem; }
+  .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+  .footer-section h3 { color: #39FF14; margin-bottom: 1rem; }
+  .footer-section ul { list-style: none; padding: 0; }
+  .footer-section li { margin-bottom: 0.5rem; }
+  .footer-section a { color: white; text-decoration: none; opacity: 0.8; }
+  .footer-section a:hover { opacity: 1; color: #39FF14; }
+  .contact-info p { margin: 0.5rem 0; }
+  .footer-bottom { border-top: 1px solid #333; padding-top: 1rem; }
+  .footer-bottom-content { display: flex; justify-content: space-between; align-items: center; }
+  .payment-methods span { font-size: 1.5rem; margin: 0 0.5rem; }
+{% endcomment %}

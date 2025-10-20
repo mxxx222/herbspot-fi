@@ -1,0 +1,597 @@
+{% comment %}
+  HerbSpot.fi - Monikielinen Shopify-template (FI/EN/RU)
+  Käyttö: Kopioi tämä koodi Shopify-themeen ja kieli vaihtuu automaattisesti
+{% endcomment %}
+
+{% if localization.language.iso_code == 'fi' %}
+<!-- 🇫🇮 SUOMI -->
+<section id="hero" class="hero-section">
+  <div class="container">
+    <h1 class="hero-title">Euroopan luotetuin kasvipohjaisen hyvinvoinnin kohde</h1>
+    <p class="hero-subtitle">Huolella kuratoidut botaaniset hyvinvointilaitteet ja tarvikkeet luotettavilta EU-toimittajilta. Olemme valtuutettu jälleenmyyjä ja maahantuoja premium-tason 510-yhteensopiville tuotteille.</p>
+    
+    <div class="hero-cta">
+      <a href="/collections/all" class="btn-primary">Selaa tuotteita</a>
+      <a href="#wellness-paths" class="btn-secondary">Hyvinvoinnin polut</a>
+    </div>
+  </div>
+</section>
+
+<section id="trust" class="trust-section">
+  <div class="container">
+    <h2>Luotettu kumppani useille tunnetuille brändeille</h2>
+    <div class="brand-logos">
+      <span>CCELL</span> • <span>AVD</span> • <span>O2Vape</span> • <span>KandyPens</span>
+    </div>
+    
+    <div class="trust-features">
+      <div class="trust-item">
+        <span class="icon">🛠</span>
+        <h3>EU-vaatimustenmukainen</h3>
+        <p>CE-sertifioidut tuotteet</p>
+      </div>
+      <div class="trust-item">
+        <span class="icon">🤝</span>
+        <h3>Valtuutettu jälleenmyyjä</h3>
+        <p>Virallinen vähittäiskauppakumppani</p>
+      </div>
+      <div class="trust-item">
+        <span class="icon">🔍</span>
+        <h3>Tarkistettu toimittajaverkosto</h3>
+        <p>Vain luotetut EU-toimittajat</p>
+      </div>
+      <div class="trust-item">
+        <span class="icon">🚚</span>
+        <h3>Nopeat toimitukset</h3>
+        <p>EU-varastolta 2–5 arkipäivää</p>
+      </div>
+    </div>
+    
+    <div class="rating">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <span class="rating-text">4.8/5 arvostelua (127) — tyytyväiset asiakkaat ympäri Eurooppaa</span>
+    </div>
+  </div>
+</section>
+
+<section id="wellness-paths" class="wellness-paths">
+  <div class="container">
+    <h2>Hyvinvoinnin polut</h2>
+    <p class="section-subtitle">Valitse oma matkasi kohti tasapainoa</p>
+    
+    <div class="paths-grid">
+      <div class="path-card focus">
+        <h3>Focus</h3>
+        <p>Lisää keskittymistä ja mielen kirkkautta</p>
+        <a href="/collections/focus" class="path-link">Selaa tuotteita →</a>
+      </div>
+      <div class="path-card calm">
+        <h3>Calm</h3>
+        <p>Löydä sisäinen rauha ja tasapaino</p>
+        <a href="/collections/calm" class="path-link">Selaa tuotteita →</a>
+      </div>
+      <div class="path-card sleep">
+        <h3>Sleep</h3>
+        <p>Tue syvempää unta ja palautumista</p>
+        <a href="/collections/sleep" class="path-link">Selaa tuotteita →</a>
+      </div>
+      <div class="path-card recovery">
+        <h3>Recovery</h3>
+        <p>Vahvista kehon ja mielen elpymistä</p>
+        <a href="/collections/recovery" class="path-link">Selaa tuotteita →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="categories" class="categories-section">
+  <div class="container">
+    <h2>Tuotekategoriat</h2>
+    
+    <div class="categories-grid">
+      <div class="category-card">
+        <h3>510-patruunat</h3>
+        <p>Premium-tason kasvipatruunat</p>
+        <a href="/collections/510-patruunat" class="category-link">Selaa →</a>
+      </div>
+      <div class="category-card">
+        <h3>Kasviblendit</h3>
+        <p>Luonnolliset, kuratoidut yrttisekoitukset</p>
+        <a href="/collections/kasviblendit" class="category-link">Selaa →</a>
+      </div>
+      <div class="category-card">
+        <h3>Wellness-paketit</h3>
+        <p>Valmiit aloitus- ja rentoutussetit</p>
+        <a href="/collections/wellness-paketit" class="category-link">Selaa →</a>
+      </div>
+      <div class="category-card">
+        <h3>DIY-työkalut</h3>
+        <p>Täyttö- ja sekoitusvälineet</p>
+        <a href="/collections/diy-tyokalut" class="category-link">Selaa →</a>
+      </div>
+      <div class="category-card">
+        <h3>Lisävarusteet</h3>
+        <p>Tarpeelliset osat ja kulutustarvikkeet</p>
+        <a href="/collections/lisavarusteet" class="category-link">Selaa →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="featured-products" class="featured-products">
+  <div class="container">
+    <h2>Suosituimmat tuotteet</h2>
+    
+    <div class="products-grid">
+      {% for product in collections.featured.products limit: 4 %}
+        <div class="product-card">
+          <img src="{{ product.featured_image | img_url: '400x400' }}" alt="{{ product.title }}">
+          <h3>{{ product.title }}</h3>
+          <p class="price">{{ product.price | money }}</p>
+          <a href="{{ product.url }}" class="btn-add-to-cart">Lisää ostoskoriin</a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="faq-section">
+  <div class="container">
+    <h2>Usein kysytyt kysymykset</h2>
+    
+    <div class="faq-items">
+      <div class="faq-item">
+        <h3>Mikä on 510-yhteensopiva laite?</h3>
+        <p>510 on yleisesti käytetty kierrestandardi kasvipatruunoissa. HerbSpot tarjoaa vain luotettavia ja testattuja 510-yhteensopivia laitteita EU-alueelta.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Myyttekö THC-tuotteita?</h3>
+        <p>Emme. Kaikki tuotteemme ovat <strong>laillisia EU-alueella</strong> ja tarkoitettu <strong>botaaniseen hyvinvointikäyttöön</strong>.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Miksi valita HerbSpot.fi?</h3>
+        <p>Luotettavat toimittajat, CE-sertifioidut tuotteet, nopea EU-logistiikka ja <strong>valtuutetun jälleenmyyjän varmuus</strong>.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Onko käyttö laillista EU:ssa?</h3>
+        <p>Kyllä. Kaikki tuotteet ovat EU-säädösten mukaisia ja toimitetaan virallisesti sertifioiduilta valmistajilta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="b2b" class="b2b-section">
+  <div class="container">
+    <h2>Jakelukumppaniksi</h2>
+    <p>Liity <strong>HerbSpotin B2B-verkostoon</strong> ja saa käyttöösi premium-pakkaukset, nopeat EU-toimitukset ja tukkuhinnat.</p>
+    
+    <div class="b2b-benefits">
+      <div class="benefit-item">
+        <span class="icon">💼</span>
+        <h3>Premium-pakkaukset</h3>
+        <p>Ammattimaiset B2B-pakkaukset</p>
+      </div>
+      <div class="benefit-item">
+        <span class="icon">🚚</span>
+        <h3>Nopeat toimitukset</h3>
+        <p>EU-logistiikka 2-5 arkipäivää</p>
+      </div>
+      <div class="benefit-item">
+        <span class="icon">💰</span>
+        <h3>Tukkuhinnat</h3>
+        <p>Kilpailukykyiset volyymialennukset</p>
+      </div>
+    </div>
+    
+    <a href="/pages/b2b" class="btn-b2b">Ota yhteyttä →</a>
+  </div>
+</section>
+
+{% elsif localization.language.iso_code == 'en' %}
+<!-- 🇬🇧 ENGLISH -->
+<section id="hero" class="hero-section">
+  <div class="container">
+    <h1 class="hero-title">Europe's Trusted Destination for Botanical Wellness</h1>
+    <p class="hero-subtitle">Curated botanical wellness devices and accessories from verified EU suppliers. Official distributor of premium 510-compatible technology.</p>
+    
+    <div class="hero-cta">
+      <a href="/collections/all" class="btn-primary">Browse Products</a>
+      <a href="#wellness-paths" class="btn-secondary">Wellness Paths</a>
+    </div>
+  </div>
+</section>
+
+<section id="trust" class="trust-section">
+  <div class="container">
+    <h2>Trusted by Leading Brands</h2>
+    <div class="brand-logos">
+      <span>CCELL</span> • <span>AVD</span> • <span>O2Vape</span> • <span>KandyPens</span>
+    </div>
+    
+    <div class="trust-features">
+      <div class="trust-item">
+        <span class="icon">🛠</span>
+        <h3>EU-Compliant</h3>
+        <p>CE Certified Products</p>
+      </div>
+      <div class="trust-item">
+        <span class="icon">🤝</span>
+        <h3>Authorized Distributor</h3>
+        <p>Official Retail Partner</p>
+      </div>
+      <div class="trust-item">
+        <span class="icon">🔍</span>
+        <h3>Verified Suppliers</h3>
+        <p>Only Trusted EU Partners</p>
+      </div>
+      <div class="trust-item">
+        <span class="icon">🚚</span>
+        <h3>Fast EU Shipping</h3>
+        <p>2–5 Business Days</p>
+      </div>
+    </div>
+    
+    <div class="rating">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <span class="rating-text">4.8/5 (127 Reviews) — Trusted across Europe</span>
+    </div>
+  </div>
+</section>
+
+<section id="wellness-paths" class="wellness-paths">
+  <div class="container">
+    <h2>Wellness Paths</h2>
+    <p class="section-subtitle">Choose your journey to balance</p>
+    
+    <div class="paths-grid">
+      <div class="path-card focus">
+        <h3>Focus</h3>
+        <p>Enhance focus and mental clarity</p>
+        <a href="/collections/focus" class="path-link">Browse Products →</a>
+      </div>
+      <div class="path-card calm">
+        <h3>Calm</h3>
+        <p>Find inner peace and tranquility</p>
+        <a href="/collections/calm" class="path-link">Browse Products →</a>
+      </div>
+      <div class="path-card sleep">
+        <h3>Sleep</h3>
+        <p>Support deeper rest and recovery</p>
+        <a href="/collections/sleep" class="path-link">Browse Products →</a>
+      </div>
+      <div class="path-card recovery">
+        <h3>Recovery</h3>
+        <p>Boost body and mind resilience</p>
+        <a href="/collections/recovery" class="path-link">Browse Products →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="categories" class="categories-section">
+  <div class="container">
+    <h2>Product Categories</h2>
+    
+    <div class="categories-grid">
+      <div class="category-card">
+        <h3>510 Cartridges</h3>
+        <p>Premium botanical devices</p>
+        <a href="/collections/510-cartridges" class="category-link">Browse →</a>
+      </div>
+      <div class="category-card">
+        <h3>Botanical Blends</h3>
+        <p>Curated herbal compositions</p>
+        <a href="/collections/botanical-blends" class="category-link">Browse →</a>
+      </div>
+      <div class="category-card">
+        <h3>Wellness Packs</h3>
+        <p>Complete starter & recovery sets</p>
+        <a href="/collections/wellness-packs" class="category-link">Browse →</a>
+      </div>
+      <div class="category-card">
+        <h3>DIY Tools</h3>
+        <p>Refill & mixing equipment</p>
+        <a href="/collections/diy-tools" class="category-link">Browse →</a>
+      </div>
+      <div class="category-card">
+        <h3>Accessories</h3>
+        <p>Essential extras & consumables</p>
+        <a href="/collections/accessories" class="category-link">Browse →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="featured-products" class="featured-products">
+  <div class="container">
+    <h2>Featured Products</h2>
+    
+    <div class="products-grid">
+      {% for product in collections.featured.products limit: 4 %}
+        <div class="product-card">
+          <img src="{{ product.featured_image | img_url: '400x400' }}" alt="{{ product.title }}">
+          <h3>{{ product.title }}</h3>
+          <p class="price">{{ product.price | money }}</p>
+          <a href="{{ product.url }}" class="btn-add-to-cart">Add to Cart</a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="faq-section">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    
+    <div class="faq-items">
+      <div class="faq-item">
+        <h3>What is a 510-compatible device?</h3>
+        <p>510 is the universal threading standard for botanical cartridges. HerbSpot curates only verified EU devices with trusted quality standards.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Do you sell THC products?</h3>
+        <p>No. All our products are <strong>EU-legal</strong> and designed for <strong>botanical wellness use</strong>.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Why choose HerbSpot.fi?</h3>
+        <p>Trusted suppliers, CE-certified products, fast EU logistics, and <strong>authorized distributor guarantee</strong>.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Is usage legal in the EU?</h3>
+        <p>Yes. All products comply with EU regulations and are supplied from officially certified manufacturers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="b2b" class="b2b-section">
+  <div class="container">
+    <h2>Join our Distribution Network</h2>
+    <p>Partner with <strong>HerbSpot's B2B network</strong> for premium packaging, fast EU logistics, and wholesale pricing.</p>
+    
+    <div class="b2b-benefits">
+      <div class="benefit-item">
+        <span class="icon">💼</span>
+        <h3>Premium Packaging</h3>
+        <p>Professional B2B presentation</p>
+      </div>
+      <div class="benefit-item">
+        <span class="icon">🚚</span>
+        <h3>Fast EU Logistics</h3>
+        <p>2-5 business day delivery</p>
+      </div>
+      <div class="benefit-item">
+        <span class="icon">💰</span>
+        <h3>Wholesale Pricing</h3>
+        <p>Competitive volume discounts</p>
+      </div>
+    </div>
+    
+    <a href="/pages/b2b" class="btn-b2b">Contact Us →</a>
+  </div>
+</section>
+
+{% elsif localization.language.iso_code == 'ru' %}
+<!-- 🇷🇺 РУССКИЙ -->
+<section id="hero" class="hero-section">
+  <div class="container">
+    <h1 class="hero-title">Надёжный европейский центр ботанического благополучия</h1>
+    <p class="hero-subtitle">Отобранные устройства и аксессуары для ботанического велнеса от проверенных поставщиков ЕС. Мы — официальные дистрибьюторы премиальной 510-совместимой техники.</p>
+    
+    <div class="hero-cta">
+      <a href="/collections/all" class="btn-primary">Каталог товаров</a>
+      <a href="#wellness-paths" class="btn-secondary">Пути к благополучию</a>
+    </div>
+  </div>
+</section>
+
+<section id="trust" class="trust-section">
+  <div class="container">
+    <h2>Доверенные бренды</h2>
+    <div class="brand-logos">
+      <span>CCELL</span> • <span>AVD</span> • <span>O2Vape</span> • <span>KandyPens</span>
+    </div>
+    
+    <div class="trust-features">
+      <div class="trust-item">
+        <span class="icon">🛠</span>
+        <h3>Соответствие нормам ЕС</h3>
+        <p>CE-сертифицированные товары</p>
+      </div>
+      <div class="trust-item">
+        <span class="icon">🤝</span>
+        <h3>Авторизованный дистрибьютор</h3>
+        <p>Официальный партнёр</p>
+      </div>
+      <div class="trust-item">
+        <span class="icon">🔍</span>
+        <h3>Проверенные поставщики</h3>
+        <p>Только надёжные партнёры ЕС</p>
+      </div>
+      <div class="trust-item">
+        <span class="icon">🚚</span>
+        <h3>Быстрая доставка по ЕС</h3>
+        <p>2–5 рабочих дней</p>
+      </div>
+    </div>
+    
+    <div class="rating">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <span class="rating-text">4.8/5 (127 отзывов) — доверие клиентов по всей Европе</span>
+    </div>
+  </div>
+</section>
+
+<section id="wellness-paths" class="wellness-paths">
+  <div class="container">
+    <h2>Пути к благополучию</h2>
+    <p class="section-subtitle">Выберите свой путь к гармонии</p>
+    
+    <div class="paths-grid">
+      <div class="path-card focus">
+        <h3>Фокус</h3>
+        <p>Улучшает концентрацию и ясность ума</p>
+        <a href="/collections/focus" class="path-link">Каталог товаров →</a>
+      </div>
+      <div class="path-card calm">
+        <h3>Спокойствие</h3>
+        <p>Помогает найти внутренний баланс</p>
+        <a href="/collections/calm" class="path-link">Каталог товаров →</a>
+      </div>
+      <div class="path-card sleep">
+        <h3>Сон</h3>
+        <p>Поддерживает глубокий отдых и восстановление</p>
+        <a href="/collections/sleep" class="path-link">Каталог товаров →</a>
+      </div>
+      <div class="path-card recovery">
+        <h3>Восстановление</h3>
+        <p>Укрепляет тело и разум</p>
+        <a href="/collections/recovery" class="path-link">Каталог товаров →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="categories" class="categories-section">
+  <div class="container">
+    <h2>Категории товаров</h2>
+    
+    <div class="categories-grid">
+      <div class="category-card">
+        <h3>510-Картриджи</h3>
+        <p>Премиальные ботанические устройства</p>
+        <a href="/collections/510-cartridges" class="category-link">Каталог →</a>
+      </div>
+      <div class="category-card">
+        <h3>Травяные смеси</h3>
+        <p>Тщательно подобранные композиции</p>
+        <a href="/collections/botanical-blends" class="category-link">Каталог →</a>
+      </div>
+      <div class="category-card">
+        <h3>Наборы Wellness</h3>
+        <p>Комплекты для старта и релаксации</p>
+        <a href="/collections/wellness-packs" class="category-link">Каталог →</a>
+      </div>
+      <div class="category-card">
+        <h3>DIY-Инструменты</h3>
+        <p>Средства для наполнения и смешивания</p>
+        <a href="/collections/diy-tools" class="category-link">Каталог →</a>
+      </div>
+      <div class="category-card">
+        <h3>Аксессуары</h3>
+        <p>Необходимые дополнения</p>
+        <a href="/collections/accessories" class="category-link">Каталог →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="featured-products" class="featured-products">
+  <div class="container">
+    <h2>Рекомендуемые товары</h2>
+    
+    <div class="products-grid">
+      {% for product in collections.featured.products limit: 4 %}
+        <div class="product-card">
+          <img src="{{ product.featured_image | img_url: '400x400' }}" alt="{{ product.title }}">
+          <h3>{{ product.title }}</h3>
+          <p class="price">{{ product.price | money }}</p>
+          <a href="{{ product.url }}" class="btn-add-to-cart">В корзину</a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="faq-section">
+  <div class="container">
+    <h2>Часто задаваемые вопросы</h2>
+    
+    <div class="faq-items">
+      <div class="faq-item">
+        <h3>Что такое 510-совместимое устройство?</h3>
+        <p>Это универсальный стандарт резьбы для ботанических картриджей. HerbSpot предлагает только сертифицированные устройства ЕС с проверенными стандартами качества.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Продаёте ли вы продукты с ТГК?</h3>
+        <p>Нет. Вся наша продукция <strong>полностью легальна в ЕС</strong> и предназначена для <strong>ботанического велнеса</strong>.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Почему выбрать HerbSpot.fi?</h3>
+        <p>Надёжные поставщики, CE-сертифицированное качество, быстрая логистика ЕС и <strong>гарантия официального дистрибьютора</strong>.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Легально ли использование в ЕС?</h3>
+        <p>Да. Вся продукция соответствует нормам ЕС и поставляется от официально сертифицированных производителей.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="b2b" class="b2b-section">
+  <div class="container">
+    <h2>Присоединяйтесь к нашей дистрибьюторской сети</h2>
+    <p>Станьте партнёром <strong>B2B-сети HerbSpot</strong> для премиальной упаковки, быстрой логистики ЕС и оптовых цен.</p>
+    
+    <div class="b2b-benefits">
+      <div class="benefit-item">
+        <span class="icon">💼</span>
+        <h3>Премиальная упаковка</h3>
+        <p>Профессиональная B2B-презентация</p>
+      </div>
+      <div class="benefit-item">
+        <span class="icon">🚚</span>
+        <h3>Быстрая логистика ЕС</h3>
+        <p>Доставка за 2-5 рабочих дней</p>
+      </div>
+      <div class="benefit-item">
+        <span class="icon">💰</span>
+        <h3>Оптовые цены</h3>
+        <p>Конкурентные скидки за объём</p>
+      </div>
+    </div>
+    
+    <a href="/pages/b2b" class="btn-b2b">Связаться с нами →</a>
+  </div>
+</section>
+
+{% endif %}
+
+{% comment %}
+  CSS-styling (kopioi theme.css:ään):
+  
+  .hero-section { background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); padding: 80px 0; color: white; }
+  .hero-title { font-size: 3rem; font-weight: bold; margin-bottom: 1rem; }
+  .hero-subtitle { font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem; }
+  .btn-primary { background: #39FF14; color: black; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; }
+  .btn-secondary { background: transparent; color: white; border: 2px solid #39FF14; padding: 10px 22px; border-radius: 8px; text-decoration: none; }
+  .trust-section { padding: 60px 0; background: #f8f9fa; }
+  .brand-logos { font-size: 1.5rem; font-weight: bold; margin: 2rem 0; }
+  .trust-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 3rem 0; }
+  .trust-item { text-align: center; }
+  .trust-item .icon { font-size: 2rem; }
+  .wellness-paths { padding: 60px 0; background: #1a1a1a; color: white; }
+  .paths-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+  .path-card { background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; text-align: center; }
+  .categories-section { padding: 60px 0; }
+  .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+  .category-card { border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; text-align: center; }
+  .featured-products { padding: 60px 0; background: #f8f9fa; }
+  .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+  .product-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+  .faq-section { padding: 60px 0; }
+  .faq-item { margin-bottom: 2rem; padding: 1.5rem; border: 1px solid #ddd; border-radius: 8px; }
+  .b2b-section { padding: 60px 0; background: #1a1a1a; color: white; text-align: center; }
+  .b2b-benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 2rem 0; }
+  .benefit-item { text-align: center; }
+  .btn-b2b { background: #39FF14; color: black; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; }
+{% endcomment %}
