@@ -11,11 +11,11 @@ export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 
 export const STRIPE_CONFIG = {
   currency: 'eur',
-  successUrl: `https://herbspot-fi.onrender.com/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-  cancelUrl: `https://herbspot-fi.onrender.com/checkout/cancel`,
+  successUrl: `https://herbspot.fi/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+  cancelUrl: `https://herbspot.fi/checkout/cancel`,
   billingAddressCollection: 'required',
   shippingAddressCollection: {
-    allowed_countries: ['FI', 'SE', 'NO', 'DK', 'DE', 'FR', 'IT', 'ES', 'NL', 'BE', 'AT', 'CH'],
+    allowed_countries: ['FI', 'SE', 'NO', 'DK', 'DE', 'FR', 'IT', 'ES', 'NL', 'BE', 'AT', 'CH', 'PL', 'CZ', 'SK', 'HU', 'RO', 'BG', 'HR', 'SI', 'EE', 'LV', 'LT', 'IE', 'PT', 'LU', 'MT', 'CY', 'GR'],
   },
 };
 
@@ -54,16 +54,22 @@ export async function createCheckoutSession(items: Array<{
     },
     metadata: {
       source: 'herbspot-web',
+      reseller_id: 'herbspot',
       user_id: userId || '',
       loyalty_points: pointsToAdd.toString(),
       order_total: totalAmount.toString(),
       items_count: items.length.toString(),
+      shipping_region: 'EU',
+      distribution_type: 'retail',
     },
     payment_intent_data: {
       metadata: {
+        reseller_id: 'herbspot',
         user_id: userId || '',
         loyalty_points: pointsToAdd.toString(),
         order_total: totalAmount.toString(),
+        shipping_region: 'EU',
+        distribution_type: 'retail',
       },
     },
   } as any);

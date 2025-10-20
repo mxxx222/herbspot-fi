@@ -5,94 +5,94 @@ export default function B2BPage() {
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-8">
             <h1 className="text-5xl font-bold mb-6">
-              B2B <span className="text-[var(--brand)]">Palvelut</span>
+              B2B <span className="text-[var(--brand)]">Distribution Partnerships</span>
             </h1>
             <p className="text-xl text-white/70 mb-8">
-              Tulossa pian - Premium White-Label ratkaisut
+              Partner with Europe's trusted botanical wellness marketplace
             </p>
           </div>
 
           <div className="bg-white/5 rounded-lg p-8 mb-12">
-            <h2 className="text-2xl font-semibold mb-6">Mitä tarjoamme</h2>
+            <h2 className="text-2xl font-semibold mb-6">Distribution & Retail Collaboration</h2>
             <div className="grid md:grid-cols-2 gap-8 text-left">
               <div>
                 <h3 className="text-lg font-semibold text-[var(--brand)] mb-3">
-                  🏭 White-Label valmistus
+                  🏭 Authorised Distribution
                 </h3>
                 <p className="text-white/70 mb-4">
-                  Mukautetut 510-patruunat brändilläsi. Lääkinnällinen teräs, 
-                  pyrex-lasi, keraaminen ydin. EU-yhteensopiva valmistus.
+                  Become an authorised distributor of premium 510-compatible devices. 
+                  Access to trusted EU suppliers and verified quality standards.
                 </p>
               </div>
               
               <div>
                 <h3 className="text-lg font-semibold text-[var(--brand)] mb-3">
-                  📦 Premium-pakkaus
+                  📦 Retail Collaboration
                 </h3>
                 <p className="text-white/70 mb-4">
-                  Mukautetut pakkausratkaisut. Yksittäisistä yksiköistä bulk-tilauksiin. 
-                  Ammattimainen esittely vähittäis- ja tukkumyyntiin.
+                  Partner with HerbSpot for retail expansion. White-label solutions, 
+                  custom packaging, and professional presentation for B2B markets.
                 </p>
               </div>
               
               <div>
                 <h3 className="text-lg font-semibold text-[var(--brand)] mb-3">
-                  💼 Bulk-hinnoittelu
+                  💼 Bulk Pricing & MOQ
                 </h3>
                 <p className="text-white/70 mb-4">
-                  Kilpailukykyiset tukkuhinnat bulk-tilauksille. 
-                  Volyymialennukset saatavilla. MOQ alkaen 1000 kpl.
+                  Competitive wholesale pricing for bulk orders. Volume discounts available. 
+                  Minimum order quantity starting from 1000 units.
                 </p>
               </div>
               
               <div>
                 <h3 className="text-lg font-semibold text-[var(--brand)] mb-3">
-                  🚚 EU-jakelu
+                  🚚 EU Logistics Network
                 </h3>
                 <p className="text-white/70 mb-4">
-                  Suora toimitus kaikkiin EU-maihin. Nopea toimitus, 
-                  tullaus sisältyy. Ammattimainen logistiikka.
+                  Direct shipping to all EU countries. Fast delivery, customs clearance included. 
+                  Professional logistics and supply chain management.
                 </p>
               </div>
             </div>
           </div>
 
           <div className="bg-gradient-to-r from-[var(--brand)]/20 to-green-400/20 border border-[var(--brand)]/30 rounded-lg p-8 mb-12">
-            <h2 className="text-2xl font-semibold mb-4">🚀 Saa varhainen pääsy</h2>
+            <h2 className="text-2xl font-semibold mb-4">🚀 Early Access Partnership Program</h2>
             <p className="text-white/70 mb-6">
-              Ole ensimmäinen tietämässä kun B2B-palvelumme käynnistyy. 
-              Saa eksklusiivinen early-bird hinta ja prioriteettituki.
+              Join our exclusive distribution partnership program. Get early access to new products, 
+              priority support, and exclusive wholesale pricing.
             </p>
             
-            {/* Motivoiva teksti */}
+            {/* Partnership Benefits */}
             <div className="bg-black/30 rounded-lg p-6 mb-6 border border-[var(--brand)]/20">
               <h3 className="text-lg font-semibold text-[var(--brand)] mb-3">
-                💎 Miksi liittyä varhaisiin käyttäjiin?
+                💎 Partnership Benefits
               </h3>
               <div className="grid md:grid-cols-2 gap-4 text-sm text-white/80">
                 <div className="flex items-start gap-2">
                   <span className="text-[var(--brand)] font-bold">✓</span>
-                  <span><strong>50% alennus</strong> ensimmäisestä tilauksesta</span>
+                  <span><strong>50% discount</strong> on first wholesale order</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="text-[var(--brand)] font-bold">✓</span>
-                  <span><strong>Prioriteettituki</strong> ja henkilökohtainen asiakaspalvelu</span>
+                  <span><strong>Priority support</strong> and dedicated account manager</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="text-[var(--brand)] font-bold">✓</span>
-                  <span><strong>Eksklusiiviset tuotteet</strong> vain varhaisille käyttäjille</span>
+                  <span><strong>Exclusive products</strong> for distribution partners only</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="text-[var(--brand)] font-bold">✓</span>
-                  <span><strong>Rajoitettu aika</strong> - vain 100 ensimmäistä yritystä</span>
+                  <span><strong>Limited spots</strong> - only 50 distribution partners</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="text-[var(--brand)] font-bold">✓</span>
-                  <span><strong>Ilmainen konsultaatio</strong> brändisi kehittämiseen</span>
+                  <span><strong>Free consultation</strong> on market expansion strategy</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="text-[var(--brand)] font-bold">✓</span>
-                  <span><strong>Beta-testaus</strong> uusista tuotteista</span>
+                  <span><strong>Beta access</strong> to new product launches</span>
                 </div>
               </div>
             </div>
@@ -101,28 +101,28 @@ export default function B2BPage() {
               <div className="flex gap-3">
                 <input
                   type="email"
-                  placeholder="Yrityksen sähköposti"
+                  placeholder="Business email address"
                   className="flex-1 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[var(--brand)] focus:border-transparent"
                 />
                 <button
                   type="submit"
                   className="bg-[var(--brand)] text-black px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
                 >
-                  Ilmoita minulle
+                  Join Program
                 </button>
               </div>
               <p className="text-xs text-white/60 mt-2 text-center">
-                🔒 Sähköpostisi on turvassa. Lähetämme vain B2B-uutisia.
+                🔒 Your email is secure. We only send B2B partnership updates.
               </p>
             </form>
           </div>
 
           <div className="text-center">
-            <h3 className="text-xl font-semibold mb-4">Ota yhteyttä</h3>
+            <h3 className="text-xl font-semibold mb-4">Contact Partnership Team</h3>
             <div className="space-y-2 text-white/70">
-              <p>📧 <a href="mailto:b2b@herbspot.fi" className="text-[var(--brand)] hover:underline">b2b@herbspot.fi</a></p>
+              <p>📧 <a href="mailto:partnerships@herbspot.fi" className="text-[var(--brand)] hover:underline">partnerships@herbspot.fi</a></p>
               <p>📱 +358-XX-XXX-XXXX</p>
-              <p>🏢 Helsinki, Suomi</p>
+              <p>🏢 Helsinki, Finland</p>
             </div>
           </div>
         </div>
@@ -132,13 +132,13 @@ export default function B2BPage() {
 }
 
 export const metadata = {
-  title: 'B2B Palvelut - White-Label 510-patruunat | HerbSpot.fi',
-  description: 'Premium B2B-palvelut 510-patruunoille. White-label valmistus, mukautettu pakkaus, bulk-hinnoittelu. Tulossa pian.',
+  title: 'B2B Distribution Partnerships | HerbSpot.fi',
+  description: 'Partner with Europe\'s trusted botanical wellness marketplace. Authorised distribution, retail collaboration, bulk pricing, EU logistics.',
   openGraph: {
-    title: 'B2B Palvelut - White-Label 510-patruunat',
-    description: 'Premium B2B-palvelut 510-patruunoille. White-label valmistus, mukautettu pakkaus, bulk-hinnoittelu.',
+    title: 'B2B Distribution Partnerships - HerbSpot.fi',
+    description: 'Partner with Europe\'s trusted botanical wellness marketplace. Authorised distribution, retail collaboration, bulk pricing.',
     images: ['/og-b2b.jpg'],
-    locale: 'fi_FI',
+    locale: 'en_US',
     type: 'website',
   },
 };
