@@ -32,6 +32,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://herbspot.fi'),
   title: "HerbSpot.fi | Europe's Botanical Wellness Marketplace",
   description: "Shop trusted 510-compatible wellness devices and botanical blends from verified EU suppliers. Authorised distributor of premium botanical wellness technology.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
