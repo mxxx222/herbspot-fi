@@ -50,7 +50,7 @@ function generateProductStructuredData(product: any) {
     },
     "offers": {
       "@type": "Offer",
-      "price": product.price?.replace('€', '') || "0",
+      "price": String(product.price || '0').replace(/[€$]/g, '').trim() || "0",
       "priceCurrency": "EUR",
       "availability": "https://schema.org/InStock",
       "seller": {
