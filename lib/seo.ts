@@ -170,30 +170,60 @@ export function generateMetaTags({
   description,
   image,
   url,
-  type = "website"
+  type = "website",
+  keywords,
+  price,
+  currency,
+  availability,
+  brand,
+  category
 }: {
   title: string;
   description: string;
   image?: string;
   url?: string;
   type?: "website" | "article" | "product";
+  keywords?: string[];
+  price?: number;
+  currency?: string;
+  availability?: string;
+  brand?: string;
+  category?: string;
 }) {
   return {
     title,
     description,
+    keywords: keywords?.join(', ') || '',
     openGraph: {
       title,
       description,
       type,
       url,
       images: image ? [{ url: image, width: 1200, height: 630 }] : undefined,
-      siteName: "HerbSpot.fi"
+      siteName: "HerbSpot.fi",
+      locale: "fi_FI"
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: image ? [image] : undefined
+      images: image ? [image] : undefined,
+      creator: "@herbspotfi",
+      site: "@herbspotfi"
+    },
+    alternates: {
+      canonical: url,
+      languages: {
+        'fi': url,
+        'en': url?.replace('herbspot.fi', 'herbspot.fi/en')
+      }
+    },
+    other: {
+      ...(price && { 'product:price:amount': price.toString() }),
+      ...(currency && { 'product:price:currency': currency }),
+      ...(availability && { 'product:availability': availability }),
+      ...(brand && { 'product:brand': brand }),
+      ...(category && { 'product:category': category })
     }
   };
 }
