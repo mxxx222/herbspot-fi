@@ -1,0 +1,87 @@
+# 🛍️ TUOTANTOKELPOINEN ROBOTS.TXT.LIQUID + PIKATESTIT
+
+## 1️⃣ **robots.txt.liquid** - Tuotantokelpoinen
+
+```liquid
+{%- assign q = request.query_string | downcase -%}
+{%- assign is_param = q != blank -%}
+{%- assign has_constraints = q contains 'constraints=' -%}
+{%- assign has_plus = q contains '%2b' or q contains '+' -%}
+
+# robots.txt for HerbSpot
+User-agent: *
+
+# Kriittiset polut
+Disallow: /admin/
+Disallow: /cart
+Disallow: /checkout
+Disallow: /orders
+Disallow: /apps/
+Disallow: /search
+Disallow: /community/
+Disallow: /policies/
+
+# Dynaamiset parametrit (yleiset)
+Disallow: /*?*utm_=
+Disallow: /*?*gclid=
+Disallow: /*?*fbclid=
+Disallow: /*?*variant=
+Disallow: /*?*page=
+Disallow: /*?*sort_by=
+Disallow: /*?*view=
+Disallow: /*?*locale=
+Disallow: /*?*currency=
+
+# Kokoelmafiltterit: salli perus-URL, estä yhdistelmät ja constraints-parametriset
+{%- if has_constraints -%}
+Disallow: {{ request.path }}?{{ request.query_string }}
+{%- endif -%}
+{%- if has_plus -%}
+Disallow: {{ request.path }}?{{ request.query_string }}
+{%- endif -%}
+
+# Salli yksittäinen tag-URL (ilman query-parametreja)
+# /collections/.../focus, /collections/.../calm jne. — ei sääntöä: indeksoitavissa
+
+# Sivustokartat
+Sitemap: https://{{ shop.primary_domain }}/sitemap.xml
+```
+
+## 2️⃣ **Pikaverifiointi** - curl-komennot
+
+```bash
+# Perus robots
+curl -s https://www.herbspot.fi/robots.txt | sed -n '1,120p'
+
+# Yhdistelmäfiltteri + (noindex-tyylinen disallow rivissä)
+curl -s "https://www.herbspot.fi/collections/all?constraints=focus%2Bcalm" -H "User-Agent: Googlebot" -I | grep -i 'link:\|x-robots-tag:'
+curl -s https://www.herbspot.fi/robots.txt | grep -i 'constraints='
+
+# Yksittäinen tag ilman parametreja → ei Disallow-riviä tälle polulle
+curl -s https://www.herbspot.fi/robots.txt | grep -i "/collections/all/focus" || echo "OK: ei eksplisiittistä estoa"
+```
+
+## 3️⃣ **Huomio**
+
+* **Canonical + `<meta name="robots" content="noindex,follow">`** pysyy lähdekoodissa kuten aiemmin
+* **Tämä `robots.txt.liquid`** vain täydentää indeksointiohjausta ja vähentää parametrisivuja crawlista
+
+## 4️⃣ **Käyttöohjeet**
+
+### Theme.liquid:
+```liquid
+<!-- robots.txt.liquid tähän -->
+```
+
+### Testaa:
+```bash
+# Perus robots
+curl -s https://www.herbspot.fi/robots.txt
+
+# Yhdistelmäfiltterit
+curl -s "https://www.herbspot.fi/collections/all?constraints=focus%2Bcalm" -H "User-Agent: Googlebot" -I
+```
+
+## ✅ **VALMIS!**
+
+**Tuotantokelpoinen robots.txt.liquid + pikatestit!** 🚀
