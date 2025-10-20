@@ -1,5 +1,5 @@
--- Supabase Loyalty Points API Functions
--- Edge Functions for loyalty system
+// Supabase Loyalty Points API Functions
+// Edge Functions for loyalty system
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
