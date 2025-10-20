@@ -38,7 +38,7 @@ export default async function ProductPage({ params }: { params: { handle: string
   const productData = {
     name: p.title,
     description: `Premium ${p.title} - Lääkinnällinen teräs, pyrex-lasi, keraaminen ydin. Raskasmetallitestattu.`,
-    price: parseFloat(p.price.replace('€', '')),
+    price: parseFloat(String(p.price || '0').replace(/[€$]/g, '').trim()),
     currency: 'EUR',
     image: p.image,
     availability: 'in_stock' as const,
