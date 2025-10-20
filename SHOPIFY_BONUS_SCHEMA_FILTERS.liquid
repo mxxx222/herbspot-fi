@@ -1,0 +1,291 @@
+# 🛍️ BONUS: FAQ SCHEMA + COLLECTION-FILTTERIT
+
+## 1️⃣ **FAQ Schema.org** - `pages/faq.liquid`
+
+```liquid
+<!-- FAQ Schema.org FI/EN/RU -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "{% case localization.language.iso_code %}{% when 'fi' %}Mikä on 510-yhteensopiva laite?{% when 'ru' %}Что такое 510-совместимое устройство?{% else %}What is a 510-compatible device?{% endcase %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% case localization.language.iso_code %}{% when 'fi' %}510 on yleisesti käytetty kierrestandardi kasvipatruunoissa. HerbSpot tarjoaa vain luotettavia ja testattuja 510-yhteensopivia laitteita EU-alueelta.{% when 'ru' %}Это универсальный стандарт резьбы для ботанических картриджей. HerbSpot предлагает только сертифицированные устройства ЕС с проверенными стандартами качества.{% else %}510 is the universal threading standard for botanical cartridges. HerbSpot curates only verified EU devices with trusted quality standards.{% endcase %}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{% case localization.language.iso_code %}{% when 'fi' %}Myyttekö THC-tuotteita?{% when 'ru' %}Продаёте ли вы продукты с ТГК?{% else %}Do you sell THC products?{% endcase %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% case localization.language.iso_code %}{% when 'fi' %}Emme. Kaikki tuotteemme ovat laillisia EU-alueella ja tarkoitettu botaaniseen hyvinvointikäyttöön.{% when 'ru' %}Нет. Вся наша продукция полностью легальна в ЕС и предназначена для ботанического велнеса.{% else %}No. All our products are EU-legal and designed for botanical wellness use.{% endcase %}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{% case localization.language.iso_code %}{% when 'fi' %}Miksi valita HerbSpot.fi?{% when 'ru' %}Почему выбрать HerbSpot.fi?{% else %}Why choose HerbSpot.fi?{% endcase %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% case localization.language.iso_code %}{% when 'fi' %}Luotettavat toimittajat, CE-sertifioidut tuotteet, nopea EU-logistiikka ja valtuutetun jälleenmyyjän varmuus.{% when 'ru' %}Надёжные поставщики, CE-сертифицированное качество, быстрая логистика ЕС и гарантия официального дистрибьютора.{% else %}Trusted suppliers, CE-certified products, fast EU logistics, and authorized distributor guarantee.{% endcase %}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{% case localization.language.iso_code %}{% when 'fi' %}Onko käyttö laillista EU:ssa?{% when 'ru' %}Легально ли использование в ЕС?{% else %}Is usage legal in the EU?{% endcase %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% case localization.language.iso_code %}{% when 'fi' %}Kyllä. Kaikki tuotteet ovat EU-säädösten mukaisia ja toimitetaan virallisesti sertifioiduilta valmistajilta.{% when 'ru' %}Да. Вся продукция соответствует нормам ЕС и поставляется от официально сертифицированных производителей.{% else %}Yes. All products comply with EU regulations and are supplied from officially certified manufacturers.{% endcase %}"
+      }
+    }
+  ]
+}
+</script>
+
+<!-- FAQ Content -->
+<div class="faq-content">
+  <h1>
+    {% case localization.language.iso_code %}
+      {% when 'fi' %}Usein kysytyt kysymykset{% when 'ru' %}Часто задаваемые вопросы{% else %}Frequently Asked Questions{% endcase %}
+  </h1>
+
+  <div class="faq-items">
+    <div class="faq-item">
+      <h3>
+        {% case localization.language.iso_code %}
+          {% when 'fi' %}Mikä on 510-yhteensopiva laite?{% when 'ru' %}Что такое 510-совместимое устройство?{% else %}What is a 510-compatible device?{% endcase %}
+      </h3>
+      <p>
+        {% case localization.language.iso_code %}
+          {% when 'fi' %}510 on yleisesti käytetty kierrestandardi kasvipatruunoissa. HerbSpot tarjoaa vain luotettavia ja testattuja 510-yhteensopivia laitteita EU-alueelta.{% when 'ru' %}Это универсальный стандарт резьбы для ботанических картриджей. HerbSpot предлагает только сертифицированные устройства ЕС с проверенными стандартами качества.{% else %}510 is the universal threading standard for botanical cartridges. HerbSpot curates only verified EU devices with trusted quality standards.{% endcase %}
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>
+        {% case localization.language.iso_code %}
+          {% when 'fi' %}Myyttekö THC-tuotteita?{% when 'ru' %}Продаёте ли вы продукты с ТГК?{% else %}Do you sell THC products?{% endcase %}
+      </h3>
+      <p>
+        {% case localization.language.iso_code %}
+          {% when 'fi' %}Emme. Kaikki tuotteemme ovat laillisia EU-alueella ja tarkoitettu botaaniseen hyvinvointikäyttöön.{% when 'ru' %}Нет. Вся наша продукция полностью легальна в ЕС и предназначена для ботанического велнеса.{% else %}No. All our products are EU-legal and designed for botanical wellness use.{% endcase %}
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>
+        {% case localization.language.iso_code %}
+          {% when 'fi' %}Miksi valita HerbSpot.fi?{% when 'ru' %}Почему выбрать HerbSpot.fi?{% else %}Why choose HerbSpot.fi?{% endcase %}
+      </h3>
+      <p>
+        {% case localization.language.iso_code %}
+          {% when 'fi' %}Luotettavat toimittajat, CE-sertifioidut tuotteet, nopea EU-logistiikka ja valtuutetun jälleenmyyjän varmuus.{% when 'ru' %}Надёжные поставщики, CE-сертифицированное качество, быстрая логистика ЕС и гарантия официального дистрибьютора.{% else %}Trusted suppliers, CE-certified products, fast EU logistics, and authorized distributor guarantee.{% endcase %}
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>
+        {% case localization.language.iso_code %}
+          {% when 'fi' %}Onko käyttö laillista EU:ssa?{% when 'ru' %}Легально ли использование в ЕС?{% else %}Is usage legal in the EU?{% endcase %}
+      </h3>
+      <p>
+        {% case localization.language.iso_code %}
+          {% when 'fi' %}Kyllä. Kaikki tuotteet ovat EU-säädösten mukaisia ja toimitetaan virallisesti sertifioiduilta valmistajilta.{% when 'ru' %}Да. Вся продукция соответствует нормам ЕС и поставляется от официально сертифицированных производителей.{% else %}Yes. All products comply with EU regulations and are supplied from officially certified manufacturers.{% endcase %}
+      </p>
+    </div>
+  </div>
+</div>
+```
+
+## 2️⃣ **Collection-filtterit** - `collection.liquid`
+
+```liquid
+<!-- Collection Filters FI/EN/RU -->
+<div class="collection-filters">
+  <h3>
+    {% case localization.language.iso_code %}
+      {% when 'fi' %}Suodata tuotteita{% when 'ru' %}Фильтр товаров{% else %}Filter Products{% endcase %}
+  </h3>
+  
+  <!-- Wellness Path Filter -->
+  <div class="filter-group">
+    <h4>
+      {% case localization.language.iso_code %}
+        {% when 'fi' %}Hyvinvoinnin polku{% when 'ru' %}Путь велнеса{% else %}Wellness Path{% endcase %}
+    </h4>
+    <ul>
+      <li><a href="/collections/all" class="filter-link">
+        {% case localization.language.iso_code %}
+          {% when 'fi' %}Kaikki{% when 'ru' %}Все{% else %}All{% endcase %}
+      </a></li>
+      <li><a href="/collections/focus" class="filter-link">
+        {% case localization.language.iso_code %}
+          {% when 'fi' %}Focus{% when 'ru' %}Фокус{% else %}Focus{% endcase %}
+      </a></li>
+      <li><a href="/collections/calm" class="filter-link">
+        {% case localization.language.iso_code %}
+          {% when 'fi' %}Calm{% when 'ru' %}Спокойствие{% else %}Calm{% endcase %}
+      </a></li>
+      <li><a href="/collections/sleep" class="filter-link">
+        {% case localization.language.iso_code %}
+          {% when 'fi' %}Sleep{% when 'ru' %}Сон{% else %}Sleep{% endcase %}
+      </a></li>
+      <li><a href="/collections/recovery" class="filter-link">
+        {% case localization.language.iso_code %}
+          {% when 'fi' %}Recovery{% when 'ru' %}Восстановление{% else %}Recovery{% endcase %}
+      </a></li>
+    </ul>
+  </div>
+
+  <!-- Category Filter -->
+  <div class="filter-group">
+    <h4>
+      {% case localization.language.iso_code %}
+        {% when 'fi' %}Kategoria{% when 'ru' %}Категория{% else %}Category{% endcase %}
+    </h4>
+    <ul>
+      <li><a href="/collections/510-patruunat" class="filter-link">
+        {% case localization.language.iso_code %}
+          {% when 'fi' %}510-patruunat{% when 'ru' %}510-картриджи{% else %}510 Cartridges{% endcase %}
+      </a></li>
+      <li><a href="/collections/kasviblendit" class="filter-link">
+        {% case localization.language.iso_code %}
+          {% when 'fi' %}Kasviblendit{% when 'ru' %}Травяные смеси{% else %}Botanical Blends{% endcase %}
+      </a></li>
+      <li><a href="/collections/wellness-paketit" class="filter-link">
+        {% case localization.language.iso_code %}
+          {% when 'fi' %}Wellness-paketit{% when 'ru' %}Наборы велнеса{% else %}Wellness Packs{% endcase %}
+      </a></li>
+      <li><a href="/collections/diy-tyokalut" class="filter-link">
+        {% case localization.language.iso_code %}
+          {% when 'fi' %}DIY-työkalut{% when 'ru' %}DIY-инструменты{% else %}DIY Tools{% endcase %}
+      </a></li>
+    </ul>
+  </div>
+
+  <!-- Price Filter -->
+  <div class="filter-group">
+    <h4>
+      {% case localization.language.iso_code %}
+        {% when 'fi' %}Hinta{% when 'ru' %}Цена{% else %}Price{% endcase %}
+    </h4>
+    <ul>
+      <li><a href="/collections/all?sort_by=price-ascending" class="filter-link">
+        {% case localization.language.iso_code %}
+          {% when 'fi' %}Halvin ensin{% when 'ru' %}От дешёвых{% else %}Price: Low to High{% endcase %}
+      </a></li>
+      <li><a href="/collections/all?sort_by=price-descending" class="filter-link">
+        {% case localization.language.iso_code %}
+          {% when 'fi' %}Kallein ensin{% when 'ru' %}От дорогих{% else %}Price: High to Low{% endcase %}
+      </a></li>
+    </ul>
+  </div>
+</div>
+```
+
+## 3️⃣ **CSS lisäykset** - `theme.css`
+
+```css
+/* Collection Filters */
+.collection-filters {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.filter-group {
+  margin-bottom: 20px;
+}
+
+.filter-group h4 {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.filter-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.filter-group li {
+  margin: 5px 0;
+}
+
+.filter-link {
+  color: #666;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  display: block;
+  transition: background-color 0.2s;
+}
+
+.filter-link:hover {
+  background: #e9ecef;
+  color: #333;
+}
+
+/* FAQ Styles */
+.faq-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.faq-items {
+  margin-top: 30px;
+}
+
+.faq-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: white;
+}
+
+.faq-item h3 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.2em;
+}
+
+.faq-item p {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Skip Link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+```
+
+## 🎯 **KÄYTTÖ:**
+
+1. **FAQ-schema:** Kopioi `pages/faq.liquid`-tiedostoon
+2. **Collection-filtterit:** Kopioi `collection.liquid`-tiedostoon  
+3. **CSS:** Lisää `theme.css`-tiedostoon
+4. **SEO:** Automaattinen schema.org merkintä
+
+## ✅ **VALMIS!**
+
+**Automaattinen kielenvaihto + SEO-optimointi + saavutettavuus!** 🚀
