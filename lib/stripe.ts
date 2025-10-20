@@ -25,7 +25,7 @@ export async function createCheckoutSession(items: Array<{
   price: number;
   quantity: number;
   image?: string;
-}>) {
+}>, userId?: string, loyaltyPoints?: number) {
   const lineItems = items.map(item => ({
     price_data: {
       currency: 'eur',
@@ -38,6 +38,10 @@ export async function createCheckoutSession(items: Array<{
     quantity: item.quantity,
   }));
 
+  // Calculate total amount for loyalty points
+  const totalAmount = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const pointsToAdd = loyaltyPoints || Math.floor(totalAmount * 2); // 2 points per euro
+
   const session = await stripe.checkout.sessions.create({
     line_items: lineItems,
     mode: 'payment',
@@ -45,20 +49,38 @@ export async function createCheckoutSession(items: Array<{
     cancel_url: STRIPE_CONFIG.cancelUrl,
     billing_address_collection: STRIPE_CONFIG.billingAddressCollection,
     shipping_address_collection: STRIPE_CONFIG.shippingAddressCollection,
+    automatic_tax: {
+      enabled: true,
+    },
     metadata: {
       source: 'herbspot-web',
+      user_id: userId || '',
+      loyalty_points: pointsToAdd.toString(),
+      order_total: totalAmount.toString(),
+      items_count: items.length.toString(),
+    },
+    payment_intent_data: {
+      metadata: {
+        user_id: userId || '',
+        loyalty_points: pointsToAdd.toString(),
+        order_total: totalAmount.toString(),
+      },
     },
   } as any);
 
   return session;
 }
 
-export async function createPaymentIntent(amount: number, currency = 'eur') {
+export async function createPaymentIntent(amount: number, currency = 'eur', userId?: string) {
   const paymentIntent = await stripe.paymentIntents.create({
     amount: Math.round(amount * 100),
     currency,
     automatic_payment_methods: {
       enabled: true,
+    },
+    metadata: {
+      user_id: userId || '',
+      loyalty_points: Math.floor(amount * 2).toString(),
     },
   });
 
