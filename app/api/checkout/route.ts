@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createCheckoutSession } from '@/lib/stripe';
 
+// Edge runtime for better performance
+export const runtime = 'edge';
+
 export async function POST(request: NextRequest) {
   try {
     const { cartItems } = await request.json();

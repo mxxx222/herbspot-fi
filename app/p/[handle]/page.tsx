@@ -1,7 +1,35 @@
 import Link from "next/link";
-import { getOne } from "@/lib/data";
-import { SEOHead } from "@/components/SEOHead";
+import Image from "next/image";
+import { getOne, getAllProducts } from "@/lib/data";
+import { generateProductMetadata } from "@/lib/seo";
 import { ProductStructuredData } from "@/components/StructuredData";
+
+// Generate static params for all products
+export async function generateStaticParams() {
+  const products = await getAllProducts();
+  return products.map((product) => ({
+    handle: product.handle,
+  }));
+}
+
+export async function generateMetadata({ params }: { params: { handle: string }}) {
+  const product = await getOne(params.handle);
+  if (!product) {
+    return {
+      title: "Tuotetta ei löytynyt | HerbSpot",
+      description: "Tuotetta ei löytynyt.",
+    };
+  }
+
+  return generateProductMetadata({
+    title: product.title,
+    category: product.category || "510-patruunat",
+    price: product.price,
+    availability: "in stock",
+    image: product.image,
+    handle: params.handle,
+  });
+}
 
 export default async function ProductPage({ params }: { params: { handle: string }}) {
   const p = await getOne(params.handle);
@@ -21,29 +49,26 @@ export default async function ProductPage({ params }: { params: { handle: string
 
   return (
     <>
-      <SEOHead
-        title={p.title}
-        description={productData.description}
-        keywords={['510-patruuna', 'aromatherapy', 'premium', 'lääkinnällinen teräs']}
-        image={p.image}
-        type="product"
-        price={productData.price}
-        currency={productData.currency}
-        availability={productData.availability}
-        brand={productData.brand}
-        category={productData.category}
-      />
       <ProductStructuredData product={productData} />
       
       <div className="section">
         <div className="container grid md:grid-cols-2 gap-8">
           <div className="card overflow-hidden">
-            <img src={p.image} alt={p.title} className="w-full h-[420px] object-cover" />
+            <Image 
+              src={p.image} 
+              alt={p.title} 
+              width={600}
+              height={420}
+              className="w-full h-[420px] object-cover"
+              priority
+              placeholder="blur"
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+            />
           </div>
           <div>
-            <h1 className="h2">{p.title}</h1>
+            <h1 className="h2 font-heading font-heading">{p.title}</h1>
             <p className="text-[var(--brand)] font-extrabold text-2xl mt-2">{p.price}</p>
-            <ul className="mt-4 space-y-2 text-white/80">
+            <ul className="mt-4 space-y-2 text-white/80 font-body">
               <li>• Keraaminen kela / 510-kierre (mallista riippuen)</li>
               <li>• Lääkinnällinen teräs, pyrex-lasi</li>
               <li>• 0,5 ml / 1,0 ml vaihtoehdot</li>

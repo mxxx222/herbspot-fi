@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// Edge runtime for better performance
+export const runtime = 'edge';
+
 export async function POST(request: NextRequest) {
   try {
     const performanceData = await request.json();

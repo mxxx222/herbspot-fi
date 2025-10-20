@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface ErrorBoundaryState {
   hasError: boolean;
@@ -26,6 +26,17 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
   componentDidCatch(error: Error, errorInfo: any) {
     console.error('ErrorBoundary caught an error:', error, errorInfo);
     this.setState({ error, errorInfo });
+    
+    // Send error to Sentry (if available)
+    if (typeof window !== 'undefined' && (window as any).Sentry) {
+      (window as any).Sentry.captureException(error, {
+        contexts: {
+          react: {
+            componentStack: errorInfo.componentStack,
+          },
+        },
+      });
+    }
   }
 
   render() {
@@ -215,6 +226,3 @@ export function NotFoundError({
     </div>
   );
 }
-
-// Import React for ErrorBoundary
-import React from 'react';
