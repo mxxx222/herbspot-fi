@@ -16,21 +16,29 @@
     "deploy:prod": "git push origin main && git tag v1.3-go-live && git push origin v1.3-go-live"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@supabase/supabase-js": "^2.38.0",
+    "@tanstack/react-query": "^5.90.6",
+    "@tanstack/react-query-devtools": "^5.90.2",
+    "class-variance-authority": "^0.7.1",
+    "framer-motion": "^10.16.0",
     "next": "14.0.0",
+    "postcss-preset-env": "^10.4.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "framer-motion": "^10.16.0",
+    "react-hook-form": "^7.66.0",
+    "recharts": "^2.12.0",
     "stripe": "^14.0.0",
-    "@supabase/supabase-js": "^2.38.0"
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "typescript": "^5.0.0",
-    "tailwindcss": "^3.3.0",
-    "lighthouse": "^11.0.0",
     "chrome-launcher": "^0.15.0",
-    "jsdom": "^23.0.0"
+    "jsdom": "^23.0.0",
+    "lighthouse": "^11.0.0",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5.0.0"
   }
 }
