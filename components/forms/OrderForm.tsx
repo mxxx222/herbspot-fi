@@ -37,7 +37,7 @@ const OrderFormSchema = z.object({
     street: z.string().min(1, 'Katuosoite on pakollinen'),
     city: z.string().min(1, 'Kaupunki on pakollinen'),
     postalCode: z.string().min(5, 'Postinumero on pakollinen'),
-    country: z.string().default('FI')
+    country: z.string().default('FI').optional()
   }),
   qrCode: z.string().optional(),
   agreeToTerms: z.boolean().refine(val => val === true, {
