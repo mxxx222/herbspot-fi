@@ -14,41 +14,41 @@ export default async function Page() {
       {/* FAQ Section */}
       <section className="section bg-white/5">
         <div className="container max-w-4xl">
-          <h2 className="h2 text-center mb-12 font-heading font-heading">Frequently Asked Questions</h2>
+          <h2 className="h2 text-center mb-12 font-heading">Usein Kysyttyä</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-6">
               <div>
-                <h3 className="text-lg font-semibold text-[var(--brand)] mb-2 font-heading font-heading">
-                  What is a 510-compatible botanical device?
+                <h3 className="text-lg font-semibold text-[var(--brand)] mb-2 font-heading">
+                  Mitä ovat 510-yhteensopivat laitteet?
                 </h3>
                 <p className="text-white/80 font-body">
-                  510 is the universal threading standard for botanical cartridges. We curate trusted 510-compatible devices from verified EU suppliers.
+                  510 on yleismaailmallinen kierrestandardi kasviöljypatruunoille. Myymme vain laadukkaita, EU-sertifioituja laitteita luotettavilta toimittajilta.
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-[var(--brand)] mb-2 font-heading font-heading">
-                  Do you sell THC products?
+                <h3 className="text-lg font-semibold text-[var(--brand)] mb-2 font-heading">
+                  Onko käyttö laillista Suomessa?
                 </h3>
                 <p className="text-white/80 font-body">
-                  No. We are an authorised distributor of legal botanical wellness devices and accessories. All products comply with EU regulations.
+                  Kyllä. Kaikki tuotteemme ovat täysin laillisia aromaterapeuttiseen käyttöön ja noudattavat Suomen ja EU:n lainsäädäntöä.
                 </p>
               </div>
             </div>
             <div className="space-y-6">
               <div>
-                <h3 className="text-lg font-semibold text-[var(--brand)] mb-2 font-heading font-heading">
-                  Why choose HerbSpot.fi?
+                <h3 className="text-lg font-semibold text-[var(--brand)] mb-2 font-heading">
+                  Miksi valita HerbSpot.fi?
                 </h3>
                 <p className="text-white/80 font-body">
-                  We curate only premium botanical wellness devices from trusted EU suppliers. Authorised distributor with verified quality standards.
+                  Tarjoamme vain premium-laatua luotettavilta EU-toimittajilta. Nopea toimitus, varma maksu ja erinomainen asiakaspalvelu suomeksi.
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-[var(--brand)] mb-2 font-heading font-heading">
-                  Is usage legal in the EU?
+                <h3 className="text-lg font-semibold text-[var(--brand)] mb-2 font-heading">
+                  Kuinka nopeasti saan tilaukseni?
                 </h3>
                 <p className="text-white/80 font-body">
-                  Yes. All our curated products comply with EU regulations and are sourced from certified suppliers with proper documentation.
+                  Toimitamme tilaukset 24 tunnin kuluessa Suomeen. Ilmainen toimitus yli 50€ tilauksiin.
                 </p>
               </div>
             </div>
@@ -59,11 +59,11 @@ export default async function Page() {
       {/* B2B CTA Section */}
       <section className="section">
         <div className="container card p-8 text-center">
-          <h3 className="h2 font-heading font-heading">Distribution Partnerships</h3>
-          <p className="lead mt-2 font-body">Join our network of authorised retailers. Premium packaging, fast EU logistics, and B2B pricing available.</p>
+          <h3 className="h2 font-heading">Tukkumyynti Yrityksille</h3>
+          <p className="lead mt-2 font-body">Liity jälleenmyyjäverkostoomme. Kilpailukykyinen hinnoittelu, nopea toimitus ja kattava tuotevalikoima.</p>
           <div className="mt-6 flex items-center justify-center gap-3">
-            <a href="/b2b" className="btn btn-brand">B2B Services</a>
-            <a href="/contact" className="btn btn-ghost">Contact Us</a>
+            <a href="/b2b" className="btn btn-brand">B2B-Palvelut</a>
+            <a href="/contact" className="btn btn-ghost">Ota Yhteyttä</a>
           </div>
         </div>
       </section>

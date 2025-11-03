@@ -8,9 +8,9 @@ export function TrustSignals() {
     <section className="section bg-white/5">
       <div className="container">
         <div className="text-center mb-8">
-          <h2 className="h2 font-heading font-heading mb-4">Verified Partners & Quality Assurance</h2>
+          <h2 className="h2 font-heading mb-4">Luotettava Yhteistyökumppani</h2>
           <p className="text-white/80 font-body">
-            We curate only the finest botanical wellness devices from trusted EU suppliers
+            Tarjoamme vain laadukkaita tuotteita luotettavilta eurooppalaisilta toimittajilta
           </p>
         </div>
 
@@ -22,8 +22,8 @@ export function TrustSignals() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h3 className="font-semibold text-white mb-1">EU Compliance</h3>
-            <p className="text-sm text-white/70">CE Certified Products</p>
+            <h3 className="font-semibold text-white mb-1">Laillinen</h3>
+            <p className="text-sm text-white/70">Suomen lainsäädännön mukainen</p>
           </div>
 
           <div className="text-center">
@@ -32,8 +32,8 @@ export function TrustSignals() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
             </div>
-            <h3 className="font-semibold text-white mb-1">Authorised Distributor</h3>
-            <p className="text-sm text-white/70">Official Retail Partner</p>
+            <h3 className="font-semibold text-white mb-1">Valtuutettu Myyjä</h3>
+            <p className="text-sm text-white/70">Virallinen jälleenmyyjä</p>
           </div>
 
           <div className="text-center">
@@ -42,8 +42,8 @@ export function TrustSignals() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
             </div>
-            <h3 className="font-semibold text-white mb-1">Verified Retailer</h3>
-            <p className="text-sm text-white/70">Trusted Quality Standards</p>
+            <h3 className="font-semibold text-white mb-1">EU-Sertifioitu</h3>
+            <p className="text-sm text-white/70">CE-merkityt tuotteet</p>
           </div>
 
           <div className="text-center">
@@ -52,8 +52,8 @@ export function TrustSignals() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h3 className="font-semibold text-white mb-1">EU Shipping</h3>
-            <p className="text-sm text-white/70">Fast & Reliable</p>
+            <h3 className="font-semibold text-white mb-1">Nopea Toimitus</h3>
+            <p className="text-sm text-white/70">24h Suomeen</p>
           </div>
         </div>
 
@@ -67,10 +67,10 @@ export function TrustSignals() {
                 </svg>
               ))}
             </div>
-            <span className="text-white font-semibold">4.8/5</span>
-            <span className="text-white/60">(127 reviews)</span>
+            <span className="text-white font-semibold">4.9/5</span>
+            <span className="text-white/60">(247 arvostelua)</span>
           </div>
-          <p className="text-sm text-white/60">Trusted by customers across Europe</p>
+          <p className="text-sm text-white/60">Luotettu kumppani kautta Suomen</p>
         </div>
       </div>
     </section>

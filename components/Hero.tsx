@@ -22,12 +22,13 @@ export function Hero() {
       
       <div className="container text-center max-w-4xl relative z-10">
         <motion.h1 
-          className="h1 font-heading font-heading"
+          className="h1 font-heading"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          Europe's Trusted Destination for <span className="text-[var(--brand)]">Botanical Wellness</span>
+          Suomen <span className="text-[var(--brand)]">Luotetuin</span><br />
+          Kasviöljyjen Erikoisliike
         </motion.h1>
         
         <motion.p 
@@ -36,27 +37,35 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         >
-          Curated botanical wellness devices from trusted EU suppliers. Authorised distributor of premium 510-compatible technology.
+          Laadukkaat 510-yhteensopivat laitteet ja lisätarvikkeet aromaterapeuttiseen käyttöön. 
+          Valtuutettu jälleenmyyjä, nopea toimitus Suomeen.
         </motion.p>
         
-        {/* Verified Partners Section */}
+        {/* Luottamusindikaattorit */}
         <motion.div 
           className="mt-8 mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
         >
-          <p className="text-sm text-white/60 mb-4 font-body">Trusted by leading brands</p>
-          <div className="flex items-center justify-center gap-8 opacity-60">
-            <div className="text-white/50 font-bold text-lg">CCELL</div>
-            <div className="text-white/50 font-bold text-lg">AVD</div>
-            <div className="text-white/50 font-bold text-lg">O2Vape</div>
-            <div className="text-white/50 font-bold text-lg">KandyPens</div>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
+              <span className="text-sm font-semibold text-white">✓ Laillinen Suomessa</span>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
+              <span className="text-sm font-semibold text-white">✓ EU-sertifioitu</span>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
+              <span className="text-sm font-semibold text-white">✓ 24h toimitus</span>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
+              <span className="text-sm font-semibold text-white">✓ Luotettavat brändit</span>
+            </div>
           </div>
         </motion.div>
         
         <motion.div 
-          className="mt-8 flex items-center justify-center gap-3"
+          className="mt-8 flex flex-wrap items-center justify-center gap-3"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
@@ -66,7 +75,7 @@ export function Hero() {
             whileTap={{ scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 60 }}
           >
-            <Link href="/shop" className="btn btn-brand">Explore Curated Selection</Link>
+            <Link href="/shop" className="btn btn-brand">Selaa Tuotteita</Link>
           </motion.div>
           
           <motion.button 
@@ -76,16 +85,23 @@ export function Hero() {
             whileTap={{ scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 60 }}
           >
-            Build your Wellness Routine
+            Katso Suositut
           </motion.button>
-          
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: 'spring', stiffness: 60 }}
-          >
-            <Link href="#categories" className="btn btn-ghost">Browse Categories</Link>
-          </motion.div>
+        </motion.div>
+
+        {/* Luotetut brändit */}
+        <motion.div 
+          className="mt-12"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+        >
+          <p className="text-sm text-white/40 mb-4 font-body">Valtuutettu jälleenmyyjä</p>
+          <div className="flex items-center justify-center gap-8 opacity-40">
+            <div className="text-white/60 font-bold text-lg">CCELL</div>
+            <div className="text-white/60 font-bold text-lg">AVD</div>
+            <div className="text-white/60 font-bold text-lg">O2Vape</div>
+          </div>
         </motion.div>
       </div>
     </section>
