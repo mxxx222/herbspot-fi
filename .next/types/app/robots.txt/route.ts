@@ -1,4 +1,4 @@
-// File: /Applications/herbspot.fi/app/robots.txt/route.ts
+// File: /Users/mxjlh/Documents/herbspot/herbspot-fi/app/robots.txt/route.ts
 import * as entry from '../../../../app/robots.txt/route.js'
 import type { NextRequest } from 'next/server.js'
 

@@ -1,4 +1,4 @@
-// File: /Applications/herbspot.fi/app/api/checkout/route.ts
+// File: /Users/mxjlh/Documents/herbspot/herbspot-fi/app/api/checkout/route.ts
 import * as entry from '../../../../../app/api/checkout/route.js'
 import type { NextRequest } from 'next/server.js'
 

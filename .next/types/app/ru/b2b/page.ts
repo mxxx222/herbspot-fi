@@ -1,4 +1,4 @@
-// File: /Applications/herbspot.fi/app/ru/b2b/page.tsx
+// File: /Users/mxjlh/Documents/herbspot/herbspot-fi/app/ru/b2b/page.tsx
 import * as entry from '../../../../../app/ru/b2b/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

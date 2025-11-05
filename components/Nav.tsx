@@ -11,52 +11,47 @@ export function Nav() {
 
   const categories = [
     {
-      name: 'Products',
+      name: 'Tuotteet',
       href: '/shop',
       items: [
-        { name: 'All Products', href: '/shop' },
-        { name: '🔴 510-Compatible Devices', href: '/c/510-patruunat' },
-        { name: '🔴 Botanical Blends', href: '/c/yrttiblendit' },
-        { name: '🟡 Wellness Starter Packs', href: '/c/wellness-packs' },
-        { name: '🟢 DIY Accessories', href: '/c/diy-tarvikkeet' },
-        { name: '🟢 HerbSpot Merch™', href: '/c/merch' },
-        { name: 'AIO Devices', href: '/c/laitteet' },
-        { name: 'Accessories', href: '/c/tarvikkeet' },
-        { name: 'Packaging', href: '/c/pakkaus' },
-        { name: 'Herbal Blends', href: '/c/herbal' }
+        { name: 'Kaikki Tuotteet', href: '/shop' },
+        { name: '510-Laitteet', href: '/c/510-patruunat' },
+        { name: 'Aromitarvikkeet', href: '/c/yrttiblendit' },
+        { name: 'Aloituspaketit', href: '/c/wellness-packs' },
+        { name: 'DIY-Tarvikkeet', href: '/c/diy-tarvikkeet' },
+        { name: 'Lisävarusteet', href: '/c/tarvikkeet' },
+        { name: 'Pakkausmateriaalit', href: '/c/pakkaus' }
       ]
     },
     {
-      name: 'Wellness Paths',
+      name: 'Käyttökohteet',
       href: '/wellness',
       items: [
-        { name: 'Focus Path', href: '/shop?tag=focus', highlight: pathname.includes('focus') },
-        { name: 'Sleep Path', href: '/shop?tag=sleep', highlight: pathname.includes('sleep') },
-        { name: 'Calm Path', href: '/shop?tag=calm', highlight: pathname.includes('calm') },
-        { name: 'Recovery Path', href: '/shop?tag=recovery', highlight: pathname.includes('recovery') },
-        { name: 'Custom Blend', href: '/custom-blend' }
+        { name: 'Keskittyminen', href: '/shop?tag=focus', highlight: pathname.includes('focus') },
+        { name: 'Uni & Lepo', href: '/shop?tag=sleep', highlight: pathname.includes('sleep') },
+        { name: 'Rentoutuminen', href: '/shop?tag=calm', highlight: pathname.includes('calm') },
+        { name: 'Palautuminen', href: '/shop?tag=recovery', highlight: pathname.includes('recovery') }
       ]
     },
     {
-      name: 'Journal',
+      name: 'Oppaat',
       href: '/blog',
       items: [
-        { name: 'All Articles', href: '/blog' },
-        { name: 'Guides', href: '/blog?category=opas' },
-        { name: 'Wellness', href: '/blog?category=terveys' },
-        { name: 'Maintenance', href: '/blog?category=huolto' },
-        { name: 'B2B', href: '/blog?category=b2b' }
+        { name: 'Kaikki Artikkelit', href: '/blog' },
+        { name: 'Käyttöoppaat', href: '/blog?category=opas' },
+        { name: 'Huolto-ohjeet', href: '/blog?category=huolto' },
+        { name: 'B2B-Info', href: '/blog?category=b2b' }
       ]
     },
     {
-      name: 'Support',
+      name: 'Tuki',
       href: '/support',
       items: [
-        { name: 'Contact', href: '/contact' },
-        { name: 'FAQ', href: '/faq' },
-        { name: 'Shipping', href: '/shipping' },
-        { name: 'Returns', href: '/returns' },
-        { name: 'Privacy', href: '/privacy' }
+        { name: 'Ota Yhteyttä', href: '/contact' },
+        { name: 'UKK', href: '/faq' },
+        { name: 'Toimitus', href: '/shipping' },
+        { name: 'Palautukset', href: '/returns' },
+        { name: 'Tietosuoja', href: '/privacy' }
       ]
     }
   ];
@@ -79,11 +74,7 @@ export function Nav() {
             >
               <Link
                 href={category.href}
-                className={`hover:text-[var(--brand)] transition-colors flex items-center gap-1 ${
-                  category.name === 'Wellness Paths' && category.items.some(item => item.highlight) 
-                    ? 'text-[var(--brand)]' 
-                    : ''
-                }`}
+                className="hover:text-[var(--brand)] transition-colors flex items-center gap-1"
               >
                 {category.name}
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -99,9 +90,7 @@ export function Nav() {
                       <Link
                         key={item.name}
                         href={item.href}
-                        className={`block px-4 py-3 text-white hover:bg-white/10 hover:text-[var(--brand)] transition-colors ${
-                          item.highlight ? 'bg-[var(--brand)]/20 text-[var(--brand)]' : ''
-                        }`}
+                        className="block px-4 py-3 text-white hover:bg-white/10 hover:text-[var(--brand)] transition-colors"
                       >
                         {item.name}
                       </Link>
@@ -155,9 +144,7 @@ export function Nav() {
                       key={item.name}
                       href={item.href}
                       onClick={() => setOpen(false)}
-                      className={`block py-1 text-white/80 hover:text-[var(--brand)] transition-colors ${
-                        item.highlight ? 'text-[var(--brand)]' : ''
-                      }`}
+                      className="block py-1 text-white/80 hover:text-[var(--brand)] transition-colors"
                     >
                       {item.name}
                     </Link>

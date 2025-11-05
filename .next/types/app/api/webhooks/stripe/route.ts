@@ -1,4 +1,4 @@
-// File: /Applications/herbspot.fi/app/api/webhooks/stripe/route.ts
+// File: /Users/mxjlh/Documents/herbspot/herbspot-fi/app/api/webhooks/stripe/route.ts
 import * as entry from '../../../../../../app/api/webhooks/stripe/route.js'
 import type { NextRequest } from 'next/server.js'
 

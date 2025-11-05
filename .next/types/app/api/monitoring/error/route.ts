@@ -1,4 +1,4 @@
-// File: /Applications/herbspot.fi/app/api/monitoring/error/route.ts
+// File: /Users/mxjlh/Documents/herbspot/herbspot-fi/app/api/monitoring/error/route.ts
 import * as entry from '../../../../../../app/api/monitoring/error/route.js'
 import type { NextRequest } from 'next/server.js'
 

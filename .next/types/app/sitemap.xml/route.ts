@@ -1,4 +1,4 @@
-// File: /Applications/herbspot.fi/app/sitemap.xml/route.ts
+// File: /Users/mxjlh/Documents/herbspot/herbspot-fi/app/sitemap.xml/route.ts
 import * as entry from '../../../../app/sitemap.xml/route.js'
 import type { NextRequest } from 'next/server.js'
 

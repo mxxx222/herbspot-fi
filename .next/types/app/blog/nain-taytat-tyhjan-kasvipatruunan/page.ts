@@ -1,4 +1,4 @@
-// File: /Applications/herbspot.fi/app/blog/nain-taytat-tyhjan-kasvipatruunan/page.tsx
+// File: /Users/mxjlh/Documents/herbspot/herbspot-fi/app/blog/nain-taytat-tyhjan-kasvipatruunan/page.tsx
 import * as entry from '../../../../../app/blog/nain-taytat-tyhjan-kasvipatruunan/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

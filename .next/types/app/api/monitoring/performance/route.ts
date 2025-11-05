@@ -1,4 +1,4 @@
-// File: /Applications/herbspot.fi/app/api/monitoring/performance/route.ts
+// File: /Users/mxjlh/Documents/herbspot/herbspot-fi/app/api/monitoring/performance/route.ts
 import * as entry from '../../../../../../app/api/monitoring/performance/route.js'
 import type { NextRequest } from 'next/server.js'
 

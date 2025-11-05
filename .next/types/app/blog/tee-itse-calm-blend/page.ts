@@ -1,4 +1,4 @@
-// File: /Applications/herbspot.fi/app/blog/tee-itse-calm-blend/page.tsx
+// File: /Users/mxjlh/Documents/herbspot/herbspot-fi/app/blog/tee-itse-calm-blend/page.tsx
 import * as entry from '../../../../../app/blog/tee-itse-calm-blend/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

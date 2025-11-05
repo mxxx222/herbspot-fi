@@ -1,20 +1,9 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://herbspot-fi.onrender.com/sitemap.xml
-
-# Disallow admin and private areas
-Disallow: /admin/
 Disallow: /api/
+Disallow: /admin/
 Disallow: /_next/
 Disallow: /checkout/
+Disallow: /cart/
 
-# Allow important pages
-Allow: /shop
-Allow: /c/
-Allow: /p/
-Allow: /b2b
-Allow: /en
-
-# Crawl delay
-Crawl-delay: 1
+Sitemap: https://herbspot.fi/sitemap.xml
